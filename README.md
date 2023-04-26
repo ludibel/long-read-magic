@@ -4,7 +4,7 @@ A website for the visualisation and downloading of metagenome-assembled genomes 
 
 ## License
 
-This site is based on a template licensed under the [Tailwind UI license](https://tailwindui.com/license).
+This site is based on components licensed under the [Tailwind UI license](https://tailwindui.com/license).
 
 ## Learn more
 
