@@ -68,7 +68,7 @@ export default function About() {
             <div className="mx-auto max-w-2xl text-center">
                 <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">About the project</h2>
                 <p className="mt-6 text-lg leading-8 text-gray-300">
-                    Our team of three scientists and researchers worked tirelessly to create our powerful tool for assembling entire genomes from individual samples using long-read sequencing techniques. Here's a brief background on each of them:
+                    Our team of three scientists and researchers worked tirelessly to create our powerful tool for assembling entire genomes from individual samples using long-read sequencing techniques. Here’s a brief background on each of them:
                 </p>
             </div>
         </Container>
