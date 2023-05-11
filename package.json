@@ -4,12 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "buildNext": "next build",
+    "build": "next build && npm run manifest",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "manifest": "ts-node src/generate-manifest.ts"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.331.0",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
     "@mapbox/rehype-prism": "^0.8.0",
@@ -28,7 +31,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "remark-gfm": "^3.0.1",
-    "tailwindcss": "^3.3.0"
+    "tailwindcss": "^3.3.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "eslint": "8.26.0",
