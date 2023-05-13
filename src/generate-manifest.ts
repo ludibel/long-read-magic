@@ -6,8 +6,8 @@ import { MetadataItem } from "./utils/models";
 const s3 = new S3({
     region: "eu-central-1",
     credentials: {
-        accessKeyId: "AKIAXD2CIN2C7NLMJ3PT",
-        secretAccessKey: "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"
+        accessKeyId: "qq",
+        secretAccessKey: "qq"
     },
 });
 const bucketName = "gene-stag";
