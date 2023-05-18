@@ -90,22 +90,22 @@ export const Table: FC<TableProps> = ({items}) => {
                 <div>
                     <p className="">Pass.GNUC</p>
                     <button type="button"
-                            className={clsx(filters.passGnuc === undefined && "bg-blue-400 hover:bg-blue-500",
-                                "relative inline-flex items-center first:rounded-l-md last:rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10")}
+                            className={clsx(filters.passGnuc === undefined ? "bg-blue-400 hover:bg-blue-500" : "bg-white hover:bg-gray-50",
+                                "relative inline-flex items-center first:rounded-l-md last:rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10")}
                             onClick={() => setFilters({...filters, passGnuc: undefined})}>
                         All GNUC
                     </button>
 
                     <button type="button"
-                            className={clsx(filters.passGnuc === false && "bg-blue-400 hover:bg-blue-500",
-                                "relative inline-flex items-center first:rounded-l-md last:rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10")}
+                            className={clsx(filters.passGnuc === false ? "bg-blue-400 hover:bg-blue-500" : "bg-white hover:bg-gray-50",
+                                "relative inline-flex items-center first:rounded-l-md last:rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10")}
                             onClick={() => setFilters({...filters, passGnuc: false})}>
                         No GNUC
                     </button>
 
                     <button type="button"
-                            className={clsx(filters.passGnuc === true && "bg-blue-400 hover:bg-blue-500",
-                                "relative inline-flex items-center first:rounded-l-md last:rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10")}
+                            className={clsx(filters.passGnuc === true ? "bg-blue-400 hover:bg-blue-500" : "bg-white hover:bg-gray-50",
+                                "relative inline-flex items-center first:rounded-l-md last:rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10")}
                             onClick={() => setFilters({...filters, passGnuc: true})}>
                         Yes GNUC
                     </button>

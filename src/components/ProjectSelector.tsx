@@ -24,8 +24,8 @@ export const ProjectSelector: FC<ProjectSelectorProps> = ({manifest, setSelected
                     return (
                         <button key={project.name}
                                 type="button"
-                                className={clsx(selectedProject?.name === project.name && "bg-blue-400 hover:bg-blue-500",
-                                    "relative inline-flex items-center first:rounded-l-md last:rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10")}
+                                className={clsx(selectedProject?.name === project.name ? "bg-blue-400 hover:bg-blue-500" : "bg-white hover:bg-gray-50",
+                                    "relative inline-flex items-center first:rounded-l-md last:rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10")}
                                 onClick={() => setSelectedProject(project)}
                         >
                             {project.name}
@@ -43,8 +43,8 @@ export const ProjectSelector: FC<ProjectSelectorProps> = ({manifest, setSelected
                         return (
                             <button key={variation.name}
                                     type="button"
-                                    className={clsx(  selectedProjectVariation?.name === variation.name && "bg-blue-400 hover:bg-blue-500",
-                                        "relative inline-flex items-center first:rounded-l-md last:rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10")}
+                                    className={clsx(  selectedProjectVariation?.name === variation.name ? "bg-blue-400 hover:bg-blue-500" : "bg-white hover:bg-gray-50",
+                                        "relative inline-flex items-center first:rounded-l-md last:rounded-r-md px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 focus:z-10")}
                                     onClick={() => setProjectVariation(variation)}
                             >
                                 {variation.name}
