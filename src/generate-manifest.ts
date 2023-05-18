@@ -1,13 +1,15 @@
 import { S3 } from "@aws-sdk/client-s3";
 import * as fs from "fs";
-import { MetadataItem } from "./utils/models";
+import { MetadataItem, Project, ProjectVariation } from "./utils/models";
+import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config({ path: '.env.local' })
 
 // Configure the AWS SDK
 const s3 = new S3({
     region: "eu-central-1",
     credentials: {
-        accessKeyId: "qq",
-        secretAccessKey: "qq"
+        accessKeyId: process.env.S3_ACCESS_KEY_ID ?? "",
+        secretAccessKey: process.env.S3_ACCESS_KEY_SECRET ?? ""
     },
 });
 const bucketName = "gene-stag";
@@ -19,12 +21,12 @@ const fieldNames = [
     "contig_n50", "average_gene_length", "genome_size", "gc_content", "total_coding_sequences", "additional_notes",
     "n_genes_called", "n_genes_mapped", "n_contigs", "taxonomic_level", "proportion_genes_retained_in_major_clades",
     "genes_retained_index", "clade_separation_score", "contamination_portion", "n_effective_surplus_clades",
-    "mean_hit_identity", "reference_representation_score", "passGnuc", "trna", "16s", "5s", "23s"
+    "mean_hit_identity", "reference_representation_score", "passGnuc", "trna", "s16", "s5", "s23"
 ];
 
 // Define the fields to keep in the output JSON
 const fieldsToKeep = [
-    "filename", "completeness", "contamination", "passGnuc"
+    "filename", "completeness", "contamination", "passGnuc", "trna", "s16", "s5", "s23"
 ];
 
 async function csvToJson(input: string): Promise<any> {
@@ -81,7 +83,7 @@ function appendDownloadLink(json: { items: MetadataItem[] }, linkPrefix: string)
 
 async function processS3Bucket() {
     try {
-        const projects: Record<string, any> = {};
+        const projects: Project[] = []
 
         // List all project folders in the root level of the bucket
         const projectFolders = await s3.listObjects({Bucket: bucketName, Delimiter: "/"});
@@ -105,6 +107,8 @@ async function processS3Bucket() {
                 throw new Error(`No project variation folders found in the ${projectFolder.Prefix} folder.`);
             }
 
+            const variations: ProjectVariation[] = []
+
             for (const projectVariationFolder of projectVariationFolders.CommonPrefixes) {
                 if (projectVariationFolder.Prefix === undefined) {
                     throw new Error(`No project variation folders found in the ${projectFolder.Prefix} folder.`);
@@ -127,13 +131,9 @@ async function processS3Bucket() {
 
                 appendDownloadLink(jsonOutput, linkPrefix);
 
-
-                // Add the JSON output to the projects object
-                if (!projects[projectName]) {
-                    projects[projectName] = {};
-                }
-                projects[projectName][projectVariationName] = jsonOutput.items;
+                variations.push({name: projectVariationName, items: jsonOutput.items});
             }
+            projects.push({name: projectName, variations: variations});
         }
 
         // Save the final JSON structure to a file
