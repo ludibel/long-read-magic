@@ -8,7 +8,8 @@
     "build": "npm run manifest && next build",
     "start": "next start",
     "lint": "next lint",
-    "manifest": "ts-node --skipProject src/generate-manifest.ts"
+    "manifest": "ts-node --skipProject src/generate-manifest.ts",
+    "rename": "ts-node --skipProject src/rename-files.ts"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {

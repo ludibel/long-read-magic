@@ -34,3 +34,5 @@ yarn-error.log*
 
 # generated files
 /public/rss/
+/file-storage
+/file-storage-backup
