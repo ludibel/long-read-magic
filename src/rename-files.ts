@@ -18,22 +18,29 @@ function renameBinsAndReferences(binFiles: BinFile[], sampleInfo: SampleInfo) {
     const resultCsvPath = path.join(samplePath, 'result.csv');
     const fastaPath = path.join(samplePath, 'assembly.fasta');
 
+    //change content of CSV files
+    fs.readdirSync(samplePath)
+        .filter((filename) => filename.endsWith('.csv') || filename.endsWith('.tsv'))
+        .map(filename => path.join(samplePath, filename))
+        .map(path => ({ path: path, content: fs.readFileSync(path, 'utf-8') }))
+        .map(({ path, content }) => {
+            console.log(path);
+
+            console.log(binFiles.length);
+
+            binFiles.forEach(({ oldName, newName }) => {
+                content = content.replace(oldName.slice(0, oldName.length - 3), newName.slice(0, newName.length - 3));
+            });
+            return { path, content };
+        })
+        .map(({ path, content }) => fs.writeFileSync(path, content, 'utf-8'));
+
+    // change bin filenames
     binFiles.forEach(({ oldName, newName }) => {
+        ``
         const binFilePath = path.join(binsPath, oldName);
         const newBinFilePath = path.join(binsPath, newName);
         fs.renameSync(binFilePath, newBinFilePath);
-
-        const resultCsvContent = fs.readFileSync(resultCsvPath, 'utf-8');
-        const newResultCsvContent = resultCsvContent.replace(oldName, newName);
-        fs.writeFileSync(resultCsvPath, newResultCsvContent, 'utf-8');
-
-        const tsvFiles = fs.readdirSync(samplePath).filter((filename) => filename.endsWith('.tsv'));
-        tsvFiles.forEach((tsvFile) => {
-            const tsvFilePath = path.join(samplePath, tsvFile);
-            const tsvContent = fs.readFileSync(tsvFilePath, 'utf-8');
-            const newTsvContent = tsvContent.replace(oldName, newName);
-            fs.writeFileSync(tsvFilePath, newTsvContent, 'utf-8');
-        });
     });
 
     const fastaContent = fs.readFileSync(fastaPath, 'utf-8');
@@ -49,14 +56,14 @@ function mergeTsvFiles(sampleInfo: SampleInfo) {
     const tsvFiles = fs.readdirSync(samplePath).filter((filename) => filename.endsWith('.tsv'));
     const resultCsvPath = path.join(samplePath, 'result.csv');
     const outputCsvPath = path.join(samplePath, 'result_merged.csv');
-    const originalCsvLines = fs.readFileSync(resultCsvPath, 'utf-8').split('\n');
+    const originalCsvLines = fs.readFileSync(resultCsvPath, 'utf-8').trim().split('\n');
     const csvStream = fs.createWriteStream(outputCsvPath);
 
     // merge headers
     const tsvFilePath = path.join(samplePath, tsvFiles[0]);
     const tsvContent = fs.readFileSync(tsvFilePath, 'utf-8');
     const tsvHeader = tsvContent.trim().split('\n')[0].replaceAll(",", "--").split('\t').slice(1).join(',');
-    csvStream.write(originalCsvLines[0] + "," + tsvHeader + "\n");
+    originalCsvLines[0] = originalCsvLines[0] + "," + tsvHeader;
 
     tsvFiles.forEach((tsvFile) => {
         const tsvFilePath = path.join(samplePath, tsvFile);
@@ -64,18 +71,26 @@ function mergeTsvFiles(sampleInfo: SampleInfo) {
         const tsvLines = tsvContent.trim().split('\n');
         const binFileNameIndex = 0;
 
-        originalCsvLines.slice(1).forEach((csvLine) => {
+        for (let i = 1; i < originalCsvLines.length; i++) {
+            let csvLine = originalCsvLines[i];
+
             const csvFields = csvLine.split(',');
             const binFileName = csvFields[binFileNameIndex];
+
             const tsvLine = tsvLines.find((tsvLine) => tsvLine.startsWith(binFileName));
             if (!tsvLine) {
-                return;
+                continue;
             }
+
 
             const mergedLine = `${csvLine},${tsvLine.replaceAll(", ", "---").split('\t').slice(1).join(',')}`;
 
-            csvStream.write(mergedLine + "\n");
-        });
+            originalCsvLines[i] = mergedLine
+        }
+    });
+
+    originalCsvLines.forEach((line) => {
+        csvStream.write(line + "\n");
     });
     csvStream.end();
 }
