@@ -93,7 +93,7 @@ function processSample(samplePath: string) {
             return { oldName: filename, newName };
         });
 
-    //renameBinsAndReferences(binFiles, { projectId, sampleId, samplePath });
+    renameBinsAndReferences(binFiles, { projectId, sampleId, samplePath });
     mergeTsvFiles({ projectId, sampleId, samplePath });
 }
 
