@@ -14,7 +14,7 @@ interface SampleInfo {
 
 function renameBinsAndReferences(binFiles: BinFile[], sampleInfo: SampleInfo) {
     const { projectId, sampleId, samplePath } = sampleInfo;
-    const binsPath = path.join(samplePath, 'bins');
+    const binsPath = path.join(samplePath, 'output_bins');
     const resultCsvPath = path.join(samplePath, 'result.csv');
     const fastaPath = path.join(samplePath, 'assembly.fasta');
 
