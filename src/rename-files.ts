@@ -83,7 +83,7 @@ function mergeTsvFiles(sampleInfo: SampleInfo) {
 function processSample(samplePath: string) {
     const sampleId = path.basename(samplePath);
     const projectId = path.basename(path.dirname(samplePath));
-    const binsPath = path.join(samplePath, 'bins');
+    const binsPath = path.join(samplePath, 'output_bins');
     const binFiles = fs.readdirSync(binsPath)
         .filter((filename) => filename.startsWith('bin.'))
         .map((filename) => {
