@@ -40,19 +40,20 @@ const Pagination = props => {
     >
       <li
         className={clsx(paginationItemClass, {
-          "opacity-50 pointer-events-none": currentPage === 1 
+          "opacity-50 pointer-events-none": currentPage === 1
         })}
         onClick={onPrevious}
       >
-       <ChevronLeftIcon className="w-5 h-5"/>
+        <ChevronLeftIcon className="w-5 h-5" />
       </li>
       {paginationRange.map(pageNumber => {
         if (pageNumber === DOTS) {
-          return <li className={clsx(paginationItemClass, "border-0 hover:cursor-default hover:bg-transparent")}>&#8230;</li>;
+          return <li key={pageNumber} className={clsx(paginationItemClass, "border-0 hover:cursor-default hover:bg-transparent")}>&#8230;</li>;
         }
 
         return (
           <li
+            key={pageNumber}
             className={clsx(paginationItemClass, {
               "bg-gray-200": pageNumber === currentPage
             })}
@@ -68,7 +69,7 @@ const Pagination = props => {
         })}
         onClick={onNext}
       >
-        <ChevronRightIcon className="w-5 h-5"/>
+        <ChevronRightIcon className="w-5 h-5" />
       </li>
     </ul>
   );
