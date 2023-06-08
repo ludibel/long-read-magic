@@ -1,6 +1,6 @@
 import { S3 } from "@aws-sdk/client-s3";
 import * as fs from "fs";
-import { MetadataItem, Project, ProjectVariation } from "./utils/models";
+import { MetadataItem, Project, Sample } from "./utils/models";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config({ path: '.env.local' })
 
@@ -107,7 +107,7 @@ async function processS3Bucket() {
                 throw new Error(`No project variation folders found in the ${projectFolder.Prefix} folder.`);
             }
 
-            const variations: ProjectVariation[] = []
+            const variations: Sample[] = []
 
             for (const projectVariationFolder of projectVariationFolders.CommonPrefixes) {
                 if (projectVariationFolder.Prefix === undefined) {
@@ -129,11 +129,11 @@ async function processS3Bucket() {
                 const jsonOutput = await csvToJson(csvMetadata);
                 const linkPrefix = `https://gene-stag.s3.eu-central-1.amazonaws.com/${projectName}/${projectVariationName}/output_bins`;
 
-                appendDownloadLink(jsonOutput, linkPrefix);
+                //appendDownloadLink(jsonOutput, linkPrefix);
 
                 variations.push({name: projectVariationName, items: jsonOutput.items});
             }
-            projects.push({name: projectName, variations: variations});
+            projects.push({name: projectName, samples: variations});
         }
 
         // Save the final JSON structure to a file

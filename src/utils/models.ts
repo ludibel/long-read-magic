@@ -16,10 +16,10 @@ export type Manifest = {
 
 export type Project = {
     name: string,
-    variations: ProjectVariation[]
+    samples: Sample[]
 }
 
-export type ProjectVariation = {
+export type Sample = {
     name: string
     items: MetadataItem[]
 }

@@ -18,7 +18,7 @@ export function Header() {
   return (
       <header className="bg-white">
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
-          <Link href="#" className="-m-1.5">
+          <Link href="/" className="-m-1.5">
             <span className="sr-only">Project name</span>
             <img className="h-10 w-auto" src="/images/logo_header.png" alt="Project logo" />
           </Link>
