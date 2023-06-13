@@ -47,7 +47,7 @@ function confirmation(rootPath) {
             output: process.stdout
         });
 
-        rl.question(`Are you sure you want to rename files in ${rootPath}? (y/n) `, (answer) => {
+        rl.question(`Are you sure you want to rename files in ${rootPath}? (this path is defined in src/rename-files.mjs)  (y/n) `, (answer) => {
             if (answer.toLowerCase() === 'y') {
                 console.warn('Proceeding...');
                 rl.close();
