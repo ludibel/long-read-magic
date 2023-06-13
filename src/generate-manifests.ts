@@ -1,6 +1,7 @@
 import { S3 } from "@aws-sdk/client-s3";
 import * as fs from "fs";
-import { MetadataItem, Project, Sample } from "./utils/models";
+import { MetadataItem, Project, Sample, TaxonomyTreeNode } from "./utils/models";
+import {generateTaxonomyMetadataForFile as appendTaxonomyMetadataForFile} from "./generate-taxonomy-tree";
 import * as dotenv from 'dotenv' // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
 dotenv.config({ path: '.env.local' })
 
@@ -13,6 +14,9 @@ const s3 = new S3({
     },
 });
 const bucketName = "gene-stag";
+const metadataFilename = "result_merged.csv"
+const manifestPath = "public/data-manifest.json"
+const taxonomyTreeManifestPath = "public/taxonomy-tree-manifest.json"
 
 
 // Define CSV field names
@@ -29,7 +33,7 @@ const fieldsToKeep = [
     "filename", "completeness", "contamination", "passGnuc", "trna", "s16", "s5", "s23"
 ];
 
-async function csvToJson(input: string): Promise<any> {
+async function generateMetadataForFile(input: string): Promise<{items: MetadataItem[]}> {
     let lines = input.split("\n");
     lines = lines.slice(1)
 
@@ -54,9 +58,7 @@ async function csvToJson(input: string): Promise<any> {
                 return;
             }
 
-            if (key === "filename") {
-                item[key] = `${value}.fa`;
-            } else if (!isNaN(parseFloat(value))) {
+            if (!isNaN(parseFloat(value))) {
                 //@ts-ignore
                 item[key] = parseFloat(value);
             } else if (key === "passGnuc") {
@@ -71,7 +73,7 @@ async function csvToJson(input: string): Promise<any> {
         resultArray.push(item);
     })
 
-    return {"items": resultArray};
+    return {items: resultArray};
 
 }
 
@@ -81,9 +83,10 @@ function appendDownloadLink(json: { items: MetadataItem[] }, linkPrefix: string)
     });
 }
 
-async function processS3Bucket() {
+async function processS3Bucket(metatadataFilename: string) {
     try {
-        const projects: Project[] = []
+        const projects: Project[] = [];
+        const taxonomyTree: TaxonomyTreeNode = {name: "root", children: [], count: 0};
 
         // List all project folders in the root level of the bucket
         const projectFolders = await s3.listObjects({Bucket: bucketName, Delimiter: "/"});
@@ -99,46 +102,47 @@ async function processS3Bucket() {
 
             const projectName = projectFolder.Prefix.split("/")[0];
 
-            // List all project variation folders in the current project folder
-            const projectVariationFolders = await s3
+            // List all sample folders in the current project folder
+            const sampleFolders = await s3
                 .listObjects({Bucket: bucketName, Delimiter: "/", Prefix: projectFolder.Prefix});
 
-            if (projectVariationFolders.CommonPrefixes === undefined) {
-                throw new Error(`No project variation folders found in the ${projectFolder.Prefix} folder.`);
+            if (sampleFolders.CommonPrefixes === undefined) {
+                throw new Error(`No sample folders found in the ${projectFolder.Prefix} folder.`);
             }
 
-            const variations: Sample[] = []
+            const samples: Sample[] = []
 
-            for (const projectVariationFolder of projectVariationFolders.CommonPrefixes) {
-                if (projectVariationFolder.Prefix === undefined) {
-                    throw new Error(`No project variation folders found in the ${projectFolder.Prefix} folder.`);
+            for (const sampleFolder of sampleFolders.CommonPrefixes) {
+                if (sampleFolder.Prefix === undefined) {
+                    throw new Error(`No sample folders found in the ${projectFolder.Prefix} folder.`);
                 }
 
-                const projectVariationName = projectVariationFolder.Prefix.split("/")[1];
+                const sampleName = sampleFolder.Prefix.split("/")[1];
 
-                // Download the result.csv file from the current project variation folder
-                const csvMetadataFileKey = `${projectVariationFolder.Prefix}result.csv`;
+                // Download the result.csv file from the current sample folder
+                const csvMetadataFileKey = sampleFolder.Prefix + metatadataFilename;
                 const csvMetadataFile = await s3.getObject({Bucket: bucketName, Key: csvMetadataFileKey});
 
                 if (csvMetadataFile.Body === undefined) {
                     throw new Error(`No result.csv file found in ${csvMetadataFileKey}`)
                 }
 
-                const csvMetadata = await csvMetadataFile.Body.transformToString()
+                const csvMetadataText = await csvMetadataFile.Body.transformToString()
 
-                const jsonOutput = await csvToJson(csvMetadata);
-                const linkPrefix = `https://gene-stag.s3.eu-central-1.amazonaws.com/${projectName}/${projectVariationName}/output_bins`;
+                const metadata = await generateMetadataForFile(csvMetadataText);
+                appendTaxonomyMetadataForFile(csvMetadataText, projectName, sampleName, taxonomyTree);
 
+                //const linkPrefix = `https://gene-stag.s3.eu-central-1.amazonaws.com/${projectName}/${projectVariationName}/output_bins`;
                 //appendDownloadLink(jsonOutput, linkPrefix);
 
-                variations.push({name: projectVariationName, items: jsonOutput.items});
+                samples.push({name: sampleName, items: metadata.items});
             }
-            projects.push({name: projectName, samples: variations});
+            projects.push({name: projectName, samples: samples});
         }
 
         // Save the final JSON structure to a file
-        const json = {projects};
-        fs.writeFileSync("public/data-manifest.json", JSON.stringify(json, null, 2));
+        fs.writeFileSync(manifestPath, JSON.stringify({projects}, null, 2));
+        fs.writeFileSync(taxonomyTreeManifestPath, JSON.stringify({tree: taxonomyTree}, null, 2));
         console.log("Final JSON output saved");
     } catch (error) {
         console.error("Error processing S3 bucket:", error);
@@ -146,6 +150,6 @@ async function processS3Bucket() {
 }
 
 // Run the processS3Bucket function
-processS3Bucket()
+processS3Bucket(metadataFilename)
     .then(() => console.log("S3 bucket processed successfully."))
     .catch((error) => console.error("Error processing S3 bucket:", error));

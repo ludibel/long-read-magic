@@ -23,3 +23,26 @@ export type Sample = {
     name: string
     items: MetadataItem[]
 }
+
+export type TaxonomyTreeNode = {
+    name: string
+    children: TaxonomyTreeNode[],
+    count: number
+    binDetails?: BinDetails[]
+}
+
+export type BinDetails = {
+    project: string
+    sample: string
+    name: string
+
+}
+
+export type KeyValuePair = {
+    key: string
+    value: string
+}
+
+export type GenomeDetails = {
+    name: string
+}

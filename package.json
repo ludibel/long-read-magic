@@ -8,8 +8,8 @@
     "build": "npm run manifest && next build",
     "start": "next start",
     "lint": "next lint",
-    "manifest": "ts-node --skipProject src/generate-manifest.ts",
-    "rename": "ts-node --skipProject src/rename-files.ts"
+    "manifest": "ts-node --skipProject src/generate-manifests.ts",
+    "rename": "node src/rename-files.mjs"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {
@@ -23,6 +23,7 @@
     "@tailwindcss/typography": "^0.5.4",
     "autoprefixer": "^10.4.12",
     "clsx": "^1.2.1",
+    "csv-parser": "^3.0.0",
     "dotenv": "^16.0.3",
     "fast-glob": "^3.2.11",
     "feed": "^4.2.2",

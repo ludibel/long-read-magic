@@ -1,0 +1,1184 @@
+{
+  "tree": {
+    "name": "root",
+    "children": [
+      {
+        "name": "d__Bacteria",
+        "children": [
+          {
+            "name": "p__Verrucomicrobiota",
+            "children": [
+              {
+                "name": "c__Verrucomicrobiae",
+                "children": [
+                  {
+                    "name": "o__Verrucomicrobiales",
+                    "children": [
+                      {
+                        "name": "f__Akkermansiaceae",
+                        "children": [
+                          {
+                            "name": "g__UBA1315",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 3,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin0"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin3"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin0"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 3
+                          },
+                          {
+                            "name": "g__",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin1"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__SW10",
+                            "children": [
+                              {
+                                "name": "s__SW10 sp000383735",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin9"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 5
+                      }
+                    ],
+                    "count": 5
+                  }
+                ],
+                "count": 5
+              }
+            ],
+            "count": 5
+          },
+          {
+            "name": "p__Bacteroidota",
+            "children": [
+              {
+                "name": "c__Bacteroidia",
+                "children": [
+                  {
+                    "name": "o__Flavobacteriales",
+                    "children": [
+                      {
+                        "name": "f__Flavobacteriaceae",
+                        "children": [
+                          {
+                            "name": "g__SCGC-AAA160-P02",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin1"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "s__SCGC-AAA160-P02 sp000383355",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin39"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 2
+                          },
+                          {
+                            "name": "g__LPB0138",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin10"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__MS024-2A",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 2,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin13"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin17"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 2
+                          },
+                          {
+                            "name": "g__MED-G11",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin12"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__SGZJ01",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin13"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__GCA-002723295",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin2"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin22"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__UBA7428",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin4"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "s__UBA7428 sp002477625",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin7"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 2
+                          }
+                        ],
+                        "count": 11
+                      },
+                      {
+                        "name": "f__BACL11",
+                        "children": [
+                          {
+                            "name": "g__GCA-2705205",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 3,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin12"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin41"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin9"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 3
+                          },
+                          {
+                            "name": "g__GCA-002697625",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin149"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 4
+                      },
+                      {
+                        "name": "f__Crocinitomicaceae",
+                        "children": [
+                          {
+                            "name": "g__UBA4466",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin11"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      },
+                      {
+                        "name": "f__Schleiferiaceae",
+                        "children": [
+                          {
+                            "name": "g__UBA10364",
+                            "children": [
+                              {
+                                "name": "s__UBA10364 sp002387615",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin2"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 17
+                  },
+                  {
+                    "name": "o__NS11-12g",
+                    "children": [
+                      {
+                        "name": "f__UBA9320",
+                        "children": [
+                          {
+                            "name": "g__UBA9320",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin17"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  },
+                  {
+                    "name": "o__Cytophagales",
+                    "children": [
+                      {
+                        "name": "f__Cyclobacteriaceae",
+                        "children": [
+                          {
+                            "name": "g__UBA4465",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin16"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  },
+                  {
+                    "name": "o__Chitinophagales",
+                    "children": [
+                      {
+                        "name": "f__Saprospiraceae",
+                        "children": [
+                          {
+                            "name": "g__UBA1994",
+                            "children": [
+                              {
+                                "name": "s__UBA1994 sp002335865",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin20"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  }
+                ],
+                "count": 20
+              }
+            ],
+            "count": 20
+          },
+          {
+            "name": "p__Actinobacteriota",
+            "children": [
+              {
+                "name": "c__Actinomycetia",
+                "children": [
+                  {
+                    "name": "o__Actinomycetales",
+                    "children": [
+                      {
+                        "name": "f__Microbacteriaceae",
+                        "children": [
+                          {
+                            "name": "g__Aquiluna",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin11"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  }
+                ],
+                "count": 1
+              },
+              {
+                "name": "c__Acidimicrobiia",
+                "children": [
+                  {
+                    "name": "o__Acidimicrobiales",
+                    "children": [
+                      {
+                        "name": "f__Ilumatobacteraceae",
+                        "children": [
+                          {
+                            "name": "g__Ilumatobacter_A",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 2,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin8"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin10"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 2
+                          }
+                        ],
+                        "count": 2
+                      },
+                      {
+                        "name": "f__TK06",
+                        "children": [
+                          {
+                            "name": "g__UBA9040",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin10"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 3
+                  }
+                ],
+                "count": 3
+              }
+            ],
+            "count": 4
+          },
+          {
+            "name": "p__Proteobacteria",
+            "children": [
+              {
+                "name": "c__Alphaproteobacteria",
+                "children": [
+                  {
+                    "name": "o__Rhodobacterales",
+                    "children": [
+                      {
+                        "name": "f__Rhodobacteraceae",
+                        "children": [
+                          {
+                            "name": "g__CPC320",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 2,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin14"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin146"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 2
+                          },
+                          {
+                            "name": "g__Planktomarina",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin5"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__Ascidiaceihabitans",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 2,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin17"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin6"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 2
+                          }
+                        ],
+                        "count": 5
+                      }
+                    ],
+                    "count": 5
+                  },
+                  {
+                    "name": "o__Pelagibacterales",
+                    "children": [
+                      {
+                        "name": "f__Pelagibacteraceae",
+                        "children": [
+                          {
+                            "name": "g__TMED170",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin28"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          },
+                          {
+                            "name": "g__Pelagibacter",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin37"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 2
+                      },
+                      {
+                        "name": "f__AG-422-B15",
+                        "children": [
+                          {
+                            "name": "g__",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin3"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 3
+                  },
+                  {
+                    "name": "o__Rhizobiales_B",
+                    "children": [
+                      {
+                        "name": "f__TMED25",
+                        "children": [
+                          {
+                            "name": "g__MED-G09",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin9"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  }
+                ],
+                "count": 9
+              },
+              {
+                "name": "c__Gammaproteobacteria",
+                "children": [
+                  {
+                    "name": "o__Pseudomonadales",
+                    "children": [
+                      {
+                        "name": "f__Nitrincolaceae",
+                        "children": [
+                          {
+                            "name": "g__ASP10-02a",
+                            "children": [
+                              {
+                                "name": "s__ASP10-02a sp002335115",
+                                "children": [],
+                                "count": 2,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin2"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin21"
+                                  }
+                                ]
+                              },
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin0"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 3
+                          }
+                        ],
+                        "count": 3
+                      },
+                      {
+                        "name": "f__Porticoccaceae",
+                        "children": [
+                          {
+                            "name": "g__HTCC2207",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 3,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin4"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin5"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin8"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 3
+                          }
+                        ],
+                        "count": 3
+                      }
+                    ],
+                    "count": 6
+                  },
+                  {
+                    "name": "o__Burkholderiales",
+                    "children": [
+                      {
+                        "name": "f__Methylophilaceae",
+                        "children": [
+                          {
+                            "name": "g__BACL14",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin1"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  },
+                  {
+                    "name": "o__PS1",
+                    "children": [
+                      {
+                        "name": "f__Thioglobaceae",
+                        "children": [
+                          {
+                            "name": "g__Thioglobus",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin15"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  },
+                  {
+                    "name": "o__Woeseiales",
+                    "children": [
+                      {
+                        "name": "f__Woeseiaceae",
+                        "children": [
+                          {
+                            "name": "g__SP4260",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin6"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  },
+                  {
+                    "name": "o__SAR86",
+                    "children": [
+                      {
+                        "name": "f__SAR86",
+                        "children": [
+                          {
+                            "name": "g__",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin7"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  }
+                ],
+                "count": 10
+              }
+            ],
+            "count": 19
+          },
+          {
+            "name": "p__Marinisomatota",
+            "children": [
+              {
+                "name": "c__Marinisomatia",
+                "children": [
+                  {
+                    "name": "o__Marinisomatales",
+                    "children": [
+                      {
+                        "name": "f__Marinisomataceae",
+                        "children": [
+                          {
+                            "name": "g__Marinisoma",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515479",
+                                    "name": "SB15.PRJEB41592.SAMEA7670921.bin11"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  }
+                ],
+                "count": 1
+              }
+            ],
+            "count": 1
+          },
+          {
+            "name": "p__Fibrobacterota",
+            "children": [
+              {
+                "name": "c__Fibrobacteria",
+                "children": [
+                  {
+                    "name": "o__Fibrobacterales",
+                    "children": [
+                      {
+                        "name": "f__",
+                        "children": [
+                          {
+                            "name": "g__",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 1,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin5"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 1
+                          }
+                        ],
+                        "count": 1
+                      }
+                    ],
+                    "count": 1
+                  }
+                ],
+                "count": 1
+              }
+            ],
+            "count": 1
+          }
+        ],
+        "count": 50
+      },
+      {
+        "name": "d__Archaea",
+        "children": [
+          {
+            "name": "p__Thermoplasmatota",
+            "children": [
+              {
+                "name": "c__Poseidoniia",
+                "children": [
+                  {
+                    "name": "o__Poseidoniales",
+                    "children": [
+                      {
+                        "name": "f__Poseidoniaceae",
+                        "children": [
+                          {
+                            "name": "g__MGIIa-L1",
+                            "children": [
+                              {
+                                "name": "s__",
+                                "children": [],
+                                "count": 7,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin4"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin44"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin6"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515478",
+                                    "name": "SB15.PRJEB41592.SAMEA7670922.bin61"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin37"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin38"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin39"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 7
+                          }
+                        ],
+                        "count": 7
+                      },
+                      {
+                        "name": "f__Thalassarchaeaceae",
+                        "children": [
+                          {
+                            "name": "g__MGIIb-O3",
+                            "children": [
+                              {
+                                "name": "s__MGIIb-O3 sp002503285",
+                                "children": [],
+                                "count": 2,
+                                "binDetails": [
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin3"
+                                  },
+                                  {
+                                    "project": "PRJCA007414",
+                                    "sample": "SAMC515480",
+                                    "name": "SB15.PRJEB41592.SAMEA7670923.bin34"
+                                  }
+                                ]
+                              }
+                            ],
+                            "count": 2
+                          }
+                        ],
+                        "count": 2
+                      }
+                    ],
+                    "count": 9
+                  }
+                ],
+                "count": 9
+              }
+            ],
+            "count": 9
+          }
+        ],
+        "count": 9
+      }
+    ],
+    "count": 59
+  }
+}

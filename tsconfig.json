@@ -30,7 +30,6 @@
     "**/*.tsx"
   ],
   "exclude": [
-    "node_modules",
-    "src/generate-manifest.ts"
+    "node_modules"
   ]
 }
