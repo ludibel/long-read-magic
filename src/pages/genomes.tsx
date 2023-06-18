@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react"
-import manifest from "public/data-manifest.json"
+import manifest from "public/shortened-data-manifest.json"
 import { Table } from "@/components/Table";
 import { Container } from "@/components/Container";
 import { ProjectSelector } from "@/components/ProjectSelector";
@@ -11,7 +11,7 @@ export default function Genomes() {
     const [selectedData, setSelectedData] = useState({project: undefined, sample: undefined, items:[]});
     const flattenedManifest = useMemo(() => flattenManifest(manifest), []);
 
-    
+
 
     return (
         <>
@@ -32,14 +32,8 @@ export default function Genomes() {
                 <div className={clsx(selectedData.project !== undefined && "hidden")}>
                     <Table items={flattenedManifest}/>
                 </div>
-                
+
             </Container>
         </>
     )
-}
-
-export async function getServerSideProps(context) {
-    return {
-        props: {}, // will be passed to the page component as props
-    };
 }

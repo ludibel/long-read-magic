@@ -1,13 +1,13 @@
 import { ChevronDownIcon, ChevronUpIcon, ArrowDownTrayIcon } from "@heroicons/react/20/solid"
 import React, { FC, useEffect, useState } from "react";
-import { MetadataItem } from "@/utils/models";
+import { GenomeDetailsShortened } from "@/utils/models";
 import Link from "next/link";
 import clsx from "clsx";
-import { getBinsLinkPrefix, getFastaLink, getResultLink } from "@/utils/utils";
+import { countBinsQuality, getFastaLink, getResultLink } from "@/utils/utils";
 import Pagination from "./Pagination";
 
 export type TableProps = {
-    items: MetadataItem[]
+    items: GenomeDetailsShortened[]
     project?: string
     sample?: string
 }
@@ -59,7 +59,7 @@ export const Table: FC<TableProps> = ({ project, sample, items }) => {
     const [sortSettings, setSortSettings] = useState({ name: fields[0], isAscending: true })
     const [filters, setFilters] = useState(defaultFilterState)
 
-    const [bins, setBins] = useState({ low: 0, mid: 0, high: 0 })
+    const [bins, setBins] = useState({ low: 0, medium: 0, high: 0 })
 
     useEffect(() => {
         const filteredItems = filter(items);
@@ -69,11 +69,7 @@ export const Table: FC<TableProps> = ({ project, sample, items }) => {
         setNonPaginatedItems(filteredAndSortedItems);
         setCurrentPage(1);
 
-        const newBins = {
-            high: filteredAndSortedItems.filter(x => x.completeness > 90 && x.contamination < 5 && x.passGnuc === true && x.trna >= 18 && x.s16 >= 1 && x.s5 >= 1 && x.s23 >= 1).length,
-            mid: filteredAndSortedItems.filter(x => x.completeness >= 50 && x.completeness <= 90 && x.contamination < 10).length,
-            low: filteredAndSortedItems.filter(x => x.completeness < 50 && x.contamination < 10).length
-        }
+        const newBins = countBinsQuality(filteredAndSortedItems);
         setBins(newBins);
 
     }, [items, sortSettings, filters])
@@ -93,7 +89,7 @@ export const Table: FC<TableProps> = ({ project, sample, items }) => {
         }
     }
 
-    function filter(items: MetadataItem[]): MetadataItem[] {
+    function filter(items: GenomeDetailsShortened[]): GenomeDetailsShortened[] {
         return items.filter((item) => (
             item.completeness >= filters.completenessMin && item.completeness <= filters.completenessMax &&
             item.contamination >= filters.contaminationMin && item.contamination <= filters.contaminationMax &&
@@ -104,7 +100,7 @@ export const Table: FC<TableProps> = ({ project, sample, items }) => {
             (filters.passGnuc === undefined || item.passGnuc === filters.passGnuc)))
     }
 
-    function sort(items, fieldName, isAscending): MetadataItem[] {
+    function sort(items, fieldName, isAscending): GenomeDetailsShortened[] {
         const sorted = [...items].sort((a, b) => {
             if (a[fieldName] < b[fieldName]) {
                 return isAscending ? -1 : 1
@@ -235,7 +231,7 @@ export const Table: FC<TableProps> = ({ project, sample, items }) => {
 
             <div className="mb-8">
                 <p>High quality bins: <span className="text-green-500">{bins.high}</span></p>
-                <p>Medium quality bins: <span className="text-yellow-500">{bins.mid}</span></p>
+                <p>Medium quality bins: <span className="text-yellow-500">{bins.medium}</span></p>
                 <p>Low quality bins: <span className="text-pink-500">{bins.low}</span></p>
             </div>
 
@@ -292,6 +288,13 @@ export const Table: FC<TableProps> = ({ project, sample, items }) => {
                                             <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.s5}</td>
                                             <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.s23}</td>
                                             <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.passGnuc ? "yes" : "no"}</td>
+                                            <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm sm:pr-0">
+                                                <Link href={`genome-details/${item.project ?? project}/${ item.sample ?? sample}/${item.filename}`} target="_blank"
+                                                      className="text-indigo-600 hover:text-indigo-900">
+                                                    <span> Details</span>
+                                                    <span className="sr-only">, {item.downloadLink}</span>
+                                                </Link>
+                                            </td>
                                             <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm sm:pr-0">
                                                 <Link href={item.downloadLink} className="text-indigo-600 hover:text-indigo-900">
                                                     <span> Download</span>

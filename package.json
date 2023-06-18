@@ -5,11 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "buildNext": "next build",
-    "build": "npm run manifest && next build",
+    "build": "npm run manifests && next build",
     "start": "next start",
     "lint": "next lint",
-    "manifest": "ts-node --skipProject src/generate-manifests.ts",
-    "rename": "node src/rename-files.mjs"
+    "manifests": "ts-node --skipProject src/scripts/generate-manifests.ts",
+    "rename": "node src/scripts/rename-files.mjs"
   },
   "browserslist": "defaults, not ie <= 11",
   "dependencies": {

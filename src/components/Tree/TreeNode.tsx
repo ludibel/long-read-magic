@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 import { TaxonomyTreeNode } from "@/utils/models";
+import Link from "next/link";
 
 export type TreeNodeProps = {
     node: TaxonomyTreeNode
@@ -31,6 +32,16 @@ export const TreeNode: FC<TreeNodeProps> = ({node, shouldExpand}) => {
                 {node.children.map((child) =>
                     <TreeNode key={child.name} node={child} shouldExpand={childShouldExpand}/>
                 )}
+                <div className="flex flex-col">
+                {node.binDetails && node.binDetails.map((bin) =>
+                    <div className="inline-flex cursor-pointer border rounded-md mb-1 p-2 pr-4 bg-sky-100 hover:bg-sky-200 w-auto mr-auto"
+                         key={`${bin.project}/${bin.sample}/${bin.name}`}>
+                        <Link href={`genome-details/${bin.project}/${bin.sample}/${bin.name}`} target="_blank">
+                            {bin.name}
+                        </Link>
+                    </div>
+                )}
+                </div>
             </div>
             }
 

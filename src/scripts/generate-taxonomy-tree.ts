@@ -1,4 +1,4 @@
-import { BinDetails, TaxonomyTreeNode } from "./utils/models";
+import { BinDetails, TaxonomyTreeNode } from "../utils/models";
 
 
 
