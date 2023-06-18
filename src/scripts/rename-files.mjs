@@ -107,10 +107,8 @@ async function renameContigs(fastaPath, binsPath, project, sample) {
 
   const binFilesToRename = fs.readdirSync(binsPath).filter((filename) => filename.endsWith(".fa"))
 
-  console.log(binFilesToRename.length)
   for (let i = 0; i < binFilesToRename.length; i++) {
     const filepath = path.join(binsPath, binFilesToRename[i]);
-    console.log(filepath);
     await renameContigsForFile(filepath, project, sample);
   }
 
