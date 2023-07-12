@@ -70,7 +70,7 @@ export const GenomeContextProvider: React.FC<{ children: React.ReactNode }> = ({
         const firstPageIndex = (currentPage - 1) * pageSize;
         const lastPageIndex = firstPageIndex + pageSize;
         setPaginatedItems(filteredAndSortedItems.slice(firstPageIndex, lastPageIndex));
-    }, [filteredAndSortedItems, currentPage])
+    }, [filteredAndSortedItems, currentPage, pageSize])
 
     const changeSortSettings = (fieldName) => {
         if (fieldName === sortSettings.name) {

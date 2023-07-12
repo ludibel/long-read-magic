@@ -87,4 +87,5 @@ export const genomeDetailsTexts = {
     family: "Family",
     genus: "Genus",
     species: "Species",
+    unknown: "Unknown",
 }

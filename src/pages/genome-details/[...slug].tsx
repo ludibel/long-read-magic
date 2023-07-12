@@ -67,6 +67,7 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
         {label: texts.genus, value: details.classification?.genus || "N/A"},
         {label: texts.species, value: details.classification?.species || "N/A"}
     ]
+    const classificationString = details.classification?.domain ? classification.map(x => x.value).join(" > ") : texts.unknown
     const genomeQuality = detectGenomeQuality(details);
     let genomeQualityIcon = undefined;
     switch (genomeQuality) {
@@ -149,7 +150,7 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
 
                         <div className="mb-16">
                             <p className="font-bold mb-4">{texts.classification}</p>
-                            <p className="mb-4">{classification.map(x => x.value).join(" > ")}</p>
+                            <p className="mb-4">{classificationString}</p>
                             <div className="flex cursor-pointer text-blue-500 hover:text-blue-950"
                                  onClick={() => setShowClassificationTable(!showClassificationTable)}>
                                 <span> {showClassificationTable ? texts.hideTableLabel : texts.showTableLabel}</span>
