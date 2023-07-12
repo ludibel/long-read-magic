@@ -1,0 +1,12 @@
+.bg-dna {
+    background:
+            linear-gradient(
+                    rgba(0, 0, 0, 0.9),
+                    rgba(0, 0, 0, 0)
+            ),
+            url(/images/sangharsh-lohakare-8o_LkMpo8ug-unsplash.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+    /*background: url(/images/sangharsh-lohakare-8o_LkMpo8ug-unsplash.png), lightgray 50% / cover no-repeat;*/
+

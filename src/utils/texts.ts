@@ -1,3 +1,51 @@
+export const GlobalTexts = {
+    selectPlaceholder: "Select...",
+}
+
+export const GenomeOverviewTexts = {
+    title: "Download genomes",
+    titleComment: "Here you can download genomes based on filters",
+    projectSelector: {
+        selectProjectLabel: "Select project",
+        selectSampleLabel: "Select sample",
+        allProjects: "All projects",
+        allSamples: "All samples",
+    },
+    downloadLinks: {
+        downloadFasta: "Download fasta file",
+        downloadMetadata: "Download metadata csv"
+    },
+    filters: {
+        title: "Filters",
+        genomeQualityLabel: "Genome quality",
+        genomeQualityLow: "Only Low",
+        genomeQualityMedium: "Only Medium",
+        genomeQualityHigh: "Only High",
+        passGnucLabel: "Pass GNUC",
+        passGnucAll: "All GNUC",
+        passGnucYes: "Yes",
+        passGnucNo: "No",
+        clearFiltersButton: "Clear all filters",
+        completenessLabel: "Completeness",
+        contaminationLabel: "Contamination",
+        trnaLabel: "tRNA",
+        s16Label: "16S",
+        s5Label: "5S",
+        s23Label: "23S",
+        highQualityGenomesCountLabel: "High quality genomes: ",
+        mediumQualityGenomesCountLabel: "Medium quality genomes: ",
+        lowQualityGenomesCountLabel: "Low quality genomes: ",
+    },
+    pagination: {
+        itemsPerPage: "Items per page",
+        itemsCountLabel: "%{from}-%{to} of %{count} items",
+        pagesCountLabel: "of %{count}",
+        previous: "Previous",
+        next: "Next",
+    },
+    table: {}
+}
+
 export const genomeDetailsTexts = {
     genome: "Genome",
     download: "Download",

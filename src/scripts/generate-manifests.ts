@@ -1,13 +1,12 @@
 import { S3 } from "@aws-sdk/client-s3";
 import * as fs from "fs";
 import { GenomeDetails, GenomeDetailsShortened, Project, Sample, TaxonomyTreeNode } from "../utils/models";
-import {generateTaxonomyMetadataForFile as appendTaxonomyMetadataForFile} from "./generate-taxonomy-tree";
-import * as dotenv from 'dotenv'
-import { parseClassificationString } from "../utils/utils"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
-dotenv.config({ path: '.env.local' })
+import { generateTaxonomyMetadataForFile as appendTaxonomyMetadataForFile } from "./generate-taxonomy-tree";
+import * as dotenv from "dotenv"
+import { getGenomeDownloadLink, parseClassificationString } from "../utils/utils"; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+dotenv.config({path: ".env.local"})
 
-const bucketName = "gene-stag";
-const bucketUrlPrefix = process.env.S3_URL_PREFIX;
+const bucketName = process.env.S3_BUCKET_NAME;
 const metadataFilename = "result_merged.csv"
 const fullManifestPath = "public/full-data-manifest.json"
 const shortenedManifestPath = "public/shortened-data-manifest.json"
@@ -23,9 +22,9 @@ const fieldNames = [
     "nGenesCalled", "nGenesMapped", "nContigs", "taxonomicLevel", "proportionGenesRetainedInMajorClades",
     "genesRetainedIndex", "cladeSeparationScore", "contaminationPortion", "nEffectiveSurplusClades",
     "meanHitIdentity", "referenceRepresentationScore", "passGnuc", "trna", "s16", "s5", "s23", "classification",
-    "fastaniReference","fastaniReferenceRadius","fastaniTaxonomy","fastaniAni","fastaniAf","closestPlacementReference",
-    "closestPlacementRadius","closestPlacementTaxonomy","closestPlacementAni","closestPlacementAf","pplacerTaxonomy",
-    "classificationMethod","note","otherReferences", "msaPercent", "translationTable","redValue","warnings"
+    "fastaniReference", "fastaniReferenceRadius", "fastaniTaxonomy", "fastaniAni", "fastaniAf", "closestPlacementReference",
+    "closestPlacementRadius", "closestPlacementTaxonomy", "closestPlacementAni", "closestPlacementAf", "pplacerTaxonomy",
+    "classificationMethod", "note", "otherReferences", "msaPercent", "translationTable", "redValue", "warnings"
 ];
 
 // Define the fields to keep for the table view
@@ -35,14 +34,17 @@ const fieldsToKeepForTable = [
 
 // Configure the AWS SDK
 const s3 = new S3({
-    region: "eu-central-1",
+    region: process.env.S3_REGION,
     credentials: {
         accessKeyId: process.env.S3_ACCESS_KEY_ID ?? "",
         secretAccessKey: process.env.S3_ACCESS_KEY_SECRET ?? ""
     },
 });
 
-async function generateMetadataForFile(input: string): Promise<{fullMetadata: GenomeDetailsShortened[], shortenedMetadata: GenomeDetailsShortened[]}> {
+async function generateMetadataForFile(input: string): Promise<{
+    fullMetadata: GenomeDetailsShortened[],
+    shortenedMetadata: GenomeDetailsShortened[]
+}> {
     let lines = input.split("\n");
     lines = lines.slice(1)
 
@@ -70,19 +72,15 @@ async function generateMetadataForFile(input: string): Promise<{fullMetadata: Ge
             if (!isNaN(parseFloat(value))) {
                 //@ts-ignore
                 item[key] = parseFloat(value);
-            }
-            else if (value === "N/A") {
+            } else if (value === "N/A") {
                 //@ts-ignore
                 item[key] = null
-            }
-            else if (key === "passGnuc") {
+            } else if (key === "passGnuc") {
                 //@ts-ignore
                 item[key] = value.toLowerCase() === "true"
-            }
-            else if (key === "classification" && value) {
+            } else if (key === "classification" && value) {
                 item.classification = parseClassificationString(value);
-            }
-            else if (key === "otherReferences" && value) {
+            } else if (key === "otherReferences" && value) {
                 const references = value.split(";").map((item) => {
                     const reference = item.split("---");
                     return {
@@ -95,8 +93,7 @@ async function generateMetadataForFile(input: string): Promise<{fullMetadata: Ge
                     }
                 });
                 item.otherReferences = references;
-            }
-            else {
+            } else {
                 //@ts-ignore
                 item[key] = value;
             }
@@ -115,9 +112,9 @@ async function generateMetadataForFile(input: string): Promise<{fullMetadata: Ge
 
 }
 
-function appendDownloadLink(items: GenomeDetailsShortened[], linkPrefix: string): void {
+function appendDownloadLink(items: GenomeDetailsShortened[], project: string, sample: string): void {
     items.forEach((item) => {
-        item.downloadLink = `${linkPrefix}/${item.filename}`;
+        item.downloadLink = getGenomeDownloadLink(project, sample, item.filename);
     });
 }
 
@@ -172,8 +169,7 @@ async function processS3Bucket(metatadataFilename: string) {
                 const {fullMetadata, shortenedMetadata} = await generateMetadataForFile(csvMetadataText);
                 appendTaxonomyMetadataForFile(csvMetadataText, projectName, sampleName, taxonomyTree);
 
-                const linkPrefix = `${bucketUrlPrefix}/${projectName}/${sampleName}/output_bins`;
-                appendDownloadLink(fullMetadata, linkPrefix);
+                appendDownloadLink(fullMetadata, projectName, sampleName);
 
                 fullSamples.push({name: sampleName, items: fullMetadata});
                 shortenedSamples.push({name: sampleName, items: shortenedMetadata});
@@ -183,9 +179,9 @@ async function processS3Bucket(metatadataFilename: string) {
         }
 
         // Save the final JSON structure to a file
-        fs.writeFileSync(fullManifestPath, JSON.stringify({projects: fullProjects}, null, 2));
-        fs.writeFileSync(shortenedManifestPath, JSON.stringify({projects: shortenedProjects}, null, 2));
-        fs.writeFileSync(taxonomyTreeManifestPath, JSON.stringify({tree: taxonomyTree}, null, 2));
+        fs.writeFileSync(fullManifestPath, JSON.stringify({projects: fullProjects}, null, 1));
+        fs.writeFileSync(shortenedManifestPath, JSON.stringify({projects: shortenedProjects}, null, 1));
+        fs.writeFileSync(taxonomyTreeManifestPath, JSON.stringify({tree: taxonomyTree}, null, 1));
         console.log("Final JSON output saved");
     } catch (error) {
         console.error("Error processing S3 bucket:", error);

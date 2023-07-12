@@ -1,17 +1,17 @@
-import React, { useMemo, useState } from "react"
-import manifest from "public/shortened-data-manifest.json"
-import { Table } from "@/components/Table";
+import React from "react"
+
+import { Table } from "@/components/GenomesTable/Table";
 import { Container } from "@/components/Container";
-import { ProjectSelector } from "@/components/ProjectSelector";
+import { ProjectSelector } from "@/components/GenomesTable/ProjectSelector";
 import Head from "next/head";
-import { flattenManifest } from "@/utils/utils";
-import clsx from "clsx";
+import { DownloadMetadataLinks } from "@/components/GenomesTable/DownloadMetadataLinks";
+import { Filters } from "@/components/GenomesTable/Filters";
+import Pagination from "@/components/GenomesTable/Pagination";
+import { GenomeContextProvider } from "@/components/GenomesTable/GenomesContext";
+import { GenomeOverviewTexts } from "@/utils/texts";
 
 export default function Genomes() {
-    const [selectedData, setSelectedData] = useState({project: undefined, sample: undefined, items:[]});
-    const flattenedManifest = useMemo(() => flattenManifest(manifest), []);
-
-
+    const texts = GenomeOverviewTexts
 
     return (
         <>
@@ -22,16 +22,25 @@ export default function Genomes() {
                     content="List of available genomes."
                 />
             </Head>
-            <Container>
-                <h2 className="text-xl font-bold tracking-tight sm:text-6xl text-center mb-8">Download Genomes</h2>
-                <p className="mb-8">Here you can download genomes based on filters</p>
+            <Container inner={{className: ""}} bgClassName="bg-dna h-[600px] w-full" className="flex">
+                <GenomeContextProvider>
+                    <div className="mt-32 text-white text-center">
+                        <p className="text-6xl mb-8">{texts.title}</p>
+                        <p className="text-2xl">{texts.titleComment}</p>
+                    </div>
+                    <div className="my-20 p-8 lg:p-16 bg-grey-light shadow-xl">
+                        <div className="flex mb-16">
+                            <ProjectSelector className=""/>
+                            <DownloadMetadataLinks className="mt-auto ml-auto"/>
+                        </div>
 
-                <ProjectSelector manifest={manifest} setSelectedData={setSelectedData} classname="mb-12"/>
+                        <Filters className="mb-16"/>
 
-                {selectedData.project && selectedData.items.length > 0 && <Table items={selectedData.items} project={selectedData.project} sample={selectedData.sample}/>}
-                <div className={clsx(selectedData.project !== undefined && "hidden")}>
-                    <Table items={flattenedManifest}/>
-                </div>
+                        <Pagination className="mb-8"/>
+                        <Table className="mb-8 mx-[-40px]"/>
+                        <Pagination/>
+                    </div>
+                </GenomeContextProvider>
 
             </Container>
         </>

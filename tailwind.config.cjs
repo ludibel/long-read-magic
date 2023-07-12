@@ -19,6 +19,28 @@ module.exports = {
       '8xl': ['6rem', { lineHeight: '1' }],
       '9xl': ['8rem', { lineHeight: '1' }],
     },
+    extend: {
+      colors: {
+        darkBlue: {
+          DEFAULT: '#193571',
+          light: '#244EA0',
+          dark: '#0e2254',
+        },
+        grey: {
+          DEFAULT: '#F6F6F8',
+          light: '#F8F8F8',
+          dark: '#b2b4b5',
+        },
+        navyBlue: {
+          DEFAULT: '#043090',
+          light: '#6580B9',
+          dark: '#021B4C',
+        },
+        warning: {
+          DEFAULT: '#FF8577',
+        }
+      }
+    },
     typography: (theme) => ({
       invert: {
         css: {

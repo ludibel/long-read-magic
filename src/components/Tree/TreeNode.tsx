@@ -1,5 +1,5 @@
 import React, { FC, useState } from "react";
-import { ChevronDownIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
+import { ChevronDownIcon, ChevronRightIcon,LinkIcon } from "@heroicons/react/20/solid"
 import { TaxonomyTreeNode } from "@/utils/models";
 import Link from "next/link";
 
@@ -18,30 +18,36 @@ export const TreeNode: FC<TreeNodeProps> = ({node, shouldExpand}) => {
             setChildShouldExpand(true);
         }
     }
+    const nodeClassification = node.name.substring(0,1);
+    const nodeName = node.name.substring(3);
 
     return (
         <div className="flex flex-col">
-            <div className="flex cursor-pointer border rounded-md mb-1 p-2 pr-4 bg-sky-100 w-auto mr-auto" onClick={switchDisplay}>
+            <div className="flex cursor-pointer mb-1 p-2  text-darkBlue w-auto mr-auto" onClick={switchDisplay}>
                 {!showChildren && <ChevronRightIcon className="w-5 inline"/>}
                 {showChildren && <ChevronDownIcon className="w-5"/>}
 
-                <p>{node.name} - {node.count}</p>
+                <div className="bg-white border  rounded p-2 border-darkBlue ">
+                    <span className="mr-4">{nodeName}</span>
+                    <span className="border border-darkBlue px-3 text-sm rounded-3xl">{node.count}</span>
+                </div>
             </div>
 
             {showChildren && <div className="ml-4">
                 {node.children.map((child) =>
                     <TreeNode key={child.name} node={child} shouldExpand={childShouldExpand}/>
                 )}
-                <div className="flex flex-col">
-                {node.binDetails && node.binDetails.map((bin) =>
-                    <div className="inline-flex cursor-pointer border rounded-md mb-1 p-2 pr-4 bg-sky-100 hover:bg-sky-200 w-auto mr-auto"
-                         key={`${bin.project}/${bin.sample}/${bin.name}`}>
-                        <Link href={`genome-details/${bin.project}/${bin.sample}/${bin.name}`} target="_blank">
-                            {bin.name}
-                        </Link>
-                    </div>
-                )}
-                </div>
+              <div className="flex flex-col ml-6">
+                  {node.binDetails && node.binDetails.map((bin) =>
+                      <Link href={`genome-details/${bin.project}/${bin.sample}/${bin.name}`}
+                            key={`${bin.project}/${bin.sample}/${bin.name}`} target="_blank">
+                          <div className="inline-flex cursor-pointer border rounded-md mb-1 p-2 pr-4 text-white bg-darkBlue hover:bg-darkBlue-light w-auto mr-auto">
+                              <LinkIcon className="w-4 h-4 my-auto mr-2"/>
+                              {bin.name}
+                          </div>
+                      </Link>
+                  )}
+              </div>
             </div>
             }
 

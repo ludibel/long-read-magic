@@ -114,9 +114,51 @@ export type OtherReference = {
     fastaniAf: number
 }
 
-export enum BinQuality {
+export enum GenomeQuality {
     Low,
     Medium,
     High,
     Unknown
 }
+
+export type GenomeContextType = {
+    manifest: Manifest;
+    flattenedManifest: GenomeDetailsShortened[];
+    selectedProject: Project
+    setSelectedProject: (project: Project) => void;
+    selectedSample: Sample
+    setSelectedSample: (sample: Sample) => void;
+    filters: GenomeOverviewFilterState;
+    binsCount: { low: number, medium: number, high: number };
+    setBinsCount: (bins: { low: number, medium: number, high: number }) => void;
+    setFilters: (filters: GenomeOverviewFilterState) => void;
+    items: GenomeDetailsShortened[];
+    setItems: (items: GenomeDetailsShortened[]) => void;
+    filteredAndSortedItems: GenomeDetailsShortened[];
+    setFilteredAndSortedItems: (items: GenomeDetailsShortened[]) => void;
+    paginatedItems: GenomeDetailsShortened[];
+    setPaginatedItems: (items: GenomeDetailsShortened[]) => void;
+    currentPage: number;
+    setCurrentPage: (page: number) => void;
+    pageSize: number;
+    setPageSize: (size: number) => void;
+    sortSettings: { name: string, isAscending: boolean };
+    changeSortSettings: (fieldName: string) => void;
+};
+
+export type GenomeOverviewFilterState = {
+    completenessMin: number;
+    completenessMax: number;
+    contaminationMin: number;
+    contaminationMax: number;
+    passGnuc?: boolean;
+    trnaMin: number;
+    trnaMax: number;
+    s16Min: number;
+    s16Max: number;
+    s5Min: number;
+    s5Max: number;
+    s23Min: number;
+    s23Max: number;
+};
+

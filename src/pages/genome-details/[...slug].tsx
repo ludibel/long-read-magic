@@ -1,14 +1,14 @@
 import React, { useState } from "react"
 import { Container } from "@/components/Container";
 import Head from "next/head";
-import { BinQuality, GenomeDetails } from "@/utils/models";
+import { GenomeQuality, GenomeDetails } from "@/utils/models";
 import manifest from "public/full-data-manifest.json"
 import Link from "next/link";
 import { genomeDetailsTexts } from "@/utils/texts";
 import { Cell, Cells } from "@/components/Cells";
 import Image from "next/image";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
-import { detectBinQuality } from "@/utils/utils";
+import { detectGenomeQuality } from "@/utils/utils";
 
 type GenomeDetailsProps = {
     project: string
@@ -67,17 +67,17 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
         {label: texts.genus, value: details.classification?.genus || "N/A"},
         {label: texts.species, value: details.classification?.species || "N/A"}
     ]
-    const binQuality = detectBinQuality(details);
-    let binQualityIcon = undefined;
-    switch (binQuality) {
-        case BinQuality.Low:
-            binQualityIcon = <Image src="/images/low-quality-bin.svg" alt="icon" width={60} height={60}/>;
+    const genomeQuality = detectGenomeQuality(details);
+    let genomeQualityIcon = undefined;
+    switch (genomeQuality) {
+        case GenomeQuality.Low:
+            genomeQualityIcon = <Image src="/images/low-quality-bin-text.svg" alt="icon" width={60} height={60}/>;
             break;
-        case BinQuality.Medium:
-            binQualityIcon = <Image src="/images/medium-quality-bin.svg" alt="icon" width={60} height={60}/>;
+        case GenomeQuality.Medium:
+            genomeQualityIcon = <Image src="/images/medium-quality-bin-text.svg" alt="icon" width={60} height={60}/>;
             break;
-        case BinQuality.High:
-            binQualityIcon = <Image src="/images/high-quality-bin.svg" alt="icon" width={60} height={60}/>;
+        case GenomeQuality.High:
+            genomeQualityIcon = <Image src="/images/high-quality-bin-text.svg" alt="icon" width={60} height={60}/>;
             break;
     }
 
@@ -92,9 +92,9 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
                     content="List of available genomes."
                 />
             </Head>
-            <Container className="bg-zinc-50 pt-16">
+            <Container className="bg-zinc-50 pt-28">
                 <div className="flex flex-wrap gap-4 mb-4 items-center">
-                    {binQualityIcon}
+                    {genomeQualityIcon}
                     <p className="font-bold text-2xl">{texts.genome}: {details.filename}</p>
                     <Link href={details.downloadLink}
                           className="bg-blue-800 hover:bg-blue-700 ml-auto text-white font-bold py-2 px-4 rounded h-10">
@@ -185,27 +185,28 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
     )
 }
 
-export async function getStaticProps(context): Promise<{ props: GenomeDetailsProps }> {
-    const [projectName, sampleName, binName] = context.params.slug;
+export async function getServerSideProps(context): Promise<{ props: GenomeDetailsProps }> {
+    const [projectName, sampleName, genomeName] = context.params.slug;
 
     const project = manifest.projects.find(x => x.name === projectName);
     const sample = project.samples.find(x => x.name === sampleName);
-    const item = sample.items.find(x => x.filename === binName);
+    //@ts-ignore
+    const item = sample.items.find(x => x.filename === genomeName);
 
     return {props: {project: projectName, sample: sampleName, details: item}}
 }
 
-export async function getStaticPaths(context) {
-    const paths = [];
-    manifest.projects.forEach(project => {
-        project.samples.forEach(sample => {
-            sample.items.forEach(bin => {
-                paths.push(`/genome-details/${project.name}/${sample.name}/${bin.filename}`)
-            })
-        })
-    })
-    return {
-        paths: paths,
-        fallback: false
-    };
-}
+// export async function getStaticPaths(context) {
+//     const paths = [];
+//     manifest.projects.forEach(project => {
+//         project.samples.forEach(sample => {
+//             sample.items.forEach(genome => {
+//                 paths.push(`/genome-details/${project.name}/${sample.name}/${genome.filename}`)
+//             })
+//         })
+//     })
+//     return {
+//         paths: paths,
+//         fallback: false
+//     };
+// }

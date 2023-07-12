@@ -1,11 +1,16 @@
-import { BinQuality, GenomeDetails, GenomeDetailsShortened, Manifest } from "./models";
+import { GenomeDetails, GenomeDetailsShortened, GenomeQuality, Manifest, Project, Sample } from "./models";
 
 function getBaseLinkPrefix(project: string, sample: string) {
-    return `https://gene-stag.s3.eu-central-1.amazonaws.com/${project}/${sample}/`;
+    return `${process.env.NEXT_PUBLIC_S3_URL_PREFIX}/${project}/${sample}/`;
 }
 
 export function getBinsLinkPrefix(project: string, sample: string) {
     return getBaseLinkPrefix(project, sample) + "output_bins/";
+}
+
+export function getGenomeDownloadLink(project: string, sample: string, filename: string) {
+    const prefix = getBinsLinkPrefix(project, sample);
+    return `${prefix}${filename}.fa.gz`;
 }
 
 export function getFastaLink(project: string, sample: string) {
@@ -13,7 +18,31 @@ export function getFastaLink(project: string, sample: string) {
 }
 
 export function getResultLink(project: string, sample: string) {
-    return getBaseLinkPrefix(project, sample) + "result_merged";
+    return getBaseLinkPrefix(project, sample) + "result_merged.csv";
+}
+
+export function appendDataToManifestItems(manifest: Manifest): Manifest {
+    const projects: Project[] = [];
+    manifest.projects.forEach((project) => {
+        const samples: Sample[] = [];
+        project.samples.forEach((sample) => {
+            const items: GenomeDetailsShortened[] = [];
+            sample.items.forEach((item) => {
+                const newItem = {...item};
+                newItem.downloadLink = getGenomeDownloadLink(project.name, sample.name, item.filename);
+                newItem.project = project.name;
+                newItem.sample = sample.name;
+                items.push(newItem);
+            })
+            const newSample = {...sample, items};
+            samples.push(newSample);
+        })
+        const newProject = {...project, samples};
+        projects.push(newProject);
+    })
+
+    const newManifest: Manifest = {projects}
+    return newManifest
 }
 
 export function flattenManifest(manifest: Manifest): GenomeDetailsShortened[] {
@@ -22,9 +51,6 @@ export function flattenManifest(manifest: Manifest): GenomeDetailsShortened[] {
     manifest.projects.forEach((project) => {
         project.samples.forEach((sample) => {
             sample.items.forEach((item) => {
-                item.downloadLink = getBinsLinkPrefix(project.name, sample.name) + item.filename;
-                item.project = project.name;
-                item.sample = sample.name;
                 flattenedArray.push(item);
             })
         })
@@ -33,33 +59,33 @@ export function flattenManifest(manifest: Manifest): GenomeDetailsShortened[] {
     return flattenedArray
 }
 
-export function detectBinQuality(bin: GenomeDetailsShortened | GenomeDetails): BinQuality {
-    if (bin.completeness > 90 && bin.contamination < 5 && bin.passGnuc === true && bin.trna >= 18 && bin.s16 >= 1 && bin.s5 >= 1 && bin.s23 >= 1) {
-        return BinQuality.High;
+export function detectGenomeQuality(genome: GenomeDetailsShortened | GenomeDetails): GenomeQuality {
+    if (genome.completeness > 90 && genome.contamination < 5 && genome.passGnuc === true && genome.trna >= 18 && genome.s16 >= 1 && genome.s5 >= 1 && genome.s23 >= 1) {
+        return GenomeQuality.High;
     }
-    if (bin.completeness >= 50 && bin.completeness <= 90 && bin.contamination < 10) {
-        return BinQuality.Medium
+    if (genome.completeness >= 50 && genome.completeness <= 90 && genome.contamination < 10) {
+        return GenomeQuality.Medium
     }
-    if (bin.contamination < 50 && bin.contamination < 10) {
-        return BinQuality.Low
+    if (genome.completeness < 50 && genome.contamination < 10) {
+        return GenomeQuality.Low
     }
-    return BinQuality.Unknown
+    return GenomeQuality.Unknown
 
 }
 
-export function countBinsQuality(bins: GenomeDetailsShortened[]) {
+export function countGenomesQuality(genomes: GenomeDetailsShortened[]) {
     let low = 0;
     let medium = 0;
     let high = 0;
-    bins.forEach(bin => {
-        switch (detectBinQuality(bin)) {
-            case BinQuality.Low:
+    genomes.forEach(genome => {
+        switch (detectGenomeQuality(genome)) {
+            case GenomeQuality.Low:
                 low++;
                 break;
-            case BinQuality.Medium:
+            case GenomeQuality.Medium:
                 medium++;
                 break;
-            case BinQuality.High:
+            case GenomeQuality.High:
                 high++;
                 break;
         }
@@ -78,4 +104,17 @@ export function parseClassificationString(value: string) {
         genus: classification[5],
         species: classification[6],
     };
+}
+
+export function sortByFieldName(items, fieldName, isAscending): GenomeDetailsShortened[] {
+    const sorted = [...items].sort((a, b) => {
+        if (a[fieldName] < b[fieldName]) {
+            return isAscending ? 1 : -1
+        }
+        if (a[fieldName] > b[fieldName]) {
+            return isAscending ? -1 : 1
+        }
+        return 0
+    });
+    return sorted;
 }
