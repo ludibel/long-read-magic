@@ -1,25 +1,24 @@
 import { BinDetails, TaxonomyTreeNode } from "../utils/models";
 
 
-
 function parseClassification(classification: string): string[] {
-    const fields = classification.split(';');
+    const fields = classification.split(";").map(field => field.substring(3))
     return fields;
 }
 
-export function  generateTaxonomyMetadataForFile(fileContent: string, project: string, sample: string, treeRoot: TaxonomyTreeNode) {
+export function generateTaxonomyMetadataForFile(fileContent: string, project: string, sample: string, treeRoot: TaxonomyTreeNode) {
     const lines = fileContent.trim().split("\n");
-    const classificationIndex = lines[0].split(',').findIndex((value) => value === 'classification');
+    const classificationIndex = lines[0].split(",").findIndex((value) => value === "classification");
     const filenameIndex = 0;
     if (classificationIndex === -1) {
         return;
     }
 
     lines.slice(1).forEach((line, index) => {
-        const fields = line.split(',');
+        const fields = line.split(",");
         const classification = fields[classificationIndex];
         const name = fields[filenameIndex];
-        const binDetails: BinDetails = { project, sample, name };
+        const binDetails: BinDetails = {project, sample, name};
         if (classification === undefined) {
             return;
         }
@@ -37,7 +36,7 @@ function processTaxonomyLevel(classificationList: string[], parentNode: Taxonomy
     let childNode = parentNode.children.find(x => x.name === currentClassificationName);
 
     if (childNode === undefined) {
-        childNode = { name: currentClassificationName, children: [], count: 0 };
+        childNode = {name: currentClassificationName, children: [], count: 0};
         parentNode.children.push(childNode);
     }
 
@@ -50,8 +49,8 @@ function processTaxonomyLevel(classificationList: string[], parentNode: Taxonomy
     }
 }
 
-function countChildren(node: TaxonomyTreeNode){
-    if(node.children.length === 0){
+function countChildren(node: TaxonomyTreeNode) {
+    if (node.children.length === 0) {
         node.count = node?.binDetails?.length ?? 0;
         return;
     }

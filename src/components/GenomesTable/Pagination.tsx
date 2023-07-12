@@ -1,6 +1,5 @@
-import { ChevronLeftIcon, ChevronRightIcon, ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from "@heroicons/react/20/solid"
+import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid"
 import React, { FC } from "react";
-import { DOTS, usePagination } from "../../hooks/usePagination";
 import clsx from "clsx";
 import { useGenomeContext } from "@/components/GenomesTable/GenomesContext";
 import { GenomeOverviewTexts } from "@/utils/texts";
@@ -17,11 +16,11 @@ export const Pagination: FC<PaginationProps> = ({className}) => {
         setCurrentPage,
         pageSize,
         setPageSize,
-        items,
+        filteredAndSortedItems,
     } = useGenomeContext();
     const texts = GenomeOverviewTexts.pagination;
 
-    const totalCount = items.length;
+    const totalCount = filteredAndSortedItems.length;
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
     function onPageSizeChange(selectItem) {
@@ -31,6 +30,13 @@ export const Pagination: FC<PaginationProps> = ({className}) => {
     function onPageInputChange(event) {
         const page = event.target.value ? Number(event.target.value) : NaN;
         if (Number.isNaN(page)) {
+            return;
+        }
+        if (page > totalPageCount) {
+            setCurrentPage(totalPageCount);
+            return;
+        } else if (page < 1) {
+            setCurrentPage(1);
             return;
         }
         setCurrentPage(page);
@@ -73,7 +79,7 @@ export const Pagination: FC<PaginationProps> = ({className}) => {
                         <span>{texts.previous}</span>
                     </button>
 
-                    <input value={20} className="w-12 h-6 text-center mr-2" onChange={onPageInputChange}/>
+                    <input value={currentPage} className="w-12 h-6 text-center mr-2" onChange={onPageInputChange}/>
                     <span className="mr-6">{pagesCountLabel}</span>
 
                     <button className={clsx("flex mr-6", pageSwitchersColorClass)}
@@ -82,7 +88,8 @@ export const Pagination: FC<PaginationProps> = ({className}) => {
                         <ChevronRightIcon className="w-5 h-5 mt-[3px]"/>
                     </button>
 
-                    <button className={clsx(pageSwitchersColorClass)} onClick={() => setCurrentPage(totalPageCount)} disabled={currentPage === totalPageCount}>
+                    <button className={clsx(pageSwitchersColorClass)} onClick={() => setCurrentPage(totalPageCount)}
+                            disabled={currentPage === totalPageCount}>
                         <ChevronDoubleRightIcon className="w-5 h-5 mb-[5px]"/>
                     </button>
                 </div>

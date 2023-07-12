@@ -2,6 +2,7 @@ import React, { FC, useState } from "react";
 import { ChevronDownIcon, ChevronRightIcon,LinkIcon } from "@heroicons/react/20/solid"
 import { TaxonomyTreeNode } from "@/utils/models";
 import Link from "next/link";
+import { GlobalTexts } from "@/utils/texts";
 
 export type TreeNodeProps = {
     node: TaxonomyTreeNode
@@ -19,7 +20,7 @@ export const TreeNode: FC<TreeNodeProps> = ({node, shouldExpand}) => {
         }
     }
     const nodeClassification = node.name.substring(0,1);
-    const nodeName = node.name.substring(3);
+    const nodeName = node.name || GlobalTexts.unknown;
 
     return (
         <div className="flex flex-col">

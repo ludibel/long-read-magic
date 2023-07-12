@@ -25,6 +25,7 @@ export const NumericInput: FC<NumericInputProps> = ({value, onChange, min, max, 
     }
 
     function handleValueChange(value) {
+        if (Number.isNaN(value)) {return}
         if (min!== undefined && value < min) {
             onChange(min);
             return;

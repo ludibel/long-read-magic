@@ -27,7 +27,7 @@ export const DownloadMetadataLinks: FC<DownloadMetadataLinksProps> = ({className
                 </button>
               </Link>
               <Link href={getResultLink(project.name, sample.name)}>
-                <button className="bg-transparent border border-darkBlue hover:bg-darkBlue-light text-darkBlue font-bold py-2 px-4 rounded">
+                <button className="bg-transparent border border-darkBlue hover:bg-blue-100 text-darkBlue font-bold py-2 px-4 rounded">
                   <span>{texts.downloadMetadata}</span>
                   <span className="sr-only">, {getResultLink(project.name, sample.name)}</span>
                 </button>

@@ -4,7 +4,7 @@ import Head from "next/head";
 import { GenomeQuality, GenomeDetails } from "@/utils/models";
 import manifest from "public/full-data-manifest.json"
 import Link from "next/link";
-import { genomeDetailsTexts } from "@/utils/texts";
+import { genomeDetailsTexts, GlobalTexts } from "@/utils/texts";
 import { Cell, Cells } from "@/components/Cells";
 import Image from "next/image";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid";
@@ -67,7 +67,7 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
         {label: texts.genus, value: details.classification?.genus || "N/A"},
         {label: texts.species, value: details.classification?.species || "N/A"}
     ]
-    const classificationString = details.classification?.domain ? classification.map(x => x.value).join(" > ") : texts.unknown
+    const classificationString = details.classification?.domain ? classification.map(x => x.value).join(" > ") : GlobalTexts.unknown
     const genomeQuality = detectGenomeQuality(details);
     let genomeQualityIcon = undefined;
     switch (genomeQuality) {

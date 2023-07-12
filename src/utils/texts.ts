@@ -1,5 +1,6 @@
 export const GlobalTexts = {
     selectPlaceholder: "Select...",
+    unknown: "Unknown",
 }
 
 export const GenomeOverviewTexts = {
@@ -87,5 +88,4 @@ export const genomeDetailsTexts = {
     family: "Family",
     genus: "Genus",
     species: "Species",
-    unknown: "Unknown",
 }
