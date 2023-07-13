@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import clsx from "clsx";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 
 const navigation = [
@@ -37,7 +38,7 @@ export function Header() {
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
           <Link href="/" className="-m-1.5">
             <span className="sr-only">Project name</span>
-            <img className="h-10 w-auto" src="/images/logo_header.png" alt="Project logo" />
+            <Image width={512} height={499} className="h-10 w-auto" src="/images/logo_header.png" alt="Project logo" />
           </Link>
           <div className="flex lg:hidden">
             <button
@@ -63,7 +64,9 @@ export function Header() {
             <div className="flex items-center justify-between">
               <Link href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Project name</span>
-                <img
+                <Image
+                    width={512}
+                    height={499}
                     className="h-8 w-auto"
                     src="/images/logo_header.png"
                     alt="Project logo"

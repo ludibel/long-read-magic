@@ -29,9 +29,11 @@ export function appendDataToManifestItems(manifest: Manifest): Manifest {
             const items: GenomeDetailsShortened[] = [];
             sample.items.forEach((item) => {
                 const newItem = {...item};
-                newItem.downloadLink = getGenomeDownloadLink(project.name, sample.name, item.filename);
                 newItem.project = project.name;
                 newItem.sample = sample.name;
+                newItem.genomeQuality = detectGenomeQuality(item);
+                newItem.downloadLink = getGenomeDownloadLink(newItem.project, newItem.sample, newItem.filename);
+                newItem.detailsLink = `genomes/${newItem.project}/${newItem.sample}/${newItem.filename}`
                 items.push(newItem);
             })
             const newSample = {...sample, items};
@@ -78,7 +80,7 @@ export function countGenomesQuality(genomes: GenomeDetailsShortened[]) {
     let medium = 0;
     let high = 0;
     genomes.forEach(genome => {
-        switch (detectGenomeQuality(genome)) {
+        switch (genome.genomeQuality) {
             case GenomeQuality.Low:
                 low++;
                 break;

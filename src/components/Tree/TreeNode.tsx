@@ -40,7 +40,7 @@ export const TreeNode: FC<TreeNodeProps> = ({node, shouldExpand}) => {
                 )}
               <div className="flex flex-col ml-6">
                   {node.binDetails && node.binDetails.map((bin) =>
-                      <Link href={`genome-details/${bin.project}/${bin.sample}/${bin.name}`}
+                      <Link href={`genomes/${bin.project}/${bin.sample}/${bin.name}`}
                             key={`${bin.project}/${bin.sample}/${bin.name}`} target="_blank">
                           <div className="inline-flex cursor-pointer border rounded-md mb-1 p-2 pr-4 text-white bg-darkBlue hover:bg-darkBlue-light w-auto mr-auto">
                               <LinkIcon className="w-4 h-4 my-auto mr-2"/>

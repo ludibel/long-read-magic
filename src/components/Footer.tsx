@@ -14,8 +14,8 @@ const navigation = {
     { name: 'Changelog', href: '#' },
   ],
   genomes: [
-    { name: 'Database', href: '#' },
-    { name: 'Stats', href: '#' },
+    { name: 'Overview', href: '#' },
+    { name: 'Taxonomy Tree', href: '#' },
   ],
   support: [
     { name: 'Contact', href: '#' },
@@ -46,7 +46,7 @@ export function Footer() {
                   <h3 className="text-sm font-semibold leading-6 text-white">About</h3>
                   <ul role="list" className="mt-6 space-y-4">
                     {navigation.about.map((item) => (
-                        <li key={item.name}>                                                    
+                        <li key={item.name}>
                           <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
                           {item.external && <LinkIcon color='white' className="h-4 w-4 inline mr-1 mb-1"/>}
                             {item.name}

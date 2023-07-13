@@ -36,8 +36,10 @@ module.exports = {
           light: '#6580B9',
           dark: '#021B4C',
         },
-        warning: {
-          DEFAULT: '#FF8577',
+        qualitycolor: {
+          red: '#F02700',
+          yellow: '#F4DC5E',
+          green: '#92C74B',
         }
       }
     },

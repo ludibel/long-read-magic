@@ -7,9 +7,12 @@ export type GenomeDetailsShortened = {
     s16?: number
     s5?: number
     s23?: number
+    //extra fields appended after downloading the data file
     downloadLink?: string
+    detailsLink?: string
     project?: string
     sample?: string
+    genomeQuality?: GenomeQuality
 }
 
 export type Manifest = {

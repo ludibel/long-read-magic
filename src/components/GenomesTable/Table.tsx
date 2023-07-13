@@ -2,16 +2,20 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/20/solid"
 import React, { FC } from "react";
 import Link from "next/link";
 import { useGenomeContext } from "@/components/GenomesTable/GenomesContext";
+import { GenomeOverviewTexts, GlobalTexts } from "@/utils/texts";
+import clsx from "clsx";
+import { GenomeQuality } from "@/utils/models";
 
+const texts = GenomeOverviewTexts.table;
 const fields = [
-    {name: "filename", label: "Filename"},
-    {name: "completeness", label: "Completeness"},
-    {name: "contamination", label: "Contamination"},
-    {name: "trna", label: "tRNA"},
-    {name: "s16", label: "16s"},
-    {name: "s5", label: "5s"},
-    {name: "s23", label: "23s"},
-    {name: "passGnuc", label: "Pass.GNUC"}]
+    {name: "filename", label: texts.filenameLabel},
+    {name: "completeness", label: texts.completenessLabel},
+    {name: "contamination", label: texts.contaminationLabel},
+    {name: "trna", label: texts.trnaLabel},
+    {name: "s16", label: texts.s16Label},
+    {name: "s5", label: texts.s5Label},
+    {name: "s23", label: texts.s23Label},
+    {name: "passGnuc", label: texts.passGnucLabel}]
 
 export type TableProps = {
     className?: string
@@ -39,9 +43,9 @@ export const Table: FC<TableProps> = ({className}) => {
                                             <th scope="col"
                                                 className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
                                                 key={field.name}>
-                                                    <span className="group inline-flex cursor-pointer"
+                                                    <span className="group inline-flex cursor-pointer font-bold text-xs"
                                                           onClick={() => changeSortSettings(field.name)}>
-                                                        {field.label}
+                                                        {field.label.toUpperCase()}
                                                         <span
                                                             className="ml-2 flex-none rounded text-gray-400 group-hover:visible group-focus:visible">
                                                             {sortSettings.name === field.name && sortSettings.isAscending &&
@@ -57,7 +61,11 @@ export const Table: FC<TableProps> = ({className}) => {
                                 <tbody className="divide-y divide-gray-200">
                                 {items.map((item) => (
                                     <tr key={Math.random()}>
-                                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0 relative">
+                                            <div className={clsx("absolute -left-3 top-5 w-1 h-4 inline-block",
+                                                item.genomeQuality === GenomeQuality.High && "bg-qualitycolor-green",
+                                                item.genomeQuality === GenomeQuality.Medium && "bg-qualitycolor-yellow",
+                                                item.genomeQuality === GenomeQuality.Low && "bg-qualitycolor-red")}></div>
                                             {item.filename}
                                         </td>
                                         <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.completeness}</td>
@@ -66,19 +74,19 @@ export const Table: FC<TableProps> = ({className}) => {
                                         <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.s16}</td>
                                         <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.s5}</td>
                                         <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.s23}</td>
-                                        <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.passGnuc ? "yes" : "no"}</td>
+                                        <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.passGnuc ? GlobalTexts.yes : GlobalTexts.no}</td>
                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm sm:pr-0">
                                             <Link
-                                                href={`genome-details/${item.project ?? project}/${item.sample ?? sample}/${item.filename}`}
+                                                href={item.detailsLink}
                                                 target="_blank"
                                                 className="text-indigo-600 hover:text-indigo-900">
-                                                <span> Details</span>
-                                                <span className="sr-only">, {item.downloadLink}</span>
+                                                <span>{texts.detailsButtonLabel}</span>
+                                                <span className="sr-only">, {item.detailsLink}</span>
                                             </Link>
                                         </td>
                                         <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm sm:pr-0">
                                             <Link href={item.downloadLink} className="text-indigo-600 hover:text-indigo-900">
-                                                <span> Download</span>
+                                                <span>{texts.downloadButtonLabel}</span>
                                                 <span className="sr-only">, {item.downloadLink}</span>
                                             </Link>
                                         </td>

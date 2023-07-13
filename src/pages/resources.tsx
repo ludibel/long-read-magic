@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Image from "next/image"
 
 import {Container} from "@/components/Container";
 
@@ -84,7 +85,7 @@ export default function About() {
                 <ul role="list" className="-mt-12 space-y-12 divide-y divide-gray-200 xl:col-span-3">
                     {people.map((person) => (
                         <li key={person.name} className="flex flex-col gap-10 pt-12 sm:flex-row">
-                            <img className="aspect-[3/5] w-52 flex-none rounded-2xl object-cover" src={person.imageUrl} alt="" />
+                            <Image className="aspect-[3/5] w-52 flex-none rounded-2xl object-cover" width={1024} height={1024} src={person.imageUrl} alt="" />
                             <div className="max-w-xl flex-auto">
                                 <h3 className="text-lg font-semibold leading-8 tracking-tight text-gray-900">{person.name}</h3>
                                 <p className="text-base leading-7 text-gray-600">{person.role}</p>
@@ -137,7 +138,7 @@ export default function About() {
                         </div>
                     </div>
                     <div className="relative">
-                        <img
+                        <Image
                             className="ml-auto p-8 w-[15rem] rounded-md bg-white ring-1 ring-white/10"
                             src="/images/logo_bdb.png"
                             alt="Big data biology lab logo"

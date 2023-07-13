@@ -53,7 +53,7 @@ export const Pagination: FC<PaginationProps> = ({className}) => {
 
     return (
         <>
-            <div className={clsx("flex", className)}>
+            <div className={clsx("flex flex-wrap justify-center lg:justify-between gap-4", className)}>
                 <div className="flex">
                     <span className="mr-2">{texts.itemsPerPage}</span>
                     <Select options={pageSizeOptions} value={{label: pageSize, value: pageSize}} onChange={onPageSizeChange}
@@ -67,30 +67,32 @@ export const Pagination: FC<PaginationProps> = ({className}) => {
                             }}/>
                     <span>{itemsCountLabel}</span>
                 </div>
-                <div className="flex ml-auto">
-                    <button className={clsx(pageSwitchersColorClass)} onClick={() => setCurrentPage(1)} disabled={currentPage === 1}>
-                        <ChevronDoubleLeftIcon className="w-5 h-5 mr-6 mb-[5px]"/>
+                <div className="flex items-center justify-center">
+                    <button className={clsx(pageSwitchersColorClass, "flex items-cnter justify-ceter")} onClick={() => setCurrentPage(1)} disabled={currentPage === 1}>
+                        <ChevronDoubleLeftIcon className="w-5 h-5 mr-6 mt-[2px]"/>
                     </button>
 
                     <button
-                        className={clsx("flex mr-4 disabled:text-navyBlue-light text-navyBlue hover:text-navyBlue-light", pageSwitchersColorClass)}
+                        className={clsx("flex mr-4 flex items-center justify-center", pageSwitchersColorClass)}
                         onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
-                        <ChevronLeftIcon className="w-5 h-5 mt-[3px]"/>
+                        <ChevronLeftIcon className="w-5 h-5 mt-[2px]"/>
                         <span>{texts.previous}</span>
                     </button>
 
+                    <div className="flex ">
                     <input value={currentPage} className="w-12 h-6 text-center mr-2" onChange={onPageInputChange}/>
                     <span className="mr-6">{pagesCountLabel}</span>
+                    </div>
 
-                    <button className={clsx("flex mr-6", pageSwitchersColorClass)}
+                    <button className={clsx("flex mr-6 flex items-center justify-center", pageSwitchersColorClass)}
                             onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === totalPageCount}>
                         <span>{texts.next}</span>
-                        <ChevronRightIcon className="w-5 h-5 mt-[3px]"/>
+                        <ChevronRightIcon className="w-5 h-5 mt-[2px]"/>
                     </button>
 
-                    <button className={clsx(pageSwitchersColorClass)} onClick={() => setCurrentPage(totalPageCount)}
+                    <button className={clsx(pageSwitchersColorClass, "flex items-center justify-center")} onClick={() => setCurrentPage(totalPageCount)}
                             disabled={currentPage === totalPageCount}>
-                        <ChevronDoubleRightIcon className="w-5 h-5 mb-[5px]"/>
+                        <ChevronDoubleRightIcon className="w-5 h-5 mt-[2px]"/>
                     </button>
                 </div>
             </div>

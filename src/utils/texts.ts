@@ -1,6 +1,8 @@
 export const GlobalTexts = {
     selectPlaceholder: "Select...",
     unknown: "Unknown",
+    yes: "yes",
+    no: "no"
 }
 
 export const GenomeOverviewTexts = {
@@ -44,7 +46,18 @@ export const GenomeOverviewTexts = {
         previous: "Previous",
         next: "Next",
     },
-    table: {}
+    table: {
+        filenameLabel: "Filename",
+        completenessLabel: "Completeness",
+        contaminationLabel: "Contamination",
+        trnaLabel: "tRNA",
+        s16Label: "16S",
+        s5Label: "5S",
+        s23Label: "23S",
+        passGnucLabel: "Pass.GNUC",
+        detailsButtonLabel: "Details",
+        downloadButtonLabel: "Download",
+    }
 }
 
 export const genomeDetailsTexts = {

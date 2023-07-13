@@ -186,13 +186,22 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
     )
 }
 
-export async function getServerSideProps(context): Promise<{ props: GenomeDetailsProps }> {
+export async function getServerSideProps(context) {
     const [projectName, sampleName, genomeName] = context.params.slug;
 
     const project = manifest.projects.find(x => x.name === projectName);
-    const sample = project.samples.find(x => x.name === sampleName);
+    const sample = project?.samples.find(x => x.name === sampleName);
     //@ts-ignore
-    const item = sample.items.find(x => x.filename === genomeName);
+    const item = sample?.items.find(x => x.filename === genomeName);
+
+    if (!item){
+        return {
+            redirect: {
+                destination: '/404',
+                permanent: false,
+            },
+        }
+    }
 
     return {props: {project: projectName, sample: sampleName, details: item}}
 }
@@ -202,7 +211,7 @@ export async function getServerSideProps(context): Promise<{ props: GenomeDetail
 //     manifest.projects.forEach(project => {
 //         project.samples.forEach(sample => {
 //             sample.items.forEach(genome => {
-//                 paths.push(`/genome-details/${project.name}/${sample.name}/${genome.filename}`)
+//                 paths.push(`/genomes/${project.name}/${sample.name}/${genome.filename}`)
 //             })
 //         })
 //     })

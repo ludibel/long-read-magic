@@ -9,6 +9,14 @@ const nextConfig = {
   experimental: {
     scrollRestoration: true,
   },
+  images: {
+    remotePatterns: [{
+      protocol: 'https',
+      hostname: 'images.unsplash.com',
+      port: '',
+    }
+    ]
+  }
 }
 
 const withMDX = nextMDX({
