@@ -64,13 +64,10 @@ export const Filters: FC<FiltersProps> = ({className}) => {
         binsCount,
     } = useGenomeContext();
 
-
-    const [currentGenomeQuality, setCurrentGenomeQuality] = useState(genomeQualities[0]);
     const [currentGnuc, setCurrentGnuc] = useState(gnucOptions[0]);
 
     function setGenomeQuality(selectItem) {
         setFilters(selectItem.value);
-        setCurrentGenomeQuality(selectItem)
     }
 
     function setGnuc(selectItem) {
@@ -80,7 +77,6 @@ export const Filters: FC<FiltersProps> = ({className}) => {
 
     function resetFilters() {
         setCurrentGnuc(gnucOptions[0])
-        setCurrentGenomeQuality(genomeQualities[0])
         setFilters(defaultFilterState);
     }
 

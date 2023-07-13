@@ -179,9 +179,9 @@ async function processS3Bucket(metatadataFilename: string) {
         }
 
         // Save the final JSON structure to a file
-        fs.writeFileSync(fullManifestPath, JSON.stringify({projects: fullProjects}, null, 1));
-        fs.writeFileSync(shortenedManifestPath, JSON.stringify({projects: shortenedProjects}, null, 1));
-        fs.writeFileSync(taxonomyTreeManifestPath, JSON.stringify({tree: taxonomyTree}, null, 1));
+        fs.writeFileSync(fullManifestPath, JSON.stringify({projects: fullProjects}, null, 0));
+        fs.writeFileSync(shortenedManifestPath, JSON.stringify({projects: shortenedProjects}, null, 0));
+        fs.writeFileSync(taxonomyTreeManifestPath, JSON.stringify({tree: taxonomyTree}, null, 0));
         console.log("Final JSON output saved");
     } catch (error) {
         console.error("Error processing S3 bucket:", error);

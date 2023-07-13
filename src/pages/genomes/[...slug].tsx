@@ -97,7 +97,7 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
                 <div className="flex flex-wrap gap-4 mb-4 items-center">
                     {genomeQualityIcon}
                     <p className="font-bold text-2xl">{texts.genome}: {details.filename}</p>
-                    <Link href={details.downloadLink}
+                    <Link href={details.downloadLink} target="_blank"
                           className="bg-blue-800 hover:bg-blue-700 ml-auto text-white font-bold py-2 px-4 rounded h-10">
                         <span>{texts.download}</span>
                         <span className="sr-only">, {details.downloadLink}</span>
@@ -173,7 +173,7 @@ export default function GenomeDetails({details}: GenomeDetailsProps) {
                         <Cells cells={bottomRow} className="mb-16"/>
                     </div>
 
-                    <Link href={details.downloadLink}
+                    <Link href={details.downloadLink} target="_blank"
                           className="bg-blue-800 hover:bg-blue-700 ml-auto mb-16 text-white font-bold py-2 px-4 rounded">
                         <span>{texts.download}</span>
                         <span className="sr-only">, {details.downloadLink}</span>
