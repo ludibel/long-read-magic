@@ -1,14 +1,8 @@
-import React from 'react'
-import Head from 'next/head'
-import {Container} from '@/components/Container'
-import {
-    ChevronRightIcon,
-    EyeDropperIcon,
-    LightBulbIcon,
-    SparklesIcon,
-    WrenchScrewdriverIcon
-} from '@heroicons/react/20/solid'
-import Image from 'next/image'
+import React from "react"
+import Head from "next/head"
+import { Container } from "@/components/Container"
+import { ChevronRightIcon, EyeDropperIcon, LightBulbIcon, SparklesIcon, WrenchScrewdriverIcon } from "@heroicons/react/20/solid"
+import Image from "next/image"
 
 const descriptions = [
     {
@@ -23,35 +17,35 @@ const descriptions = [
         title: "Benefits of The Tool",
         text: "Our MAG tool allows you to unlock the full potential of your gene samples, providing detailed information about the biological functions of the genes. This detailed analysis can be used to inform research projects, allowing for better decision-making and more efficient results. Additionally, our tool is easy to use and highly efficient, making it a great choice for any scientific project."
     }
-    ]
+]
 
 const features = [
     {
-        name: 'Cutting edge technology',
+        name: "Cutting edge technology",
         description:
-            'Empowered by cutting-edge long-read sequencing technologies, our tool generates metagenome-assembled genomes (MAGs) for a deeper understanding of genetic diversity and complexity',
-        href: '#',
+            "Empowered by cutting-edge long-read sequencing technologies, our tool generates metagenome-assembled genomes (MAGs) for a deeper understanding of genetic diversity and complexity",
+        href: "#",
         icon: SparklesIcon,
     },
     {
-        name: 'Highly accurate',
+        name: "Highly accurate",
         description:
-            'Our tool generates metagenome-assembled genomes (MAGs) using long-read sequencing technologies (PacBio) with high accuracy, resulting in highly contiguous and complete genome assemblies for diverse microbial communities.',
-        href: '#',
+            "Our tool generates metagenome-assembled genomes (MAGs) using long-read sequencing technologies (PacBio) with high accuracy, resulting in highly contiguous and complete genome assemblies for diverse microbial communities.",
+        href: "#",
         icon: EyeDropperIcon,
     },
     {
-        name: 'Customizable',
+        name: "Customizable",
         description:
-            'Our tool is flexible and can be customized to suit specific project requirements, allowing researchers to tailor the tool to their specific needs.',
-        href: '#',
+            "Our tool is flexible and can be customized to suit specific project requirements, allowing researchers to tailor the tool to their specific needs.",
+        href: "#",
         icon: WrenchScrewdriverIcon,
     },
     {
-        name: 'Easy-to-use',
+        name: "Easy-to-use",
         description:
-            'Our tool is user-friendly, with clear documentation and instructions available on Github, making it easy for researchers and scientists to generate MAGs from existing genetic samples.',
-        href: '#',
+            "Our tool is user-friendly, with clear documentation and instructions available on Github, making it easy for researchers and scientists to generate MAGs from existing genetic samples.",
+        href: "#",
         icon: LightBulbIcon,
     },
 ]
@@ -102,7 +96,7 @@ export default function Home({}) {
                         className="aspect-[1108/632] w-[69.25rem] bg-gradient-to-r from-[#80caff] to-[#4f46e5] opacity-20"
                         style={{
                             clipPath:
-                                'polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)',
+                                "polygon(73.6% 51.7%, 91.7% 11.8%, 100% 46.4%, 97.4% 82.2%, 92.5% 84.9%, 75.7% 64%, 55.3% 47.5%, 46.5% 49.4%, 45% 62.9%, 50.3% 87.2%, 21.3% 64.1%, 0.1% 100%, 5.4% 51.1%, 21.4% 63.9%, 58.9% 0.2%, 73.6% 51.7%)",
                         }}
                     />
                 </div>
@@ -251,4 +245,13 @@ export default function Home({}) {
             </div>
         </>
     )
+}
+
+export async function getServerSideProps(context) {
+    return {
+        redirect: {
+            destination: "/genomes",
+            permanent: false,
+        },
+    }
 }

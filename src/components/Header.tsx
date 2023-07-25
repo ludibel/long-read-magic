@@ -10,11 +10,11 @@ import Image from "next/image";
 
 
 const navigation = [
-  { name: 'About', href: '/about' },
+  // { name: 'About', href: '/about' },
   { name: 'Genomes', href: '/genomes' },
   { name: 'Taxonomy Tree', href: '/taxonomyTree' },
-  { name: 'Resources', href: '/resources' },
-  { name: 'Contact', href: '/contact' },
+  // { name: 'Resources', href: '/resources' },
+  // { name: 'Contact', href: '/contact' },
 ]
 
 export function Header() {
