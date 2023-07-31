@@ -14,7 +14,7 @@ export function getGenomeDownloadLink(project: string, sample: string, filename:
 }
 
 export function getFastaLink(project: string, sample: string) {
-    return getBaseLinkPrefix(project, sample) + "assembly.fasta";
+    return getBaseLinkPrefix(project, sample) + "assembly.fasta.gz";
 }
 
 export function getResultLink(project: string, sample: string) {

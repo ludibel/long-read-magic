@@ -16,7 +16,16 @@ const nextConfig = {
       port: '',
     }
     ]
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/genomes',
+        permanent: false,
+      }
+    ]
+  },
 }
 
 const withMDX = nextMDX({
