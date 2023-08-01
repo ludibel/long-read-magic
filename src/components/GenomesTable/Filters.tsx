@@ -15,16 +15,16 @@ export const defaultFilterState: GenomeOverviewFilterState = {
     completenessMin: 0,
     completenessMax: 100,
     contaminationMin: 0,
-    contaminationMax: 999,
+    contaminationMax: 200,
     passGnuc: undefined,
     trnaMin: 0,
-    trnaMax: 999,
+    trnaMax: 100,
     s16Min: 0,
-    s16Max: 999,
+    s16Max: 100,
     s5Min: 0,
-    s5Max: 999,
+    s5Max: 100,
     s23Min: 0,
-    s23Max: 999
+    s23Max: 100
 };
 
 const highQualityFilterState = {
