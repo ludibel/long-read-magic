@@ -247,11 +247,11 @@ export default function Home({}) {
     )
 }
 
-export async function getServerSideProps(context) {
-    return {
-        redirect: {
-            destination: "/genomes",
-            permanent: false,
-        },
-    }
-}
+// export async function getServerSideProps(context) {
+//     return {
+//         redirect: {
+//             destination: "/genomes",
+//             permanent: false,
+//         },
+//     }
+// }

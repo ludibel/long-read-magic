@@ -17,14 +17,24 @@ const nextConfig = {
     }
     ]
   },
-  async redirects() {
-    return [
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination: '/genomes',
+  //       permanent: false,
+  //     }
+  //   ]
+  // },
+  webpack: (cfg) => {
+    cfg.module.rules.push(
       {
-        source: '/',
-        destination: '/genomes',
-        permanent: false,
+          test: /\.md$/,
+          loader: 'frontmatter-markdown-loader',
+          options: { mode: ['react-component'] }
       }
-    ]
+  )
+  return cfg
   },
 }
 
