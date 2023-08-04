@@ -40,8 +40,11 @@ module.exports = {
           red: '#F02700',
           yellow: '#F4DC5E',
           green: '#92C74B',
-        }
-      }
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
     },
     typography: (theme) => ({
       invert: {
