@@ -25,6 +25,9 @@
       "@/content/*": [
         "content/*",
       ],
+      "@/public/*": [
+        "public/*",
+      ],
     }
   },
   "include": [

@@ -41,6 +41,12 @@ module.exports = {
           yellow: '#F4DC5E',
           green: '#92C74B',
         },
+        backgroundColor: {
+          DEFAULT: '#F6F6F8',
+          grey: '#EBEBF3',
+          blue: '#001135',
+          greylight: '#F2F3F7'
+        }
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
