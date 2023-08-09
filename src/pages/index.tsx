@@ -1,6 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
 import { Container } from '@/components/Container'
+import Tabs, { Tab } from '@/components/Tabs'
+import Button from '@/components/Button'
 import {
   ChevronRightIcon,
   EyeDropperIcon,
@@ -13,33 +15,38 @@ import fm, { attributes as heroAttributes } from '@/content/homePage/hero.md'
 import { attributes as aboutAttributes } from '@/content/homePage/section1.md'
 import { attributes as section3Attributes } from '@/content/homePage/section3.md'
 import { attributes as section2Attributes } from '@/content/homePage/section2.md'
+import { attributes as section4Attributes } from '@/content/homePage/section4.md'
 
 import imageHero from '@/public/images/genome_image.png'
 import imageAbout from '@/public/images/homepage_image_part2.png'
 import imageSection3 from '@/public/images/homepage_image_part3.png'
+import imageSection4 from '@/public/images/homepage_image_part4-min.png'
+import logoGithub from '@/public/images/github.png'
 
-const descriptions = [
-  {
-    title: 'What is The Tool?',
-    text: 'Our MAG tool is a computational genomics tool that uses long read sequencing technologies like PacBio to generate metagenome-assembled genomes (MAGs) from gene samples. This tool allows you to unlock the potential of your gene samples, providing detailed information about the biological functions of your gene samples.',
-  },
-  {
-    title: 'How Does it Work?',
-    text: 'The MAG tool works by sequencing long reads of your gene samples, allowing for the assembly of large and complex genomes. Once the gene samples have been sequenced, our tool uses a machine learning algorithm to generate high-quality MAGs. This yields a detailed analysis of the gene samples, providing information about the biological functions of the genes.',
-  },
-  {
-    title: 'Benefits of The Tool',
-    text: 'Our MAG tool allows you to unlock the full potential of your gene samples, providing detailed information about the biological functions of the genes. This detailed analysis can be used to inform research projects, allowing for better decision-making and more efficient results. Additionally, our tool is easy to use and highly efficient, making it a great choice for any scientific project.',
-  },
-]
+import { AttributesProps, ItemProps, TabProps } from '@/utils/types'
 
-interface HeroAttributesProps {
-  title?: string
-  description?: string
-  buttonName?: string
-}
+// interface AttributesProps {
+//   title?: string
+//   description?: string
+//   buttonName?: string
+//   content?: Array<object>
+//   tabs?: Array<object>
+// }
 
-const HeroComponent: React.FC<HeroAttributesProps> = ({
+// interface ItemProps {
+//   title?: string
+//   description?: string
+//   paragraph?: string
+//   workflow?: Array<string>
+//   name?: string
+// }
+// interface TabProps {
+//   name: string
+//   content: Array<ItemProps>
+//   workflow: Array<ItemProps>
+// }
+
+const HeroComponent: React.FC<AttributesProps> = ({
   title,
   description,
   buttonName,
@@ -94,12 +101,20 @@ const HeroComponent: React.FC<HeroAttributesProps> = ({
   )
 }
 export default function Home() {
-  const { title, description, buttonName } = heroAttributes
-  const { title: titleAbout, content: descriptionAbout } = aboutAttributes
+  const { title, description, buttonName } = heroAttributes as AttributesProps
+  const { title: titleAbout, content: descriptionAbout } =
+    aboutAttributes as AttributesProps
   const { title: titleSection3, content: descriptionSection3 } =
-    section3Attributes
-  const { title: titleSection2, content: descriptionSection2 } =
-    section2Attributes
+    section3Attributes as AttributesProps
+  const { title: titleSection2, description: descriptionSection2 } =
+    section2Attributes as AttributesProps
+  const {
+    title: titleSection4,
+    description: descriptionSection4,
+    link,
+    nameLink,
+    tabs,
+  } = section4Attributes as AttributesProps
   return (
     <>
       <Head>
@@ -111,18 +126,18 @@ export default function Home() {
         description={description}
         buttonName={buttonName}
       />
-      <div className="relative grid justify-center bg-backgroundColor-grey pb-10 pt-14 md:grid-cols-2 md:pb-[112px] md:pr-[108px] md:pt-[120px] xl:pr-[242px] 2xl:px-96">
+      <div className="relative grid justify-center bg-backgroundColor-grey pb-10 pt-14 md:grid-cols-2 md:pb-[112px] md:pr-[108px] md:pt-[120px] xl:pr-[242px] 2xl:px-64">
         <Image
           src={imageAbout}
           alt="Background Image Section"
           className="blur-2 left-0 top-0 opacity-60 md:absolute md:opacity-100 2xl:left-96"
         />
-        <div className="absolute top-6 mx-4 sm:top-8 md:relative md:top-0 md:top-0 md:ml-[108px] ">
+        <div className="absolute top-6 mx-4 sm:top-8 md:relative md:top-0 md:top-0 md:ml-[108px] lg:ml-[54px]">
           <h2 className="text-4xl font-medium lg:text-[52px] ">{titleAbout}</h2>
         </div>
         <div className="absolute top-28 mx-4 flex flex-col items-center items-stretch gap-6 sm:top-48 md:relative md:top-0 md:top-0 md:gap-10 xl:gap-[120px] 2xl:gap-16">
-          {descriptionAbout.map((content) => (
-            <div key={content.title}>
+          {descriptionAbout.map((content: ItemProps, index) => (
+            <div key={`${titleAbout}-${index}`}>
               <p className=" text-base leading-6 sm:text-xl md:leading-9 lg:text-[21px]">
                 {content.description}
               </p>
@@ -150,15 +165,15 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="grid bg-backgroundColor-grey pb-[93px] pt-14 md:grid-cols-2 md:pr-[108px] md:pt-[120px] xl:pr-[242px] 2xl:px-96">
-        <div className="pb-8 md:pl-[108px] md:pr-28 lg:text-[52px] xl:pr-[312px] 2xl:pr-10">
+      <div className="grid bg-backgroundColor-grey px-4 pb-[93px] pt-14 md:grid-cols-2 md:pr-[108px] md:pt-[120px] xl:pr-[242px] 2xl:px-64">
+        <div className="pb-8 md:pl-[108px] md:pr-28 lg:pl-[54px] lg:text-[52px]  2xl:pr-10">
           <h2 className="text-4xl font-medium lg:text-[52px]">
             {titleSection3}
           </h2>
         </div>
         <div className="flex flex-col items-center items-stretch md:gap-10 xl:gap-36 2xl:gap-16">
-          {descriptionSection3.map((content) => (
-            <div key={content.title}>
+          {descriptionSection3.map((content: ItemProps, index) => (
+            <div key={`${titleSection3}-${index}`}>
               <p className="text-base leading-9 lg:text-[21px] ">
                 {content.description}
               </p>
@@ -166,42 +181,73 @@ export default function Home() {
           ))}
         </div>
       </div>
-      <div className="relative bg-white">
-        <div className="mx-auto max-w-7xl lg:flex lg:justify-between lg:px-8 xl:justify-end">
-          <div className="lg:flex lg:w-1/2 lg:shrink lg:grow-0 xl:absolute xl:inset-y-0 xl:right-1/2 xl:w-1/2">
-            <div className="relative h-80 lg:-ml-8 lg:h-auto lg:w-full lg:grow xl:ml-0">
-              <img
-                className="absolute inset-0 h-full w-full bg-gray-50 object-cover"
-                src="/images/researcher_illustration.png"
-                alt=""
-              />
-            </div>
-          </div>
-          <div className="px-6 lg:contents">
-            <div className="mx-auto max-w-2xl pb-24 pt-16 sm:pb-32 sm:pt-20 lg:ml-8 lg:mr-0 lg:w-full lg:max-w-lg lg:flex-none lg:pt-32 xl:w-1/2">
-              <p className="text-base font-semibold leading-7 text-indigo-600">
-                Generating MAGs from long reads
-              </p>
-              <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                A better workflow
-              </h1>
-              <p className="mt-6 text-xl leading-8 text-gray-700">
-                Aliquet nec orci mattis amet quisque ullamcorper neque, nibh
-                sem. At arcu, sit dui mi, nibh dui, diam eget aliquam. Quisque
-                id at vitae feugiat egestas ac.
-              </p>
-              {descriptions.map((item) => (
-                <div key={item.title}>
-                  <h2 className="mt-16 text-2xl font-bold tracking-tight text-gray-900">
-                    {item.title}
-                  </h2>
-                  <p className="mt-6">{item.text}</p>
-                </div>
+      <div className="relative px-6 pb-28 pt-20 md:px-14 2xl:px-64">
+        <div className="absolute inset-0">
+          <Image
+            src={imageSection4}
+            alt="background image"
+            fill
+            className="absolute inset-0"
+          />
+          <div
+            className="h-100% absolute inset-0 z-0"
+            style={{
+              background:
+                'linear-gradient(91deg, #001135 0%, rgba(0, 17, 53, 0.00) 100%)',
+              backdropFilter: 'blur(2px)',
+            }}
+          ></div>
+        </div>
+        <div className="relative z-10 flex h-full flex-col gap-6 md:px-14 ">
+          <h2 className="text-4xl font-medium text-white md:w-1/2 lg:text-[52px]">
+            {titleSection4}
+          </h2>
+          <p className="text-base leading-9 text-white md:w-1/2 lg:text-[21px]">
+            {descriptionSection4}
+          </p>
+          <div className="z-10 mb-4">
+            <Tabs>
+              {tabs.map((tab: TabProps) => (
+                <Tab key={tab.name} label={tab.name}>
+                  <div className="backdrop-blur-15 grid rounded bg-opacity-50 bg-gradient-4 p-[54px] lg:grid-cols-2 lg:gap-[100px]">
+                    <div>
+                      <h2 className="text-2xl font-medium leading-9 text-qualitycolor-blue">
+                        {tab.name}
+                      </h2>
+                      {tab.content.map((item, index) => (
+                        <div
+                          key={`${tab.name}-${index}`}
+                          className="pb-5 pt-6 leading-9"
+                        >
+                          <p className=" text-lg text-qualitycolor-blue">
+                            {item.paragraph}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                    <div>
+                      <h2 className="text-2xl font-medium leading-9 text-qualitycolor-blue">
+                        Workflow
+                      </h2>
+                      {tab.workflow.map((item, index) => (
+                        <div
+                          key={`workflow-${index}`}
+                          className="pb-5 pt-6 leading-9 text-qualitycolor-blue"
+                        >
+                          <p className="text-lg">{item.paragraph}</p>
+                        </div>
+                      ))}
+                      <Button text={nameLink} logo={logoGithub} url={link} />
+                    </div>
+                  </div>
+                </Tab>
               ))}
-            </div>
+            </Tabs>
           </div>
         </div>
       </div>
+
+      <div> formulaire de contact</div>
       <div className="bg-indigo-100">
         <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:justify-between lg:px-8">
           <div>

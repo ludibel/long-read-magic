@@ -40,13 +40,20 @@ module.exports = {
           red: '#F02700',
           yellow: '#F4DC5E',
           green: '#92C74B',
+          blue: '#07020E'
         },
         backgroundColor: {
           DEFAULT: '#F6F6F8',
           grey: '#EBEBF3',
           blue: '#001135',
           greylight: '#F2F3F7'
-        }
+        },
+        'yellowlight': '#F7EC86',
+      },
+      // add custom gradients
+      backgroundImage: {
+        'gradient-1': 'linear-gradient(91deg, #001135 0%, #001117 100%)',
+        'gradient-4': 'linear-gradient(135deg, #FFF 0%, #F6F7F9a8 77.67%, #FEFEFE 100%, #F7F7F780)',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
