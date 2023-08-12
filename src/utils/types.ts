@@ -20,3 +20,9 @@ export interface AttributesProps {
     content: Array<ItemProps>
     workflow: Array<ItemProps>
   }
+
+  export interface FormProps {
+    title: string,
+    description: string,
+    handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
+  }

@@ -26,12 +26,13 @@ const Tabs = ({ children }: TabsProps) => {
           const tabChild = child as React.ReactElement<TabProps>
           return (
             <button
+              aria-label={`button tools ${tabChild.props.label}`}
               key={tabChild.props.label}
               className={`${
                 activeTab === tabChild.props.label
-                  ? 'border-b-2 border-yellowlight text-2xl text-yellowlight'
+                  ? 'border-b-2 border-white text-2xl text-textColor-yellowlight'
                   : ''
-              } inline-block rounded-t-lg border-b-2 border-transparent p-4 text-sm text-white hover:border-qualitycolor-blue hover:text-qualitycolor-blue lg:text-2xl`}
+              } inline-block rounded-t-lg border-b-2 border-transparent p-4 text-sm text-white hover:border-textColor-blue hover:text-textColor-blue lg:text-2xl`}
               onClick={(e) => handleClick(e, tabChild.props.label)}
             >
               {tabChild.props.label}
