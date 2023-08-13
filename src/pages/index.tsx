@@ -26,12 +26,12 @@ const HeroComponent: React.FC<AttributesProps> = ({
   buttonName,
 }) => {
   return (
-    <div className="relative h-[400px] w-full sm:h-[900px]">
+    <div className="relative h-[450px] w-full sm:h-[900px]">
       <Image
         src={imageHero}
         alt="Image stem cells"
         fill
-        className="object-cente bg-lightgray bg-opacity-50 object-cover"
+        className="bg-lightgray bg-opacity-50 object-cover object-center"
       />
       <div
         className="h-100% absolute inset-0 z-0"
@@ -43,18 +43,18 @@ const HeroComponent: React.FC<AttributesProps> = ({
       ></div>
       <div className="absolute inset-0 flex">
         <div
-          className="flex flex-auto flex-col items-start justify-center pl-4 pr-4 md:pl-[54px] md:pr-[108px] lg:w-2/3 lg:pl-[108px] "
+          className="flex flex-auto flex-col items-start justify-center pb-4 pl-4 pr-4 pt-12 md:pl-[54px] md:pr-[108px] lg:w-2/3 lg:pl-[108px]"
           // style={{
           //   backdropFilter: 'blur(2px)',
           // }}
         >
           <div>
-            <h1 className="font-inter text-xl font-semibold capitalize text-white sm:text-4xl md:text-5xl 2xl:text-7xl">
+            <h1 className="font-inter text-4xl font-semibold capitalize text-white lg:text-[52px] lg:leading-[4rem] 2xl:text-7xl ">
               {title}
             </h1>
           </div>
           <div className="pb-6 pt-2 sm:pb-10 sm:pt-6 md:pb-12">
-            <p className="font-inter gap-x-6 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl ">
+            <p className="font-inter gap-x-6 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl">
               {description}
             </p>
           </div>
@@ -170,7 +170,7 @@ export default function Home() {
         </div>
       </div>
       <div className="grid bg-backgroundColor-grey pb-[93px] pt-14 md:grid-cols-2 md:pr-[108px] md:pt-[120px]">
-        <div className="mx-4 pb-8 md:pl-[54px] md:pr-28 lg:pl-[108px] lg:text-[52px] 2xl:pr-10">
+        <div className="mx-4 pb-8 md:pl-[54px] md:pr-10 lg:pl-[108px] lg:text-[52px] 2xl:pr-10">
           <h2
             className="text-4xl font-medium text-textColor-blue lg:text-[52px]"
             id="sticky2"
@@ -190,12 +190,12 @@ export default function Home() {
         </div>
       </div>
       <div className="relative px-6 pb-28 pt-20" id="sticky2-next">
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 ">
           <Image
             src={imageSection4}
             alt="background stem cells"
             fill
-            className="absolute inset-0"
+            className="object-cover object-center"
           />
           <div
             className="h-100% absolute inset-0 z-0"

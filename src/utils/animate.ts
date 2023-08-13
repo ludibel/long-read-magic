@@ -17,7 +17,6 @@ const useStickyEffect = (elementId: string, topOffset = 0) => {
         const scrollTop = window.scrollY
         const elementBottom= elementTop + element.getBoundingClientRect().height 
         const elementParentBottom = elementTop+ document.getElementById(elementId).parentElement.getBoundingClientRect().height
-        console.log(scrollTop, elementTop, elementBottom, elementWidth)
         if (
           scrollTop >= elementTop - topOffset &&
           scrollTop <= elementParentBottom + elementParentBottom * 0.025 ) {
