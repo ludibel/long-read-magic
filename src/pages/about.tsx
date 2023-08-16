@@ -1,7 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
 
-import { Container } from '@/components/Container'
 import Image from 'next/image'
 import imageHero from '@/public/images/about_hero-min.png'
 import imageContact from '@/public/images/about_contact-min.png'
@@ -14,7 +13,10 @@ import { AttributesProps, ResearcherProps } from '@/utils/types'
 import logoLab from '@/public/images/logo_lab.png'
 import logoReseauLab from '@/public/images/icon_reseauLab.png'
 import LogoBdb from '@/public/images/logo_about.png'
+
 import ContactForm from '@/components/ContactForm'
+
+import { handleSubmitForm } from '../utils/form'
 
 const HeroComponent: React.FC<AttributesProps> = ({ title, description }) => {
   return (
@@ -61,13 +63,7 @@ export default function About() {
   } = researcheAttributes as AttributesProps
   const { title: titleForm, description: descriptionForm } =
     formAttributes as AttributesProps
-  // function pour soumettre le formulaire
-  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data = Object.fromEntries(formData)
-    console.log(data)
-  }
+
   return (
     <>
       <Head>

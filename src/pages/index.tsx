@@ -20,6 +20,8 @@ import logoGithub from '@/public/images/github.png'
 
 import { AttributesProps, ItemProps, TabProps } from '@/utils/types'
 
+import { handleSubmitForm } from '../utils/form'
+
 const HeroComponent: React.FC<AttributesProps> = ({
   title,
   description,
@@ -92,13 +94,6 @@ export default function Home() {
   } = section4Attributes as AttributesProps
   const { title: titleForm, description: descriptionForm } =
     formAttributes as AttributesProps
-  // function pour soumettre le formulaire
-  const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    const data = Object.fromEntries(formData)
-    console.log(data)
-  }
 
   // sticky effect on scroll
   const { elementWidth: width1 } = useStickyEffect('sticky1', 300)

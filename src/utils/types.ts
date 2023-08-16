@@ -7,6 +7,7 @@ export interface AttributesProps {
     link?: string
     nameLink?: string
     researcher?: Array<object>
+    nameLab?: string
   }
   
   export interface ItemProps {
