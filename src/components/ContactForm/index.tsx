@@ -4,12 +4,21 @@ import { AttributesProps } from '@/utils/types'
 
 interface ContactFormProps extends AttributesProps {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  useBackgroundOpacity?: boolean
 }
 
-const ContactForm = ({ title, description, onSubmit }: ContactFormProps) => {
+const ContactForm = ({
+  title,
+  description,
+  onSubmit,
+  useBackgroundOpacity,
+}: ContactFormProps) => {
+  const backgroundClass = useBackgroundOpacity
+    ? 'bg-backgroundColor-greyop'
+    : 'bg-backgroundColor-grey'
   return (
     <div
-      className="mx-auto grid max-w-2xl gap-10 rounded bg-backgroundColor-grey px-4 py-8 md:max-w-4xl lg:grid-cols-2 lg:px-8 lg:py-12 xl:max-w-6xl xl:px-[78px] xl:py-[83px] 2xl:max-w-7xl"
+      className={`mx-auto grid max-w-2xl gap-10 rounded ${backgroundClass} px-4 py-8 md:max-w-4xl lg:grid-cols-2 lg:px-8 lg:py-12 xl:max-w-6xl xl:px-[78px] xl:py-[83px] 2xl:max-w-full`}
       style={{
         boxShadow: '0px 8px 19px 0px rgba(32,34,80,0.1)',
         backgroundImage: 'linear-gradient(128deg, #FFFFFF 0%, #FFFFFF00 100%)',

@@ -6,6 +6,7 @@ export interface AttributesProps {
     tabs?: Array<object>
     link?: string
     nameLink?: string
+    researcher?: Array<object>
   }
   
   export interface ItemProps {
@@ -26,3 +27,14 @@ export interface AttributesProps {
     description: string,
     handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void,
   }
+
+  export interface ResearcherProps {
+    name: string,
+    job: string,
+    profile: string,
+    linkLab: string,
+    linkReseau: string,
+    imageUrl: string,
+    nameLab: string,
+  }
+

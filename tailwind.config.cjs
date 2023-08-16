@@ -43,9 +43,11 @@ module.exports = {
         },
         backgroundColor: {
           DEFAULT: '#F6F6F8',
-          grey: '#EBEBF3',
+          grey: '#EBEDF3',
+          greyop: '#EBEDF399',
           blue: '#001135',
           greylight: '#F2F3F7',
+          greylightop: '#F2F3F7d9',
           form: '#D8DFE6',
         },
         textColor: {
@@ -56,6 +58,7 @@ module.exports = {
         },
         strokeColor: {
           greylight: '#DBDFE6',
+          bluelight: '#dbe9e64d'
         },
       },
       // add custom gradients
@@ -66,6 +69,7 @@ module.exports = {
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
+        'karla': ['Karla', 'sans-serif'],
       },
       animation: {
         fadeIn: "fadeIn 2s ease-in forwards",

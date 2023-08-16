@@ -22,7 +22,7 @@ export function Header() {
   const router = useRouter()
   const currenPath = router.pathname
   const shouldMakeHeaderTransparent =
-    currenPath === '/' || currenPath === '/genomes'
+    currenPath === '/' || currenPath === '/genomes' || currenPath === '/about'
 
   useScrollPosition(
     ({ currPos }) => {

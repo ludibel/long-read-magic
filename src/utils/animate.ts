@@ -15,7 +15,7 @@ const useStickyEffect = (elementId: string, topOffset = 0) => {
       if (window.innerWidth >= 768) {
         const element = document.getElementById(elementId)
         const scrollTop = window.scrollY
-        const elementBottom= elementTop + element.getBoundingClientRect().height 
+        // const elementBottom= elementTop + element.getBoundingClientRect().height 
         const elementParentBottom = elementTop+ document.getElementById(elementId).parentElement.getBoundingClientRect().height
         if (
           scrollTop >= elementTop - topOffset &&

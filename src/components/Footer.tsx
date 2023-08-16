@@ -47,19 +47,24 @@ export function Footer() {
           ))}
         </div>
       </nav>
-      <div className="mx-auto flex items-center justify-between p-6 lg:max-w-7xl lg:px-8">
-        <p className="text-white">@2023</p>
-        <div className="flex items-center divide-x">
-          {terms.map((item, index) => (
-            <div key={item.name} className={`${index !== 2 ? 'px-4' : 'pl-4'}`}>
-              <Link
-                href={item.href}
-                className="hover:text-yellowlight text-sm font-semibold capitalize leading-6 text-white"
+      <div className="border-t border-strokeColor-bluelight">
+        <div className="mx-auto flex items-center justify-between  p-6 lg:max-w-7xl lg:px-8">
+          <p className="text-white">@2023</p>
+          <div className="flex items-center divide-x">
+            {terms.map((item, index) => (
+              <div
+                key={item.name}
+                className={`${index !== 2 ? 'px-4' : 'pl-4'}`}
               >
-                {item.name}
-              </Link>
-            </div>
-          ))}
+                <Link
+                  href={item.href}
+                  className="hover:text-yellowlight text-sm font-semibold capitalize leading-6 text-white"
+                >
+                  {item.name}
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </footer>
