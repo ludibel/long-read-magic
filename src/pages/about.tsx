@@ -1,18 +1,21 @@
 import React from 'react'
 import Head from 'next/head'
-
+import Link from 'next/link'
 import Image from 'next/image'
+
 import imageHero from '@/public/images/about_hero-min.png'
 import imageContact from '@/public/images/about_contact-min.png'
 
 import { attributes as heroAttributes } from '@/content/aboutPage/hero.md'
 import { attributes as researcheAttributes } from '@/content/aboutPage/researches.md'
 import { attributes as formAttributes } from '@/content/homePage/contactForm.md'
-import { AttributesProps, ResearcherProps } from '@/utils/types'
+import { AttributesProps, ResearcherProps, LinkAboutProps } from '@/utils/types'
 
-import logoLab from '@/public/images/logo_lab.png'
-import logoReseauLab from '@/public/images/icon_reseauLab.png'
+import logoOrcid from '@/public/images/logo_orcid.png'
+import logoGoogleScholar from '@/public/images/logo_googleScholar.png'
+import logoGoogleScholarDark from '@/public/images/logo_googleScholar_dark.png'
 import LogoBdb from '@/public/images/logo_about.png'
+import logoOrcidDark from '@/public/images/logo_orcid_dark.png'
 
 import ContactForm from '@/components/ContactForm'
 
@@ -52,6 +55,48 @@ const HeroComponent: React.FC<AttributesProps> = ({ title, description }) => {
   )
 }
 
+const LinkComponent: React.FC<LinkAboutProps> = ({
+  urlGoogleScholar,
+  urlOrcid,
+}) => {
+  return (
+    <div className="relative mt-6 flex justify-center gap-x-4">
+      <div className="group">
+        <Link href={urlGoogleScholar}>
+          <div className="relative">
+            <Image
+              src={logoGoogleScholar}
+              alt="logo Google Scholar"
+              className="transition-opacity duration-300 group-hover:opacity-0"
+            />
+            <Image
+              src={logoGoogleScholarDark}
+              alt="logo Google Scholar"
+              className="absolute top-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </div>
+        </Link>
+      </div>
+      <div className="group">
+        <Link href={urlOrcid}>
+          <div className="relative">
+            <Image
+              src={logoOrcid}
+              alt="logo Orcid"
+              className="transition-opacity duration-300 group-hover:opacity-0"
+            />
+            <Image
+              src={logoOrcidDark}
+              alt="logo Orcid"
+              className="absolute top-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            />
+          </div>
+        </Link>
+      </div>
+    </div>
+  )
+}
+
 export default function About() {
   const { title: titleHero, description: descriptionHero } =
     heroAttributes as AttributesProps
@@ -60,6 +105,8 @@ export default function About() {
     description: descriptionResearches,
     researcher,
     nameLab,
+    linkGoogleScholar,
+    linkOrcid,
   } = researcheAttributes as AttributesProps
   const { title: titleForm, description: descriptionForm } =
     formAttributes as AttributesProps
@@ -67,14 +114,24 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About - Project name</title>
+        <title>About</title>
         <meta
           name="description"
           content="Information about the scientists and researchers who created the tool. Brief background on their expertise in genomics and long read sequencing techniques. Presentation of the Big Data Biology Lab and link to their website."
         />
       </Head>
       <HeroComponent title={titleHero} description={descriptionHero} />
-      <div className="bg-backgroundColor-grey py-8 md:px-[54px] md:py-16 xl:px-[108px]">
+      <div className='bg-backgroundColor-grey'>
+      <div
+        className="
+          max-w-[1920px] 
+          bg-backgroundColor-grey
+          py-8 
+          md:px-[54px] 
+          md:py-16 
+          xl:px-[108px] 
+          2xl:mx-auto"
+      >
         <div className="pb-4 text-left md:pb-16">
           <h2 className="text-bold font-karla text-4xl text-textColor-blue lg:text-[34px]">
             {titleResearches}
@@ -100,15 +157,10 @@ export default function About() {
                   <p className="'sm:text-lg text-base font-medium text-textColor-blue lg:text-[21px]">
                     {person.job}
                   </p>
-                  <div className="mt-6 flex justify-center gap-x-4">
-                    <a href={person.linkReseau}>
-                      <Image src={logoReseauLab} alt="logo BigDataBiologyLab" />
-                    </a>
-
-                    <a href={person.linkLab}>
-                      <Image src={logoLab} alt="logo BigDataBiologyLab" />
-                    </a>
-                  </div>
+                  <LinkComponent
+                    urlGoogleScholar={person.linkGoogleScholar}
+                    urlOrcid={person.linkOrcid}
+                  />
                 </div>
               </div>
               <div className="flex-auto md:max-w-sm lg:max-w-2xl">
@@ -141,14 +193,10 @@ export default function About() {
                   {nameLab}
                 </h3>
               </div>
-              <div className="flex justify-center gap-x-4">
-                <a href="#">
-                  <Image src={logoReseauLab} alt="logo BigDataBiologyLab" />
-                </a>
-                <a href="#">
-                  <Image src={logoLab} alt="logo BigDataBiologyLab" />
-                </a>
-              </div>
+              <LinkComponent
+                urlGoogleScholar={linkGoogleScholar}
+                urlOrcid={linkOrcid}
+              />
               <div className="px-3">
                 <p className="text-base leading-9 text-textColor-blue sm:text-lg lg:text-[21px]">
                   {descriptionResearches}
@@ -158,7 +206,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="relative border-b py-24 sm:py-32">
+      <div className="relative py-24 sm:py-32 2xl:mx-auto">
         <Image
           src={imageContact}
           alt="Image stem cells"
@@ -178,8 +226,10 @@ export default function About() {
             description={descriptionForm}
             onSubmit={handleSubmitForm}
             useBackgroundOpacity
+            buttondark
           />
         </div>
+      </div>
       </div>
     </>
   )

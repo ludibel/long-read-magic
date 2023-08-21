@@ -54,13 +54,31 @@ module.exports = {
           blue: '#07020E',
           grey: '#414755',
           greydark: '#5C6564',
-          yellowlight: '#F7EC86',
+          yellow: '#FFEA9A',
+          bluelight: '#2D51A3'
         },
         strokeColor: {
           greylight: '#DBDFE6',
           bluelight: '#dbe9e64d'
         },
+        buttonColor: {
+          type2: '#1A3671',
+          type1: '#021E5C',
+          type2bg: '#193571',
+          type2border: '#021C55',
+          type3:'#F7F7F7', 
+        },
+        boxShadow: {
+          type3: '0px 18px 40px -12px rgba(2, 30, 92, 0.35)',
+        },
+        dropShadow: {
+          '3xl': '0px 0px 2px rgba(6, 26, 72, 0.24)',
+        },
+
       },
+      screens: {
+          '3xl': '1920px',
+        },
       // add custom gradients
       backgroundImage: {
         'gradient-1': 'linear-gradient(91deg, #001135 0%, #001117 100%)',

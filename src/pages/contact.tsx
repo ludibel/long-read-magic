@@ -21,8 +21,8 @@ const Contact = () => {
         <title>Contact</title>
         <meta name="description" content="Contact form" />
       </Head>
-      <div>
-        <div className="relative">
+      <div className="">
+        <div className="relative h-[100vh]">
           <Image
             src={imageContact}
             alt="Image stem cells"
@@ -36,13 +36,16 @@ const Contact = () => {
                 'linear-gradient(91deg, #001135 0%, rgba(0, 17, 53, 0.00) 100%)',
             }}
           ></div>
-          <div className="z-1 relative px-4 pb-[120px] pt-[160px] md:px-[54px]">
-            <ContactForm
-              title={titleForm}
-              description={descriptionForm}
-              onSubmit={handleSubmitForm}
-              notBackground
-            />
+          <div className="mx-auto flex h-[100%] items-center justify-center">
+            <div className="z-1 relative w-[100vw] px-4 pb-[120px] pt-[160px] md:px-[54px]">
+              <ContactForm
+                title={titleForm}
+                description={descriptionForm}
+                onSubmit={handleSubmitForm}
+                notBackground
+                buttondark
+              />
+            </div>
           </div>
         </div>
       </div>

@@ -7,7 +7,10 @@ export interface AttributesProps {
     link?: string
     nameLink?: string
     researcher?: Array<object>
-    nameLab?: string
+    nameLab?: string,
+    linkLab?: string,
+    linkGoogleScholar?: string,
+    linkOrcid?: string,
   }
   
   export interface ItemProps {
@@ -33,9 +36,14 @@ export interface AttributesProps {
     name: string,
     job: string,
     profile: string,
-    linkLab: string,
-    linkReseau: string,
+    linkGoogleScholar: string,
     imageUrl: string,
     nameLab: string,
+    linkOrcid: string,
   }
 
+  interface LinkAboutProps {
+    urlGoogleScholar: string
+    urlOrcid: string
+  }
+  

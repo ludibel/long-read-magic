@@ -13,11 +13,11 @@ export const Thanks = () => {
   return (
     <>
       <Head>
-        <title>Contact</title>
+        <title>Thanks</title>
         <meta name="description" content="Contact form" />
       </Head>
 
-      <div className="relative h-[777px] pt-[160px] xl:pb-[427px] xl:pr-[646px]">
+      <div className="relative h-[100vh] pt-[160px] xl:pb-[427px] xl:pr-[646px]">
         <Image
           src={imageContact}
           alt="Image stem cells"

@@ -1,11 +1,10 @@
 import React, { useState, ReactNode } from 'react'
-
+import clsx from 'clsx'
 interface TabsProps {
   children: ReactNode
 }
 
 const Tabs = ({ children }: TabsProps) => {
-  // recuperation du premier label dans le children
   const firstLabel = (
     React.Children.toArray(children)[0] as React.ReactElement<TabProps>
   ).props.label
@@ -24,15 +23,21 @@ const Tabs = ({ children }: TabsProps) => {
       <div className="flex flex-wrap justify-around text-center text-sm font-medium md:pb-16">
         {React.Children.map(children, (child) => {
           const tabChild = child as React.ReactElement<TabProps>
+          console.log(tabChild.props.label, 'tabChild', activeTab, firstLabel)
           return (
             <button
               aria-label={`button tools ${tabChild.props.label}`}
               key={tabChild.props.label}
-              className={`${
+              // className={`${
+              //   activeTab === tabChild.props.label &&
+              //   'border-b-2 border-textColor-yellow text-textColor-yellow'
+              // } inline-block rounded-t-lg border-b-2 border-transparent p-4 text-sm text-white hover:text-textColor-yellow lg:text-2xl`}
+              className={clsx(
+                'inline-block rounded-t-lg p-[10px] lg:text-2xl',
                 activeTab === tabChild.props.label
-                  ? 'border-b-2 border-white text-2xl text-textColor-yellowlight'
-                  : ''
-              } inline-block rounded-t-lg border-b-2 border-transparent p-4 text-sm text-white hover:border-textColor-blue hover:text-textColor-blue lg:text-2xl`}
+                  ? 'border-b-2 border-textColor-yellow text-textColor-yellow'
+                  : 'border-b-2 border-transparent text-white hover:text-textColor-yellow'
+              )}
               onClick={(e) => handleClick(e, tabChild.props.label)}
             >
               {tabChild.props.label}

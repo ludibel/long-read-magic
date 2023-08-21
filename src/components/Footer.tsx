@@ -19,7 +19,7 @@ const terms = [
 export function Footer() {
   return (
     <footer
-      className="bg-backgroundColor-blue"
+      className=" bg-backgroundColor-blue"
       aria-labelledby="footer-heading"
     >
       <nav
@@ -40,7 +40,7 @@ export function Footer() {
             <Link
               key={item.name}
               href={item.href}
-              className="hover:text-yellowlight text-sm font-semibold capitalize leading-6 text-white"
+              className="text-lg font-semibold capitalize leading-6 text-white hover:text-textColor-yellow"
             >
               {item.name}
             </Link>
@@ -49,7 +49,7 @@ export function Footer() {
       </nav>
       <div className="border-t border-strokeColor-bluelight">
         <div className="mx-auto flex items-center justify-between  p-6 lg:max-w-7xl lg:px-8">
-          <p className="text-white">@2023</p>
+          <p className="text-sm text-white">@2023</p>
           <div className="flex items-center divide-x">
             {terms.map((item, index) => (
               <div
@@ -58,7 +58,7 @@ export function Footer() {
               >
                 <Link
                   href={item.href}
-                  className="hover:text-yellowlight text-sm font-semibold capitalize leading-6 text-white"
+                  className="hover:text-yellowlight text-sm capitalize leading-6 text-white hover:text-textColor-yellow"
                 >
                   {item.name}
                 </Link>

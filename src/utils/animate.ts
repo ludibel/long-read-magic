@@ -6,17 +6,20 @@ const useStickyEffect = (elementId: string, topOffset = 0) => {
     const [elementTop, setElementTop] = useState(undefined)
   
     useEffect(() => {
-      const element = document.getElementById(elementId).getBoundingClientRect()
-      setElementWidth(element.width)
-      setElementTop(element.top)
+      const element = document.getElementById(elementId)
+      if(element) {
+      const rect = element.getBoundingClientRect();
+      setElementWidth(rect.width)
+      setElementTop(rect.top)
+      }
     }, [elementId])
   
     const isSticky = () => {
       if (window.innerWidth >= 768) {
         const element = document.getElementById(elementId)
         const scrollTop = window.scrollY
-        // const elementBottom= elementTop + element.getBoundingClientRect().height 
-        const elementParentBottom = elementTop+ document.getElementById(elementId).parentElement.getBoundingClientRect().height
+        if(element) {
+        const elementParentBottom = elementTop + element.parentElement.getBoundingClientRect().height
         if (
           scrollTop >= elementTop - topOffset &&
           scrollTop <= elementParentBottom + elementParentBottom * 0.025 ) {
@@ -27,6 +30,7 @@ const useStickyEffect = (elementId: string, topOffset = 0) => {
         }
       }
     }
+  }
   
     useEffect(() => {
       if (!elementTop) return

@@ -22,7 +22,11 @@ export function Header() {
   const router = useRouter()
   const currenPath = router.pathname
   const shouldMakeHeaderTransparent =
-    currenPath === '/' || currenPath === '/genomes' || currenPath === '/about'
+    currenPath === '/' ||
+    currenPath === '/genomes' ||
+    currenPath === '/about' ||
+    currenPath === '/resources' ||
+    currenPath === '/contact'
 
   useScrollPosition(
     ({ currPos }) => {
@@ -36,8 +40,8 @@ export function Header() {
       className={clsx(
         'fixed top-0 z-[1] w-full',
         !scrolled && shouldMakeHeaderTransparent
-          ? 'bg-transparent fill-current text-white'
-          : 'bg-white text-gray-900 shadow-md'
+          ? 'drop-shadow-3xl bg-transparent fill-current text-white'
+          : 'text-darkblue drop-shadow-3xl bg-white shadow-md'
       )}
     >
       <nav
@@ -69,7 +73,25 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold uppercase leading-6"
+              // className="drop-shadow-3xl text-lg font-semibold capitalize leading-6 hover:border-b-[1px] hover:border-textColor-yellow hover:text-textColor-yellow active:border-b-[1px] active:border-textColor-yellow active:text-textColor-yellow"
+              className={clsx(
+                'text-lg font-semibold capitalize leading-6',
+                currenPath === item.href.toLowerCase() &&
+                  scrolled &&
+                  'border-b-2 border-textColor-bluelight text-darkBlue ',
+                // if is scolle and should make header transparent
+                currenPath === item.href &&
+                  !scrolled &&
+                  shouldMakeHeaderTransparent &&
+                  'border-b-2 border-textColor-yellow text-textColor-yellow',
+                currenPath === item.href &&
+                  !scrolled &&
+                  !shouldMakeHeaderTransparent &&
+                  'border-b-2 border-textColor-bluelight text-darkBlue',
+                !scrolled && shouldMakeHeaderTransparent
+                  ? 'rounded-[1px] hover:border-b-2 hover:border-textColor-yellow hover:text-textColor-yellow'
+                  : 'rounded-[1px] hover:border-b-2 hover:border-textColor-bluelight hover:text-darkBlue'
+              )}
             >
               {item.name}
             </Link>
@@ -111,7 +133,7 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    className="text-textColor-lue -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-textColor-bluelight"
                   >
                     {item.name}
                   </Link>
