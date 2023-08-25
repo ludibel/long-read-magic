@@ -73,7 +73,7 @@ const ToolTableComponent: React.FC<AttributesProps> = ({ tools }) => {
             <th
               scope="col"
               className="px-3 py-2 uppercase lg:px-6 lg:py-4"
-              key="title"
+              key={title}
             >
               {title}
             </th>
@@ -84,7 +84,7 @@ const ToolTableComponent: React.FC<AttributesProps> = ({ tools }) => {
         {tools.map((tool: ToolProps) => (
           <tr
             className="border-b dark:border-strokeColor-greydark"
-            key={tool.name}
+            key={`tool-${tool.name}`}
           >
             <td className="px-3 py-2 lg:px-6 lg:py-4">{tool.name}</td>
             <td className="px-3 py-2 lg:px-6 lg:py-4">{tool.inputFiles}</td>

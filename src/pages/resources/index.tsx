@@ -76,6 +76,7 @@ export const Resources = ({ resources, datahero }) => {
                     key={resource.file}
                     href={`/resources/${resource.slug}`}
                     className="group"
+                    aria-label="button to go to the resource page"
                   >
                     <div className="flex items-center">
                       <Image
@@ -106,30 +107,39 @@ export const Resources = ({ resources, datahero }) => {
 export default Resources
 
 export function getStaticProps() {
-  const filehero = fs.readFileSync(process.cwd() + '/content/resources/hero.md')
-  const { data: datahero } = matter(filehero)
+  try {
+    const filehero = fs.readFileSync(
+      `${process.cwd()}/content/resources/hero.md`
+    )
+    const { data: datahero } = matter(filehero)
 
-  const files = fs.readdirSync(`${process.cwd()}/content/resources`)
-  const resources = files
-    .filter((fn) => fn.endsWith('.md') && fn !== 'hero.md')
-    .map((file) => {
-      const slug = file.split('.')[0]
-      const path = `${process.cwd()}/content/resources/${file}`
-      const rawContent = fs.readFileSync(path, {
-        encoding: 'utf-8',
+    const files = fs.readdirSync(`${process.cwd()}/content/resources`)
+    const resources = files
+      .filter((fn) => fn.endsWith('.md') && fn !== 'hero.md')
+      .map((file) => {
+        const slug = file.split('.')[0]
+        const path = `${process.cwd()}/content/resources/${file}`
+        const rawContent = fs.readFileSync(path, {
+          encoding: 'utf-8',
+        })
+        const { data } = matter(rawContent)
+
+        return {
+          data,
+          file,
+          slug,
+        }
       })
-      const { data } = matter(rawContent)
-
-      return {
-        data,
-        file,
-        slug,
-      }
-    })
+    return {
+      props: {
+        resources,
+        datahero: JSON.parse(JSON.stringify(datahero)),
+      },
+    }
+  } catch (err) {
+    console.log(err)
+  }
   return {
-    props: {
-      resources,
-      datahero: JSON.parse(JSON.stringify(datahero)),
-    },
+    notFound: true,
   }
 }

@@ -23,7 +23,6 @@ const Tabs = ({ children }: TabsProps) => {
       <div className="flex flex-wrap justify-around text-center text-sm font-medium md:pb-16">
         {React.Children.map(children, (child) => {
           const tabChild = child as React.ReactElement<TabProps>
-          console.log(tabChild.props.label, 'tabChild', activeTab, firstLabel)
           return (
             <button
               aria-label={`button tools ${tabChild.props.label}`}

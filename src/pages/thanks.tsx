@@ -1,15 +1,16 @@
 import Head from 'next/head'
 import React from 'react'
 import Image from 'next/image'
+import fs from 'fs'
+import matter from 'gray-matter'
 
 import { AttributesProps } from '../utils/types'
-import { attributes } from '@/content/thankPage/hero.md'
 
 import imageContact from '@/public/images/about_contact-min.png'
 import Link from 'next/link'
 
-export const Thanks = () => {
-  const { title, description } = attributes as AttributesProps
+export const Thanks = ({ dataHero }) => {
+  const { title, description } = dataHero as AttributesProps
   return (
     <>
       <Head>
@@ -17,7 +18,7 @@ export const Thanks = () => {
         <meta name="description" content="Contact form" />
       </Head>
 
-      <div className="relative h-full flex flex-1 pt-[160px] xl:pb-[427px] xl:pr-[646px]">
+      <div className="relative flex h-full flex-1 pt-[160px] xl:pb-[427px] xl:pr-[646px]">
         <Image
           src={imageContact}
           alt="Image stem cells"
@@ -52,6 +53,24 @@ export const Thanks = () => {
       </div>
     </>
   )
+}
+
+export async function getStaticProps() {
+  try {
+    const fileHero = fs.readFileSync(
+      `${process.cwd()}/content/thankPage/hero.md`,
+      'utf8'
+    )
+    const { data: dataHero } = matter(fileHero)
+    return {
+      props: {
+        dataHero: JSON.parse(JSON.stringify(dataHero)),
+      },
+    }
+  } catch (e) {
+    console.log(e)
+  }
+  return { notFound: true }
 }
 
 export default Thanks

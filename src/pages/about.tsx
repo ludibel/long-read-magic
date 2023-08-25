@@ -2,13 +2,12 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
+import matter from 'gray-matter'
+import fs from 'fs'
 
 import imageHero from '@/public/images/about_hero-min.png'
 import imageContact from '@/public/images/about_contact-min.png'
 
-import { attributes as heroAttributes } from '@/content/aboutPage/hero.md'
-import { attributes as researcheAttributes } from '@/content/aboutPage/researches.md'
-import { attributes as formAttributes } from '@/content/homePage/contactForm.md'
 import { AttributesProps, ResearcherProps, LinkAboutProps } from '@/utils/types'
 
 import logoOrcid from '@/public/images/logo_orcid.png'
@@ -97,9 +96,9 @@ const LinkComponent: React.FC<LinkAboutProps> = ({
   )
 }
 
-export default function About() {
+export const About = ({ dataHero, dataForm, dataResearches }) => {
   const { title: titleHero, description: descriptionHero } =
-    heroAttributes as AttributesProps
+    dataHero as AttributesProps
   const {
     title: titleResearches,
     description: descriptionResearches,
@@ -107,9 +106,9 @@ export default function About() {
     nameLab,
     linkGoogleScholar,
     linkOrcid,
-  } = researcheAttributes as AttributesProps
+  } = dataResearches as AttributesProps
   const { title: titleForm, description: descriptionForm } =
-    formAttributes as AttributesProps
+    dataForm as AttributesProps
 
   return (
     <>
@@ -121,9 +120,9 @@ export default function About() {
         />
       </Head>
       <HeroComponent title={titleHero} description={descriptionHero} />
-      <div className='bg-backgroundColor-grey'>
-      <div
-        className="
+      <div className="bg-backgroundColor-grey">
+        <div
+          className="
           max-w-[1920px] 
           bg-backgroundColor-grey
           py-8 
@@ -131,106 +130,140 @@ export default function About() {
           md:py-16 
           xl:px-[108px] 
           2xl:mx-auto"
-      >
-        <div className="pb-4 text-left md:pb-16">
-          <h2 className="text-bold font-karla text-4xl text-textColor-blue lg:text-[34px]">
-            {titleResearches}
-          </h2>
-        </div>
-        <div className="-mt-12 space-y-12 divide-y divide-strokeColor-greylight xl:col-span-3">
-          {researcher.map((person: ResearcherProps) => (
-            <div
-              key={person.name}
-              className="flex flex-col gap-10 px-4 pt-12 md:flex-row md:gap-[30px] md:px-0 xl:gap-[108px] 2xl:justify-center 2xl:gap-[200px]"
-            >
-              <div className=" flex flex-col items-center justify-center rounded rounded-r-md bg-backgroundColor-greylight px-8 py-8 md:w-[256px]">
-                <div className="align pb-6">
+        >
+          <div className="pb-4 text-left md:pb-16">
+            <h2 className="text-bold font-karla text-4xl text-textColor-blue lg:text-[34px]">
+              {titleResearches}
+            </h2>
+          </div>
+          <div className="-mt-12 space-y-12 divide-y divide-strokeColor-greylight xl:col-span-3">
+            {researcher.map((person: ResearcherProps) => (
+              <div
+                key={person.name}
+                className="flex flex-col gap-10 px-4 pt-12 md:flex-row md:gap-[30px] md:px-0 xl:gap-[108px] 2xl:justify-center 2xl:gap-[200px]"
+              >
+                <div className=" flex flex-col items-center justify-center rounded rounded-r-md bg-backgroundColor-greylight px-8 py-8 md:w-[256px]">
+                  <div className="align pb-6">
+                    <Image
+                      className="mx-auto flex-none rounded-full object-cover"
+                      width={140}
+                      height={189}
+                      src={person.imageUrl}
+                      alt="photo of the researcher"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="'sm:text-lg text-base font-medium text-textColor-blue lg:text-[21px]">
+                      {person.job}
+                    </p>
+                    <LinkComponent
+                      urlGoogleScholar={person.linkGoogleScholar}
+                      urlOrcid={person.linkOrcid}
+                    />
+                  </div>
+                </div>
+                <div className="flex-auto md:max-w-sm lg:max-w-2xl">
+                  <div className="pb-6">
+                    <h3 className="text-2xl font-semibold text-textColor-blue">
+                      {person.name}
+                    </h3>
+                  </div>
+                  <div>
+                    <p className="text-base leading-9 text-textColor-blue sm:text-lg lg:text-[21px]">
+                      {person.profile}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="pt-6">
+              <div className="mt-6 flex flex-col gap-6 rounded bg-backgroundColor-greylightop pb-8 pt-6 text-center sm:px-8 lg:px-16">
+                <div className="align">
                   <Image
                     className="mx-auto flex-none rounded-full object-cover"
                     width={140}
-                    height={189}
-                    src={person.imageUrl}
-                    alt="photo of the researcher"
+                    height={140}
+                    src={LogoBdb}
+                    alt="logo BigDataBiologyLab"
                   />
-                </div>
-                <div className="text-center">
-                  <p className="'sm:text-lg text-base font-medium text-textColor-blue lg:text-[21px]">
-                    {person.job}
-                  </p>
-                  <LinkComponent
-                    urlGoogleScholar={person.linkGoogleScholar}
-                    urlOrcid={person.linkOrcid}
-                  />
-                </div>
-              </div>
-              <div className="flex-auto md:max-w-sm lg:max-w-2xl">
-                <div className="pb-6">
-                  <h3 className="text-2xl font-semibold text-textColor-blue">
-                    {person.name}
-                  </h3>
                 </div>
                 <div>
+                  <h3 className="text-base font-semibold text-textColor-blue sm:text-lg lg:text-2xl">
+                    {nameLab}
+                  </h3>
+                </div>
+                <LinkComponent
+                  urlGoogleScholar={linkGoogleScholar}
+                  urlOrcid={linkOrcid}
+                />
+                <div className="px-3">
                   <p className="text-base leading-9 text-textColor-blue sm:text-lg lg:text-[21px]">
-                    {person.profile}
+                    {descriptionResearches}
                   </p>
                 </div>
-              </div>
-            </div>
-          ))}
-          <div className="pt-6">
-            <div className="mt-6 flex flex-col gap-6 rounded bg-backgroundColor-greylightop pb-8 pt-6 text-center sm:px-8 lg:px-16">
-              <div className="align">
-                <Image
-                  className="mx-auto flex-none rounded-full object-cover"
-                  width={140}
-                  height={140}
-                  src={LogoBdb}
-                  alt="logo BigDataBiologyLab"
-                />
-              </div>
-              <div>
-                <h3 className="text-base font-semibold text-textColor-blue sm:text-lg lg:text-2xl">
-                  {nameLab}
-                </h3>
-              </div>
-              <LinkComponent
-                urlGoogleScholar={linkGoogleScholar}
-                urlOrcid={linkOrcid}
-              />
-              <div className="px-3">
-                <p className="text-base leading-9 text-textColor-blue sm:text-lg lg:text-[21px]">
-                  {descriptionResearches}
-                </p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="relative py-24 sm:py-32 2xl:mx-auto">
-        <Image
-          src={imageContact}
-          alt="Image stem cells"
-          fill
-          className="bg-lightgray bg-opacity-50 object-cover object-center"
-        />
-        <div
-          className="h-100% absolute inset-0 z-0"
-          style={{
-            background:
-              'linear-gradient(91deg, #001135 0%, rgba(0, 17, 53, 0.00) 100%)',
-          }}
-        ></div>
-        <div className="z-1 relative px-4 py-[90px] md:px-[54px] xl:px-[108px]">
-          <ContactForm
-            title={titleForm}
-            description={descriptionForm}
-            onSubmit={handleSubmitForm}
-            useBackgroundOpacity
-            buttondark
+        <div className="relative py-24 sm:py-32 2xl:mx-auto">
+          <Image
+            src={imageContact}
+            alt="Image stem cells"
+            fill
+            className="bg-lightgray bg-opacity-50 object-cover object-center"
           />
+          <div
+            className="h-100% absolute inset-0 z-0"
+            style={{
+              background:
+                'linear-gradient(91deg, #001135 0%, rgba(0, 17, 53, 0.00) 100%)',
+            }}
+          ></div>
+          <div className="z-1 relative px-4 py-[90px] md:px-[54px] xl:px-[108px]">
+            <ContactForm
+              title={titleForm}
+              description={descriptionForm}
+              onSubmit={handleSubmitForm}
+              useBackgroundOpacity
+              buttondark
+            />
+          </div>
         </div>
-      </div>
       </div>
     </>
   )
+}
+
+export default About
+
+export async function getStaticProps() {
+  try {
+    const filesHero = fs.readFileSync(
+      `${process.cwd()}/content/aboutPage/hero.md`
+    )
+    const { data: dataHero } = matter(filesHero)
+
+    const filesResearches = fs.readFileSync(
+      `${process.cwd()}/content/aboutPage/researches.md`
+    )
+    const { data: dataResearches } = matter(filesResearches)
+
+    const filesForm = fs.readFileSync(
+      `${process.cwd()}/content/aboutPage/contactForm.md`
+    )
+    const { data: dataForm } = matter(filesForm)
+
+    return {
+      props: {
+        dataHero: JSON.parse(JSON.stringify(dataHero)),
+        dataResearches: JSON.parse(JSON.stringify(dataResearches)),
+        dataForm: JSON.parse(JSON.stringify(dataForm)),
+      },
+    }
+  } catch (err) {
+    console.log(err)
+  }
+  return {
+    notFound: true,
+  }
 }

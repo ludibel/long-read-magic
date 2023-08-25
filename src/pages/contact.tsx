@@ -1,20 +1,20 @@
 import React from 'react'
 import Head from 'next/head'
+import fs from 'fs'
+import matter from 'gray-matter'
 
 import Image from 'next/image'
 import imageContact from '@/public/images/about_contact-min.png'
 
 import ContactForm from '@/components/ContactForm'
 
-import { attributes as formAttributes } from '@/content/homePage/contactForm.md'
 import { AttributesProps } from '@/utils/types'
 
 import { handleSubmitForm } from '../utils/form'
 
-const { title: titleForm, description: descriptionForm } =
-  formAttributes as AttributesProps
-
-const Contact = () => {
+const Contact = ({ dataContact }) => {
+  const { title: titleForm, description: descriptionForm } =
+    dataContact as AttributesProps
   return (
     <>
       <Head>
@@ -52,3 +52,23 @@ const Contact = () => {
 }
 
 export default Contact
+
+export async function getStaticProps() {
+  try {
+    const fileContact = fs.readFileSync(
+        `${process.cwd()}/content/homePage/contactForm.md`,
+        'utf-8'
+      ),
+      { data: dataContact } = matter(fileContact)
+    return {
+      props: {
+        dataContact: JSON.parse(JSON.stringify(dataContact)),
+      },
+    }
+  } catch (error) {
+    console.log(error)
+  }
+  return {
+    notFound: true,
+  }
+}

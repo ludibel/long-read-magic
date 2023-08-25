@@ -2,19 +2,14 @@ import React, { useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
+import fs from 'fs'
+import matter from 'gray-matter'
 
 import ContactForm from '@/components/ContactForm'
 import Tabs, { Tab } from '@/components/Tabs'
 import Button from '@/components/Button'
 
 import useStickyEffect, { animateOnScroll } from '@/utils/animate'
-
-import { attributes as heroAttributes } from '@/content/homePage/hero.md'
-import { attributes as aboutAttributes } from '@/content/homePage/section1.md'
-import { attributes as section3Attributes } from '@/content/homePage/section3.md'
-import { attributes as section2Attributes } from '@/content/homePage/section2.md'
-import { attributes as section4Attributes } from '@/content/homePage/section4.md'
-import { attributes as formAttributes } from '@/content/homePage/contactForm.md'
 
 import imageHero from '@/public/images/genome_image.png'
 import imageAbout from '@/public/images/homepage_image_part2.png'
@@ -76,23 +71,30 @@ const HeroComponent: React.FC<AttributesProps> = ({
   )
 }
 
-export default function Home() {
-  const { title, description, buttonName } = heroAttributes as AttributesProps
+export default function Home({
+  dataHero,
+  dataSection1,
+  dataSection2,
+  dataSection3,
+  dataSection4,
+  dataContact,
+}) {
+  const { title, description, buttonName } = dataHero as AttributesProps
   const { title: titleAbout, content: descriptionAbout } =
-    aboutAttributes as AttributesProps
+    dataSection1 as AttributesProps
   const { title: titleSection3, content: descriptionSection3 } =
-    section3Attributes as AttributesProps
+    dataSection3 as AttributesProps
   const { title: titleSection2, description: descriptionSection2 } =
-    section2Attributes as AttributesProps
+    dataSection2 as AttributesProps
   const {
     title: titleSection4,
     description: descriptionSection4,
     link,
     nameLink,
     tabs,
-  } = section4Attributes as AttributesProps
+  } = dataSection4 as AttributesProps
   const { title: titleForm, description: descriptionForm } =
-    formAttributes as AttributesProps
+    dataContact as AttributesProps
 
   // sticky effect on scroll
   const { elementWidth: width1 } = useStickyEffect('sticky1', 300)
@@ -275,4 +277,55 @@ export default function Home() {
       </div>
     </>
   )
+}
+
+export async function getStaticProps() {
+  try {
+    const fileHero = fs.readFileSync(
+      `${process.cwd()}/content/homePage/hero.md`
+    )
+    const { data: dataHero } = matter(fileHero)
+
+    const fileSection1 = fs.readFileSync(
+      `${process.cwd()}/content/homePage/section1.md`
+    )
+    const { data: dataSection1 } = matter(fileSection1)
+
+    const fileSection2 = fs.readFileSync(
+      `${process.cwd()}/content/homePage/section2.md`
+    )
+    const { data: dataSection2 } = matter(fileSection2)
+
+    const fileSection3 = fs.readFileSync(
+      `${process.cwd()}/content/homePage/section3.md`
+    )
+    const { data: dataSection3 } = matter(fileSection3)
+
+    const fileSection4 = fs.readFileSync(
+      `${process.cwd()}/content/homePage/section4.md`
+    )
+    const { data: dataSection4 } = matter(fileSection4)
+
+    const fileContact = fs.readFileSync(
+        `${process.cwd()}/content/homePage/contactForm.md`,
+        'utf-8'
+      ),
+      { data: dataContact } = matter(fileContact)
+
+    return {
+      props: {
+        dataHero: JSON.parse(JSON.stringify(dataHero)),
+        dataSection1: JSON.parse(JSON.stringify(dataSection1)),
+        dataSection2: JSON.parse(JSON.stringify(dataSection2)),
+        dataSection3: JSON.parse(JSON.stringify(dataSection3)),
+        dataSection4: JSON.parse(JSON.stringify(dataSection4)),
+        dataContact: JSON.parse(JSON.stringify(dataContact)),
+      },
+    }
+  } catch (err) {
+    console.log(err)
+  }
+  return {
+    notFound: true,
+  }
 }
