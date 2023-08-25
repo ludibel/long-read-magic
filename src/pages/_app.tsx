@@ -23,14 +23,9 @@ export default function App({ Component, pageProps, router }) {
 
   return (
     <>
-      {/*<div className="fixed inset-0 flex justify-center sm:px-8">*/}
-      {/*  <div className="flex w-full max-w-7xl lg:px-8">*/}
-      {/*    <div className="w-full ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-      <div className="relative">
+      <div className=" relative flex h-screen flex-col">
         <Header />
-        <main>
+        <main className="relative flex-grow">
           <Component previousPathname={previousPathname} {...pageProps} />
         </main>
         <Footer />

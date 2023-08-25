@@ -73,7 +73,6 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              // className="drop-shadow-3xl text-lg font-semibold capitalize leading-6 hover:border-b-[1px] hover:border-textColor-yellow hover:text-textColor-yellow active:border-b-[1px] active:border-textColor-yellow active:text-textColor-yellow"
               className={clsx(
                 'text-lg font-semibold capitalize leading-6',
                 currenPath === item.href.toLowerCase() &&
@@ -133,7 +132,7 @@ export function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="text-textColor-lue -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50 hover:text-textColor-bluelight"
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-textColor-blue hover:bg-gray-50 hover:text-textColor-bluelight"
                   >
                     {item.name}
                   </Link>

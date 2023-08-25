@@ -17,37 +17,37 @@ const Button = ({ text, logo, url, logoHover }: ButtonProps) => {
       className="group flex items-center gap-4 px-0 py-[10px] focus:outline-none"
       href={url}
     >
-      <div className="relative h-6 w-6 transition-colors duration-300">
+      <div className="relative h-6 w-6 transition-colors duration-100">
         <Image
           src={logo}
           alt="GitHub"
           width={24}
           height={24}
-          className="transition-opacity duration-300 group-hover:opacity-0"
+          className="transition-opacity duration-100 group-hover:opacity-0"
         />
         <Image
           src={logoHover}
           alt="GitHub"
           width={24}
           height={24}
-          className="absolute left-0 top-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="absolute left-0 top-0 opacity-0 transition-opacity duration-100 group-hover:opacity-100"
         />
       </div>
-      <span className="text-base font-medium capitalize text-darkBlue transition-colors duration-300 group-hover:text-textColor-bluelight">
+      <span className="text-base font-medium capitalize text-darkBlue transition-colors duration-100 group-hover:text-textColor-bluelight">
         {text}
       </span>
-      <div className="flex h-6 w-6 items-center transition-colors duration-300">
+      <div className="flex h-6 w-6 items-center transition-colors duration-100">
         <Image
           src={arrowImage}
-          alt="GitHub"
+          alt="logo arrow"
           width={24}
-          className="transition-opacity duration-300 group-hover:opacity-0"
+          className="transition-opacity duration-100 group-hover:opacity-0"
         />
         <Image
           src={arrowImageHover}
-          alt="GitHub"
+          alt="logo arrow dark"
           width={48}
-          className="absolute opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="absolute opacity-0 transition-opacity duration-100 group-hover:opacity-100"
         />
       </div>
     </Link>

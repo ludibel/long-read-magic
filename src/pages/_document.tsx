@@ -23,8 +23,12 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@700&display=swap"
           rel="stylesheet"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800;900&family=Karla:wght@700&family=Libre+Franklin&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-      <body className="flex h-full flex-col bg-zinc-50 dark:bg-black">
+      <body className="flex h-full flex-col bg-backgroundColor-greylight dark:bg-black">
         <Main />
         <NextScript />
       </body>

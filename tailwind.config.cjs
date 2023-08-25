@@ -59,7 +59,8 @@ module.exports = {
         },
         strokeColor: {
           greylight: '#DBDFE6',
-          bluelight: '#dbe9e64d'
+          bluelight: '#dbe9e64d',
+          greydark: '#DBDFE6A8',
         },
         buttonColor: {
           type2: '#1A3671',
@@ -88,6 +89,7 @@ module.exports = {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         'karla': ['Karla', 'sans-serif'],
+        'libre_franklin': ['Libre Franklin', 'sans-serif'],
       },
       animation: {
         fadeIn: "fadeIn 2s ease-in forwards",

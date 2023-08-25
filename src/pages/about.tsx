@@ -40,7 +40,7 @@ const HeroComponent: React.FC<AttributesProps> = ({ title, description }) => {
       <div className="absolute inset-0 flex">
         <div className="flex flex-auto flex-col items-center justify-center pb-4 pl-4 pr-4 pt-12 md:pl-[54px] md:pr-[54px] lg:pl-[108px]">
           <div>
-            <h1 className="font-inter text-4xl font-semibold capitalize text-white lg:text-[52px] lg:leading-[4rem] 2xl:text-7xl ">
+            <h1 className="font-inter text-4xl font-semibold capitalize text-white lg:text-[52px] lg:leading-[4rem] 2xl:text-7xl">
               {title}
             </h1>
           </div>

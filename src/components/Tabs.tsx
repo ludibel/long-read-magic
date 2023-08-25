@@ -28,10 +28,6 @@ const Tabs = ({ children }: TabsProps) => {
             <button
               aria-label={`button tools ${tabChild.props.label}`}
               key={tabChild.props.label}
-              // className={`${
-              //   activeTab === tabChild.props.label &&
-              //   'border-b-2 border-textColor-yellow text-textColor-yellow'
-              // } inline-block rounded-t-lg border-b-2 border-transparent p-4 text-sm text-white hover:text-textColor-yellow lg:text-2xl`}
               className={clsx(
                 'inline-block rounded-t-lg p-[10px] lg:text-2xl',
                 activeTab === tabChild.props.label

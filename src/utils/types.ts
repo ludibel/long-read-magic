@@ -11,6 +11,9 @@ export interface AttributesProps {
     linkLab?: string,
     linkGoogleScholar?: string,
     linkOrcid?: string,
+    imageUrl?: string,
+    imageAlt?: string,
+    tools?: Array<object>
   }
   
   export interface ItemProps {
@@ -19,6 +22,8 @@ export interface AttributesProps {
     paragraph?: string
     workflow?: Array<string>
     name?: string
+    url?: string
+    alt?: string
   }
   export interface TabProps {
     name: string
@@ -42,8 +47,31 @@ export interface AttributesProps {
     linkOrcid: string,
   }
 
-  interface LinkAboutProps {
+  export interface LinkAboutProps {
     urlGoogleScholar: string
     urlOrcid: string
+  }
+
+  export interface ResourceProps {
+    data : {
+      title: string,
+      description: string,
+      subTitle?: string,
+      content?: string
+      image?: Array<ItemProps>,
+      imageHero?: Array<ItemProps>,
+      tools?: Array<ItemProps>,
+    },
+    content: string,
+  }
+
+  export interface ToolProps {
+    name: string,
+    inputFiles?: string,
+    outputFiles?: string,
+    informationObtained?: string,
+    utility?: string,
+    peeks?: string,
+    drawbacks?: string,
   }
   

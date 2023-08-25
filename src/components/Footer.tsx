@@ -19,11 +19,11 @@ const terms = [
 export function Footer() {
   return (
     <footer
-      className=" bg-backgroundColor-blue"
+      className="mt-auto bg-backgroundColor-blue"
       aria-labelledby="footer-heading"
     >
       <nav
-        className="mx-auto flex max-w-7xl flex-wrap items-center justify-between p-6 sm:flex-wrap lg:px-8"
+        className="mx-auto flex max-w-7xl flex-col items-center justify-center p-6 sm:flex-row  sm:flex-wrap sm:justify-between lg:px-8"
         aria-label="Global"
       >
         <Link href="/" className="-m-1.5">
@@ -35,12 +35,12 @@ export function Footer() {
             alt="Project logo"
           />
         </Link>
-        <div className="flex gap-x-2 md:gap-x-4 lg:gap-x-12">
+        <div className="mt-4 flex gap-x-2 sm:mt-0 md:gap-x-4 lg:gap-x-12">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-lg font-semibold capitalize leading-6 text-white hover:text-textColor-yellow"
+              className="text-md font-semibold capitalize leading-6 text-white hover:text-textColor-yellow"
             >
               {item.name}
             </Link>
@@ -49,7 +49,7 @@ export function Footer() {
       </nav>
       <div className="border-t border-strokeColor-bluelight">
         <div className="mx-auto flex items-center justify-between  p-6 lg:max-w-7xl lg:px-8">
-          <p className="text-sm text-white">@2023</p>
+          <p className="text-xs text-white sm:text-sm">@2023</p>
           <div className="flex items-center divide-x">
             {terms.map((item, index) => (
               <div
@@ -58,7 +58,7 @@ export function Footer() {
               >
                 <Link
                   href={item.href}
-                  className="hover:text-yellowlight text-sm capitalize leading-6 text-white hover:text-textColor-yellow"
+                  className="hover:text-yellowlight text-xs capitalize leading-6 text-white hover:text-textColor-yellow sm:text-sm"
                 >
                   {item.name}
                 </Link>
