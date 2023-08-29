@@ -16,18 +16,19 @@ const Button = ({ text, logo, url, logoHover }: ButtonProps) => {
     <Link
       className="group flex items-center gap-4 px-0 py-[10px] focus:outline-none"
       href={url}
+      aria-label={`link ${text} `}
     >
       <div className="relative h-6 w-6 transition-colors duration-100">
         <Image
           src={logo}
-          alt="GitHub"
+          alt={text}
           width={24}
           height={24}
           className="transition-opacity duration-100 group-hover:opacity-0"
         />
         <Image
           src={logoHover}
-          alt="GitHub"
+          alt={text}
           width={24}
           height={24}
           className="absolute left-0 top-0 opacity-0 transition-opacity duration-100 group-hover:opacity-100"

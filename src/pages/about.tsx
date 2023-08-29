@@ -61,7 +61,7 @@ const LinkComponent: React.FC<LinkAboutProps> = ({
   return (
     <div className="relative mt-6 flex justify-center gap-x-4">
       <div className="group">
-        <Link href={urlGoogleScholar}>
+        <Link href={urlGoogleScholar} aria-label="link googleShcolar">
           <div className="relative">
             <Image
               src={logoGoogleScholar}
@@ -77,7 +77,7 @@ const LinkComponent: React.FC<LinkAboutProps> = ({
         </Link>
       </div>
       <div className="group">
-        <Link href={urlOrcid}>
+        <Link href={urlOrcid} aria-label="link orcid">
           <div className="relative">
             <Image
               src={logoOrcid}
@@ -100,8 +100,8 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
   const { title: titleHero, description: descriptionHero } =
     dataHero as AttributesProps
   const {
-    title: titleResearches,
-    description: descriptionResearches,
+    title: titleResearchers,
+    description: descriptionResearchers,
     researcher,
     nameLab,
     linkGoogleScholar,
@@ -133,7 +133,7 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
         >
           <div className="pb-4 text-left md:pb-16">
             <h2 className="text-bold font-karla text-4xl text-textColor-blue lg:text-[34px]">
-              {titleResearches}
+              {titleResearchers}
             </h2>
           </div>
           <div className="-mt-12 space-y-12 divide-y divide-strokeColor-greylight xl:col-span-3">
@@ -149,7 +149,7 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
                       width={140}
                       height={189}
                       src={person.imageUrl}
-                      alt="photo of the researcher"
+                      alt={`${person.name} photo `}
                     />
                   </div>
                   <div className="text-center">
@@ -198,7 +198,7 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
                 />
                 <div className="px-3">
                   <p className="text-base leading-9 text-textColor-blue sm:text-lg lg:text-[21px]">
-                    {descriptionResearches}
+                    {descriptionResearchers}
                   </p>
                 </div>
               </div>
@@ -244,7 +244,7 @@ export async function getStaticProps() {
     const { data: dataHero } = matter(filesHero)
 
     const filesResearches = fs.readFileSync(
-      `${process.cwd()}/content/aboutPage/researches.md`
+      `${process.cwd()}/content/aboutPage/researchers.md`
     )
     const { data: dataResearches } = matter(filesResearches)
 
@@ -261,7 +261,7 @@ export async function getStaticProps() {
       },
     }
   } catch (err) {
-    console.log(err)
+    alert(err.message)
   }
   return {
     notFound: true,

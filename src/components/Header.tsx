@@ -48,7 +48,7 @@ export function Header() {
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
-        <Link href="/" className="-m-1.5">
+        <Link href="/" className="-m-1.5" aria-label="link home">
           <span className="sr-only">Project name</span>
           <Image
             width={512}
@@ -60,6 +60,7 @@ export function Header() {
         </Link>
         <div className="flex lg:hidden">
           <button
+            aria-label="button menu"
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5"
             onClick={() => setMobileMenuOpen(true)}
@@ -71,6 +72,7 @@ export function Header() {
         <div className="hidden lg:flex lg:gap-x-12">
           {navigation.map((item) => (
             <Link
+              aria-label={`link ${item.name} `}
               key={item.name}
               href={item.href}
               className={clsx(
@@ -106,7 +108,7 @@ export function Header() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link href="#" className="-m-1.5 p-1.5">
+            <Link href="#" className="-m-1.5 p-1.5" aria-label="link to home">
               <span className="sr-only">Project name</span>
               <Image
                 width={512}
@@ -130,9 +132,11 @@ export function Header() {
               <div className="space-y-2 py-6">
                 {navigation.map((item) => (
                   <Link
+                    aria-label={`link ${item.name} `}
                     key={item.name}
                     href={item.href}
                     className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-textColor-blue hover:bg-gray-50 hover:text-textColor-bluelight"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>

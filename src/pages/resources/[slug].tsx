@@ -18,7 +18,7 @@ const titleHeadTable = [
 
 const HeroComponent: React.FC<AttributesProps> = ({
   title,
-  description,
+  subTitle,
   imageUrl,
   imageAlt,
 }) => {
@@ -56,7 +56,7 @@ const HeroComponent: React.FC<AttributesProps> = ({
           </div>
           <div className="pb-6 pt-2 text-center sm:pb-10 sm:pt-6 md:pb-12">
             <p className="font-inter gap-x-6 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl">
-              {description}
+              {subTitle}
             </p>
           </div>
         </div>
@@ -106,7 +106,7 @@ const Resource = ({ data }: ResourceProps) => {
   return (
     <>
       <Head>
-        <title>About</title>
+        <title>{`Resources ${data.title}`}</title>
         <meta
           name="description"
           content="Information about the scientists and researchers who created the tool. Brief background on their expertise in genomics and long read sequencing techniques. Presentation of the Big Data Biology Lab and link to their website."
@@ -114,7 +114,7 @@ const Resource = ({ data }: ResourceProps) => {
       </Head>
       <HeroComponent
         title={data.title}
-        description={data.description}
+        subTitle={data.subTitle}
         imageUrl={data.imageHero[0].url}
         imageAlt={data.imageHero[0].alt}
       />

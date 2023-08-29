@@ -1,7 +1,7 @@
 ---
 title: tools
 subTitle: Limited to rRNA gene prediction only
-description: Lorem ipsum dolor sit amet consectetur.
+description: Sis interrogatus numerando et tandem vel nec hortatore incognitus stipite per et vel sis miser dierum agnitus vel in amicitiam.
 imageHero:
   - url: '/images/hero_tools.png'
     alt: 'illustation laboratory'

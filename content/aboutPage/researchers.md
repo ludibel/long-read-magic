@@ -1,5 +1,5 @@
 ---
-title: Researches
+title: Researchers
 nameLab: Big Data Biology Lab
 description: The hosting laboratory of the project is run by Luis Pedro Coelho at Fudan University in Shanghai located at the Institute of Science and Technology for Brain-Inspired Intelligence. We are interested both in developing novel computational methods and in applying them to large scale problems. Our focus is on the global microbiome and in exploiting publicly available data to gain understanding into microbial ecosystems. Our major projects are the Global Microbial Gene Catalogue (GMGC), small proteins, and antimicrobial resistance.
 linkLab: https://www.big-data-biology.org/

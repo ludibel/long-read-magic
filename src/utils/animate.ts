@@ -73,5 +73,4 @@ export const animateOnScroll = () => {
   });
 };
 
-
 export default useStickyEffect;

@@ -1,7 +1,7 @@
 ---
 title: Methodology
-subTitle: Here you can download genomes based on filters
 description: Lorem ipsum dolor sit amet consectetur.
+subTitle: Limited to rRNA gene prediction only
 imageHero:
   - url: '/images/hero_tools.png'
     alt: 'illustation laboratory'

@@ -26,7 +26,7 @@ export function Footer() {
         className="mx-auto flex max-w-7xl flex-col items-center justify-center p-6 sm:flex-row  sm:flex-wrap sm:justify-between lg:px-8"
         aria-label="Global"
       >
-        <Link href="/" className="-m-1.5">
+        <Link href="/" className="-m-1.5" arial-label='link home'>
           <Image
             width={512}
             height={499}
@@ -38,6 +38,7 @@ export function Footer() {
         <div className="mt-4 flex gap-x-2 sm:mt-0 md:gap-x-4 lg:gap-x-12">
           {navigation.map((item) => (
             <Link
+              arial-label={`link ${item.name} `}
               key={item.name}
               href={item.href}
               className="text-md font-semibold capitalize leading-6 text-white hover:text-textColor-yellow"
@@ -57,6 +58,7 @@ export function Footer() {
                 className={`${index !== 2 ? 'px-4' : 'pl-4'}`}
               >
                 <Link
+                  arial-label={`link ${item.name} `}
                   href={item.href}
                   className="hover:text-yellowlight text-xs capitalize leading-6 text-white hover:text-textColor-yellow sm:text-sm"
                 >

@@ -8,9 +8,12 @@ import { AttributesProps } from '../utils/types'
 
 import imageContact from '@/public/images/about_contact-min.png'
 import Link from 'next/link'
+import { detectContentType } from 'next/dist/server/image-optimizer'
+import ReactMarkdown from 'react-markdown'
 
-export const Thanks = ({ dataHero }) => {
-  const { title, description } = dataHero as AttributesProps
+export const Thanks = ({ dataHero, content }) => {
+  const { title, description, linkUrl, linkString } =
+    dataHero as AttributesProps
   return (
     <>
       <Head>
@@ -42,12 +45,12 @@ export const Thanks = ({ dataHero }) => {
             <p className="font-inter gap-x-6 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl">
               {description}
             </p>
-            <p className="font-inter gap-x-6 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl">
-              Before we get back to you, you can learn more{' '}
-              <Link href="/about" className="undeline-offset-1 underline">
-                about our project
+            <div className="font-inter flex flex-row  gap-x-2 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl">
+              <ReactMarkdown>{content}</ReactMarkdown>
+              <Link href={linkUrl} className="undeline-offset-1 underline">
+                {linkString}
               </Link>
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -61,14 +64,15 @@ export async function getStaticProps() {
       `${process.cwd()}/content/thankPage/hero.md`,
       'utf8'
     )
-    const { data: dataHero } = matter(fileHero)
+    const { data: dataHero, content } = matter(fileHero)
     return {
       props: {
         dataHero: JSON.parse(JSON.stringify(dataHero)),
+        content,
       },
     }
-  } catch (e) {
-    console.log(e)
+  } catch (error) {
+    alert(error.message)
   }
   return { notFound: true }
 }

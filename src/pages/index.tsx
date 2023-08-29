@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -127,9 +127,9 @@ export default function Home({
             alt="image cells"
             className="blur-2 left-0 top-0 opacity-50 md:absolute xl:opacity-100 "
           />
-          <div className="absolute top-6 mx-4 sm:top-8 md:relative md:top-0 md:ml-[54px] lg:ml-[108px] ">
+          <div className="absolute top-6 mx-4 sm:top-8 md:relative md:top-0 md:ml-[54px] lg:ml-[108px]">
             <h2
-              className="text-4xl font-medium text-textColor-blue lg:pl-[54px] lg:text-[52px]"
+              className="transform text-4xl font-medium text-textColor-blue duration-700 ease-in-out lg:pl-[54px] lg:text-[52px] "
               id="sticky1"
               style={{ width: width1 }}
             >
@@ -167,9 +167,9 @@ export default function Home({
           </div>
         </div>
         <div className="grid max-w-[1920px] bg-backgroundColor-grey pb-[93px] pt-14 md:grid-cols-2 md:pr-[108px] md:pt-[120px] 2xl:mx-auto">
-          <div className="mx-4 pb-8 md:pl-[54px] md:pr-10 lg:pl-[108px] lg:text-[52px] 2xl:pr-10">
+          <div className=" mx-4 pb-8  md:pl-[54px] md:pr-10 lg:pl-[108px] lg:text-[52px] 2xl:pr-10">
             <h2
-              className="text-4xl font-medium text-textColor-blue lg:text-[52px]"
+              className="ease-out-in transform text-4xl font-medium text-textColor-blue duration-100 lg:text-[52px]"
               id="sticky2"
               style={{ width: width2 }}
             >
@@ -322,8 +322,8 @@ export async function getStaticProps() {
         dataContact: JSON.parse(JSON.stringify(dataContact)),
       },
     }
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    alert(error.message)
   }
   return {
     notFound: true,

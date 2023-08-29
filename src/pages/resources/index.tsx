@@ -22,7 +22,7 @@ export const Resources = ({ resources, datahero }) => {
   return (
     <>
       <Head>
-        <title>Contact</title>
+        <title>Resources</title>
         <meta name="resources" content="resources project" />
       </Head>
       <div className="relative h-full flex-1">
@@ -136,8 +136,8 @@ export function getStaticProps() {
         datahero: JSON.parse(JSON.stringify(datahero)),
       },
     }
-  } catch (err) {
-    console.log(err)
+  } catch (error) {
+    alert(error.message)
   }
   return {
     notFound: true,

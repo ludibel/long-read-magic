@@ -66,7 +66,7 @@ export async function getStaticProps() {
       },
     }
   } catch (error) {
-    console.log(error)
+    alert(error.message)
   }
   return {
     notFound: true,

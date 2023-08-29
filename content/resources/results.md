@@ -1,6 +1,6 @@
 ---
 title: Results
-subTitle: Here you can download genomes based on filters
+subTitle: Limited to rRNA gene prediction only
 description: Lorem ipsum dolor sit amet consectetur.
 imageHero:
   - url: '/images/hero_tools.png'

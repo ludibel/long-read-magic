@@ -14,6 +14,9 @@ export interface AttributesProps {
     imageUrl?: string,
     imageAlt?: string,
     tools?: Array<object>
+    linkUrl?: string
+    linkString?: string
+    subTitle?: string
   }
   
   export interface ItemProps {
