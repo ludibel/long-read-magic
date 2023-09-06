@@ -4,7 +4,7 @@ import rehypePrism from '@mapbox/rehype-prism'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['ts', 'tsx', 'mdx'],
+  pageExtensions: ['ts', 'tsx', 'mdx', 'md'],
   reactStrictMode: true,
   experimental: {
     scrollRestoration: true,
@@ -17,23 +17,34 @@ const nextConfig = {
     }
     ]
   },
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/genomes',
-        permanent: false,
-      }
-    ]
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination: '/genomes',
+  //       permanent: false,
+  //     }
+  //   ]
+  // },
+  webpack: (cfg) => {
+    cfg.module.rules.push({
+      test: /\.md$/,
+      loader: 'frontmatter-markdown-loader',
+      options: { mode: ['react-component'] }
+    })
+    return cfg
+  }
 }
 
-const withMDX = nextMDX({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypePrism],
-  },
-})
+export default nextConfig
+// const withMDX = nextMDX({
+//   extension: /\.(md|mdx)$/,
+//   options: {
+//     remarkPlugins: [remarkGfm],
+//     rehypePlugins: [rehypePrism],
+//   },
+//   })
 
-export default withMDX(nextConfig)
+// export default withMDX(nextConfig)
+
+

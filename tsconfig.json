@@ -20,8 +20,14 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
-      ]
+        "src/*",
+      ],
+      "@/content/*": [
+        "content/*",
+      ],
+      "@/public/*": [
+        "public/*",
+      ],
     }
   },
   "include": [

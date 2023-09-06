@@ -36,3 +36,7 @@ yarn-error.log*
 /public/rss/
 /file-storage
 /file-storage-backup
+
+#Docker
+Dockerfile
+docker-compose.yml
