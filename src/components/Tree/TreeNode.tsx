@@ -14,6 +14,12 @@ export const TreeNode: FC<TreeNodeProps> = ({node, shouldExpand}) => {
     const [showChildren, setShowChildren] = useState(childShouldExpand);
 
     function switchDisplay() {
+        // if the node has less than 20 leaves, show them all
+        if (node.count < 20 && !showChildren) {
+            setChildShouldExpand(true);
+            setShowChildren(true);
+            return;
+        }
         setShowChildren(!showChildren);
         if (node.count === 1) {
             setChildShouldExpand(true);

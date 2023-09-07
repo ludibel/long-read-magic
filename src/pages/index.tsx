@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -64,7 +65,6 @@ const HeroComponent: React.FC<AttributesProps> = ({
             </Link>
           </div>
         </div>
-
         <div className="w-10 flex-auto md:w-1/3"></div>
       </div>
     </div>
@@ -86,6 +86,7 @@ export default function Home({
     dataSection3 as AttributesProps
   const { title: titleSection2, description: descriptionSection2 } =
     dataSection2 as AttributesProps
+
   const {
     title: titleSection4,
     description: descriptionSection4,
@@ -95,6 +96,7 @@ export default function Home({
   } = dataSection4 as AttributesProps
   const { title: titleForm, description: descriptionForm } =
     dataContact as AttributesProps
+
 
   // sticky effect on scroll
   const { elementWidth: width1 } = useStickyEffect('sticky1', 300)
@@ -328,4 +330,3 @@ export async function getStaticProps() {
   return {
     notFound: true,
   }
-}

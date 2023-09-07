@@ -5,7 +5,7 @@ import { useGenomeContext } from "@/components/GenomesTable/GenomesContext";
 import { GenomeOverviewTexts } from "@/utils/texts";
 import Select from "react-select";
 
-export const defaultPageSize = 20;
+export const defaultPageSize = 100;
 
 export type PaginationProps = {
     className?: string
@@ -42,7 +42,7 @@ export const Pagination: FC<PaginationProps> = ({className}) => {
         setCurrentPage(page);
     }
 
-    const pageSizeOptions = [{label: 10, value: 10}, {label: 20, value: 20}, {label: 50, value: 50}, {label: 100, value: 100}]
+    const pageSizeOptions = [{label: 100, value: 100}, {label: 500, value: 500}, {label: 1000, value: 1000}]
 
     const itemsCountLabel = texts.itemsCountLabel.replace("%{from}", `${(currentPage - 1) * pageSize + 1}`)
                                  .replace("%{to}", `${Math.min(currentPage * pageSize, totalCount)}`)
