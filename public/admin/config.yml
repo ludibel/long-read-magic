@@ -1,0 +1,199 @@
+backend:
+  name: test-repo
+  branch: main # Branch to update (optional; defaults to master)
+media_folder: public/img
+public_folder: img
+collections:
+  - name: HomePage
+    label: Home Page
+    description: home Page data
+    files:
+    - label: Hero Page
+      name: hero
+      file: content/homePage/hero.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - { label: Button Name, name: buttonName, widget: string }
+    - label: Section 1
+      name: section1
+      file: content/homePage/section1.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - { label: Button Name, name: buttonName, widget: string }
+        - label: content
+          name: content
+          widget: list
+          fields:
+            - { label: Description, name: description, widget: string }
+    - label: Section 2
+      name: section2
+      file: content/homePage/section2.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+    - label: Section 3
+      name: section3
+      file: content/homePage/section3.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - label : content
+          name : content
+          widget : list
+          fields:
+            - { label: Description, name: description, widget: string }
+    - label: Section 4
+      name: section4
+      file: content/homePage/section4.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - { label : Link, name: link, widget: string}
+        - { label : Link Name, name: nameLink, widget: string}
+        - label : tools & workflow
+          name : tabs
+          widget : list
+          fields:
+            - { label: name, name: name, widget: string }
+            - label : content
+              name : content
+              widget : list
+              fields:
+                - { label: Paragraph, name: paragraph, widget: string }
+            - label: workflow 
+              name: workflow
+              widget: list
+              fields:
+                - label : content
+                  name : content
+                  widget : list
+                  fields:
+                    - { label: Paragraph, name: paragraph, widget: string }
+    - label: Contact Form
+      name: contactForm
+      file: content/homePage/contactForm.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+
+  - name: aboutPage
+    label: About Page
+    description: About Page data
+    files:
+    - label: Hero Page
+      name: Hero Page
+      file: content/aboutPage/hero.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string}
+    - label: Researchers
+      name: researchers
+      file: content/aboutPage/researchers.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Lab description, name: description, widget: string}
+        - { label: Lab name, name: nameLab, widget: string}
+        - { label: Lab link, name: linkLab, widget: string}
+        - { label: Orcid link, name: linkOrcid, widget: string}
+        - { label: Scholar Google link, name: linkGoogleScholar, widget: string}
+        - label : researcher
+          name : researcher
+          widget : list
+          fields:
+            - { label: name, name: name, widget: string }
+            - { label: job, name: job, widget: string }
+            - { label: profile, name: profile, widget: string }
+            - { label: Scholar Google link, name: linkGoogleScholar, widget: string }
+            - { label: Orcid link, name: linkOrcid, widget: string }
+            - { label: ID photo, name: imageUrl, widget: string }
+    - label: Contact Form
+      name: contactForm
+      file: content/homePage/contactForm.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+
+  - name: Resources Page
+    label: Resources Page
+    description: resources data
+    files: 
+    - label: Resources Hero
+      name: Resources Hero
+      description: resources Page data
+      file: content/resources/hero.md
+      fields:
+          - { label: Title, name: title, widget: string}
+          - { label: Description, name: description, widget: string}
+    - label : Resources 
+      name: Resources
+      folder: content/resources
+      create: true
+      slug: "{{slug}}"
+      file: content/resources/{{slug}}.md
+      fields : 
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string}
+        - { label: Content, name: content, widget: string}
+        - { label: subTitle, name: subTitle, widget: string}
+        - label: Image
+          name: image
+          widget: list
+          fields : 
+            - { label: Image, name: image, widget: image}
+            - { label: Alt Image , name: alt, widget: string}
+    - label: Tools resources
+      name: Tools resources
+      description: Tools Resources Page data
+      file: content/resources/tools.md
+      fields: 
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string}
+        - { label: subTitle, name: subTitle, widget: string }
+        - label: tools
+          name: tools
+          widget: list
+          fields:
+            - { label: name, name: name, widget: string }
+            - { label: inputFiles, name: inputFiles, widget: string }
+            - { label: outputFiles, name: outputFiles, widget: string }
+            - { label: informationObtained, name: informationObtained, widget: image }
+            - { label: utility, name: utility, widget: string }
+            - { label: peeks, name: peeks, widget: string }
+            - { label: drawbacks, name: drawbacks, widget: image }
+  - name : Resources 
+    label: Add Resources
+    folder: content/resources
+    create: true
+    slug: "{{slug}}"
+    fields : 
+      - { label: Title, name: title, widget: string}
+      - { label: Description, name: description, widget: string}
+      - { label: Content, name: content, widget: string}
+      - { label: subTitle, name: subTitle, widget: string}
+      - label: Image
+        name: image
+        widget: list
+        fields : 
+          - { label: Image, name: image, widget: image}
+          - { label: Alt Image , name: alt, widget: string}
+  - name: Thanks Page
+    label: Thanks Page
+    description: Thanks Page data
+    files:
+    - label: Hero Page
+      name: hero
+      file: content/homePage/hero.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - { label: linkUrl, name: linkUrl, widget: string }
+        - { label: linkName, name: linkName, widget: string }
+        - { label: "Body", name: "body", widget: "markdown"}
+
+
+
+    
+    
+

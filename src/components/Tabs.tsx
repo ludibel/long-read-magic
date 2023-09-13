@@ -1,11 +1,10 @@
 import React, { useState, ReactNode } from 'react'
-
+import clsx from 'clsx'
 interface TabsProps {
   children: ReactNode
 }
 
 const Tabs = ({ children }: TabsProps) => {
-  // recuperation du premier label dans le children
   const firstLabel = (
     React.Children.toArray(children)[0] as React.ReactElement<TabProps>
   ).props.label
@@ -28,11 +27,12 @@ const Tabs = ({ children }: TabsProps) => {
             <button
               aria-label={`button tools ${tabChild.props.label}`}
               key={tabChild.props.label}
-              className={`${
+              className={clsx(
+                'inline-block rounded-t-lg p-[10px] lg:text-2xl',
                 activeTab === tabChild.props.label
-                  ? 'border-b-2 border-white text-2xl text-textColor-yellowlight'
-                  : ''
-              } inline-block rounded-t-lg border-b-2 border-transparent p-4 text-sm text-white hover:border-textColor-blue hover:text-textColor-blue lg:text-2xl`}
+                  ? 'border-b-2 border-textColor-yellow text-textColor-yellow'
+                  : 'border-b-2 border-transparent text-white hover:text-textColor-yellow'
+              )}
               onClick={(e) => handleClick(e, tabChild.props.label)}
             >
               {tabChild.props.label}

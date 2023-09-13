@@ -1,31 +1,59 @@
 import React from 'react'
 import Image from 'next/image'
 import arrowImage from '@/public/images/arrow.png'
+import arrowImageHover from '@/public/images/arrow_image_hover.png'
+import Link from 'next/link'
+
 
 interface ButtonProps {
   text: string
   logo: React.ComponentProps<typeof Image>['src']
+  logoHover: React.ComponentProps<typeof Image>['src']
   url: string
 }
 
-const Button = ({ text, logo, url }: ButtonProps) => {
+const Button = ({ text, logo, url, logoHover }: ButtonProps) => {
   return (
-    <a
+    <Link
+      className="group flex items-center gap-4 px-0 py-[10px] focus:outline-none"
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex items-center  gap-2 px-4 py-2"
+      aria-label={`link ${text} `}
     >
-      <div className="h-6 w-6">
-        <Image src={logo} alt="GitHub" width={24} height={24} />
+      <div className="relative h-6 w-6 transition-colors duration-100">
+        <Image
+          src={logo}
+          alt={text}
+          width={24}
+          height={24}
+          className="transition-opacity duration-100 group-hover:opacity-0"
+        />
+        <Image
+          src={logoHover}
+          alt={text}
+          width={24}
+          height={24}
+          className="absolute left-0 top-0 opacity-0 transition-opacity duration-100 group-hover:opacity-100"
+        />
       </div>
-      <span className="text-base font-medium capitalize text-darkBlue">
+      <span className="text-base font-medium capitalize text-darkBlue transition-colors duration-100 group-hover:text-textColor-bluelight">
         {text}
       </span>
-      <div className="h-7 w-7 pt-2">
-        <Image src={arrowImage} alt="arrow" width={24} height={24} />
+      <div className="flex h-6 w-6 items-center transition-colors duration-100">
+        <Image
+          src={arrowImage}
+          alt="logo arrow"
+          width={24}
+          className="transition-opacity duration-100 group-hover:opacity-0"
+        />
+        <Image
+          src={arrowImageHover}
+          alt="logo arrow dark"
+          width={48}
+          className="absolute opacity-0 transition-opacity duration-100 group-hover:opacity-100"
+        />
       </div>
-    </a>
+    </Link>
+
   )
 }
 
