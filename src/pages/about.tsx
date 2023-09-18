@@ -17,6 +17,7 @@ import LogoBdb from '@/public/images/logo_about.png'
 import logoOrcidDark from '@/public/images/logo_orcid_dark.png'
 
 import ContactForm from '@/components/ContactForm'
+import ButtonLink from '@/components/Button'
 
 import { handleSubmitForm } from '../utils/form'
 
@@ -104,8 +105,7 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
     description: descriptionResearchers,
     researcher,
     nameLab,
-    linkGoogleScholar,
-    linkOrcid,
+    linkLab,
   } = dataResearches as AttributesProps
   const { title: titleForm, description: descriptionForm } =
     dataForm as AttributesProps
@@ -192,10 +192,14 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
                     {nameLab}
                   </h3>
                 </div>
-                <LinkComponent
-                  urlGoogleScholar={linkGoogleScholar}
-                  urlOrcid={linkOrcid}
-                />
+                <div>
+                  <ButtonLink
+                    url={linkLab}
+                    text="Visit the website"
+                    useJustifyCenter
+                  />
+                </div>
+
                 <div className="px-3">
                   <p className="text-base leading-9 text-textColor-blue sm:text-lg lg:text-[21px]">
                     {descriptionResearchers}
