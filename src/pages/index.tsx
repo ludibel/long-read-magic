@@ -86,6 +86,7 @@ export default function Home({
     dataSection3 as AttributesProps
   const { title: titleSection2, description: descriptionSection2 } =
     dataSection2 as AttributesProps
+
   const {
     title: titleSection4,
     description: descriptionSection4,

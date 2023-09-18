@@ -3,7 +3,6 @@ import Image from 'next/image'
 import arrowImage from '@/public/images/arrow.png'
 import arrowImageHover from '@/public/images/arrow_image_hover.png'
 import Link from 'next/link'
-
 interface ButtonProps {
   text: string
   logo: React.ComponentProps<typeof Image>['src']
@@ -52,6 +51,7 @@ const Button = ({ text, logo, url, logoHover }: ButtonProps) => {
         />
       </div>
     </Link>
+
   )
 }
 

@@ -15,8 +15,8 @@ export const GenomeOverviewTexts = {
         allSamples: "All samples",
     },
     downloadLinks: {
-        downloadFasta: "Download fasta file",
-        downloadMetadata: "Download metadata csv"
+        downloadAssemblyFASTA: "Download assembly (FASTA, gzipped)",
+        downloadMetadata: "Download metadata (CSV)"
     },
     filters: {
         title: "Filters",

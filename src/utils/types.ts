@@ -17,6 +17,10 @@ export interface AttributesProps {
     linkUrl?: string
     linkString?: string
     subTitle?: string
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
   }
   
   export interface ItemProps {
@@ -27,6 +31,10 @@ export interface AttributesProps {
     name?: string
     url?: string
     alt?: string
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master
   }
   export interface TabProps {
     name: string
@@ -78,3 +86,7 @@ export interface AttributesProps {
     drawbacks?: string,
   }
   
+<<<<<<< HEAD
+=======
+
+>>>>>>> upstream/master

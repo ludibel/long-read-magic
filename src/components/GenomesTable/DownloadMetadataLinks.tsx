@@ -22,7 +22,7 @@ export const DownloadMetadataLinks: FC<DownloadMetadataLinksProps> = ({className
             {shouldShow && <div className="">
               <Link href={getFastaLink(project.name, sample.name)} target="_blank">
                 <button className="bg-darkBlue hover:bg-darkBlue-dark text-white font-bold py-2 px-4 rounded mr-4">
-                  <span>{texts.downloadFasta}</span>
+                  <span>{texts.downloadAssemblyFASTA}</span>
                   <span className="sr-only">, {getFastaLink(project.name, sample.name)}</span>
                 </button>
               </Link>
