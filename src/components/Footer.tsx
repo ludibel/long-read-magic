@@ -11,9 +11,9 @@ const navigation = [
 ]
 
 const terms = [
-  { name: 'Terms of Use', href: '/terms' },
-  { name: 'Privacy Policy', href: '/privacy' },
-  { name: 'Terms of Service', href: '/termsService' },
+  { name: 'Terms of Use', href: '/termsOfUse' },
+  { name: 'Privacy Policy', href: '/privacyPolicy' },
+  { name: 'Terms of Service', href: '/termsOfService' },
 ]
 
 export function Footer() {
@@ -26,7 +26,7 @@ export function Footer() {
         className="mx-auto flex max-w-7xl flex-col items-center justify-center p-6 sm:flex-row  sm:flex-wrap sm:justify-between lg:px-8"
         aria-label="Global"
       >
-        <Link href="/" className="-m-1.5" arial-label='link home'>
+        <Link href="/" className="-m-1.5" arial-label="link home">
           <Image
             width={512}
             height={499}

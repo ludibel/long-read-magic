@@ -19,8 +19,8 @@ import logoOrcidDark from '@/public/images/logo_orcid_dark.png'
 import ContactForm from '@/components/ContactForm'
 import ButtonLink from '@/components/Button'
 
-import { handleSubmitForm } from '../utils/form'
-import { title } from 'process'
+import { handleSubmitForm } from '@/utils/form'
+
 
 const HeroComponent: React.FC<AttributesProps> = ({ title, description }) => {
   return (

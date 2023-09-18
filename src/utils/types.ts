@@ -78,3 +78,7 @@ export interface AttributesProps {
     drawbacks?: string,
   }
   
+  export interface TermsOfUseProps {
+    title: string,
+    paragraph: string,
+  }
