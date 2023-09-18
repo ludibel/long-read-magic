@@ -12,9 +12,15 @@ import { AttributesProps } from '@/utils/types'
 
 import { handleSubmitForm } from '../utils/form'
 
-const Contact = ({ dataContact }) => {
+const Contact = ({ dataContact, dataThanks, contentThanks }) => {
   const { title: titleForm, description: descriptionForm } =
     dataContact as AttributesProps
+    const {
+      title: titleThanks,
+      description: descriptionThanks,
+      linkUrl: linkUrlThanks,
+      linkString: linkStringThanks,
+    } = dataThanks as AttributesProps
   return (
     <>
       <Head>
@@ -43,6 +49,11 @@ const Contact = ({ dataContact }) => {
               onSubmit={handleSubmitForm}
               notBackground
               buttondark
+              titleThanks={titleThanks}
+              descriptionThanks={descriptionThanks}
+              contentThanks={contentThanks}
+              linkUrlThanks={linkUrlThanks}
+              linkStringThanks={linkStringThanks}
             />
           </div>
         </div>
@@ -56,13 +67,19 @@ export default Contact
 export async function getStaticProps() {
   try {
     const fileContact = fs.readFileSync(
-        `${process.cwd()}/content/homePage/contactForm.md`,
+        `${process.cwd()}/content/contactForm/datasContactForm.md`,
         'utf-8'
       ),
       { data: dataContact } = matter(fileContact)
+    const filesThanks = fs.readFileSync(
+      `${process.cwd()}/content/thanks/datas.md`
+    )
+    const { data: dataThanks, content: contentThanks } = matter(filesThanks)
     return {
       props: {
         dataContact: JSON.parse(JSON.stringify(dataContact)),
+        dataThanks: JSON.parse(JSON.stringify(dataThanks)),
+        contentThanks: contentThanks,
       },
     }
   } catch (error) {

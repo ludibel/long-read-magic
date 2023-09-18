@@ -78,6 +78,8 @@ export default function Home({
   dataSection3,
   dataSection4,
   dataContact,
+  dataThanks,
+  contentThanks,
 }) {
   const { title, description, buttonName } = dataHero as AttributesProps
   const { title: titleAbout, content: descriptionAbout } =
@@ -95,6 +97,12 @@ export default function Home({
   } = dataSection4 as AttributesProps
   const { title: titleForm, description: descriptionForm } =
     dataContact as AttributesProps
+  const {
+    title: titleThanks,
+    description: descriptionThanks,
+    linkUrl: linkUrlThanks,
+    linkString: linkStringThanks,
+  } = dataThanks as AttributesProps
 
   // sticky effect on scroll
   const { elementWidth: width1 } = useStickyEffect('sticky1', 300)
@@ -272,6 +280,12 @@ export default function Home({
             description={descriptionForm}
             onSubmit={handleSubmitForm}
             buttonlight
+            titleThanks={titleThanks}
+            descriptionThanks={descriptionThanks}
+            contentThanks={contentThanks}
+            linkUrlThanks={linkUrlThanks}
+            linkStringThanks={linkStringThanks}
+            textBlueColor
           />
         </div>
       </div>
@@ -307,10 +321,14 @@ export async function getStaticProps() {
     const { data: dataSection4 } = matter(fileSection4)
 
     const fileContact = fs.readFileSync(
-        `${process.cwd()}/content/homePage/contactForm.md`,
+        `${process.cwd()}/content/contactForm/datasContactForm.md`,
         'utf-8'
       ),
       { data: dataContact } = matter(fileContact)
+    const filesThanks = fs.readFileSync(
+      `${process.cwd()}/content/thanks/datas.md`
+    )
+    const { data: dataThanks, content: contentThanks } = matter(filesThanks)
 
     return {
       props: {
@@ -320,6 +338,8 @@ export async function getStaticProps() {
         dataSection3: JSON.parse(JSON.stringify(dataSection3)),
         dataSection4: JSON.parse(JSON.stringify(dataSection4)),
         dataContact: JSON.parse(JSON.stringify(dataContact)),
+        dataThanks: JSON.parse(JSON.stringify(dataThanks)),
+        contentThanks,
       },
     }
   } catch (error) {

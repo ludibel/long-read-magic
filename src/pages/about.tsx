@@ -20,6 +20,7 @@ import ContactForm from '@/components/ContactForm'
 import ButtonLink from '@/components/Button'
 
 import { handleSubmitForm } from '../utils/form'
+import { title } from 'process'
 
 const HeroComponent: React.FC<AttributesProps> = ({ title, description }) => {
   return (
@@ -97,7 +98,13 @@ const LinkComponent: React.FC<LinkAboutProps> = ({
   )
 }
 
-export const About = ({ dataHero, dataForm, dataResearches }) => {
+export const About = ({
+  dataHero,
+  dataForm,
+  dataResearches,
+  dataThanks,
+  contentThanks,
+}) => {
   const { title: titleHero, description: descriptionHero } =
     dataHero as AttributesProps
   const {
@@ -109,6 +116,13 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
   } = dataResearches as AttributesProps
   const { title: titleForm, description: descriptionForm } =
     dataForm as AttributesProps
+
+  const {
+    title: titleThanks,
+    description: descriptionThanks,
+    linkUrl: linkUrlThanks,
+    linkString: linkStringThanks,
+  } = dataThanks as AttributesProps
 
   return (
     <>
@@ -230,6 +244,11 @@ export const About = ({ dataHero, dataForm, dataResearches }) => {
               onSubmit={handleSubmitForm}
               useBackgroundOpacity
               buttondark
+              titleThanks={titleThanks}
+              descriptionThanks={descriptionThanks}
+              contentThanks={contentThanks}
+              linkUrlThanks={linkUrlThanks}
+              linkStringThanks={linkStringThanks}
             />
           </div>
         </div>
@@ -253,19 +272,26 @@ export async function getStaticProps() {
     const { data: dataResearches } = matter(filesResearches)
 
     const filesForm = fs.readFileSync(
-      `${process.cwd()}/content/aboutPage/contactForm.md`
+      `${process.cwd()}/content/contactForm/datasContactForm.md`
     )
     const { data: dataForm } = matter(filesForm)
+
+    const filesThanks = fs.readFileSync(
+      `${process.cwd()}/content/thanks/datas.md`
+    )
+    const { data: dataThanks, content: contentThanks } = matter(filesThanks)
 
     return {
       props: {
         dataHero: JSON.parse(JSON.stringify(dataHero)),
         dataResearches: JSON.parse(JSON.stringify(dataResearches)),
         dataForm: JSON.parse(JSON.stringify(dataForm)),
+        dataThanks: JSON.parse(JSON.stringify(dataThanks)),
+        contentThanks,
       },
     }
   } catch (err) {
-    alert(err.message)
+    console.log(err.message)
   }
   return {
     notFound: true,
