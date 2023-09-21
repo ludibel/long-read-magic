@@ -9,7 +9,7 @@ interface FormProps {
 const Form = ({ handleSubmit, buttonlight, buttondark }: FormProps) => {
   return (
     <form
-      className="group gap-8 bg-white px-8 py-8"
+      className="group gap-8 bg-white px-4 sm:px-8 py-8"
       onSubmit={handleSubmit}
       aria-label="contact form"
     >

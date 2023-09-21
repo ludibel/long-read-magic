@@ -25,6 +25,7 @@ const Button = ({
       className={`group flex items-center gap-4 px-0 py-[10px] focus:outline-none ${justifyClass}`}
       href={url}
       aria-label={`link ${text} `}
+      target="_blank"
     >
       {logo && logoHover && (
         <div className="relative h-6 w-6 transition-colors duration-100">

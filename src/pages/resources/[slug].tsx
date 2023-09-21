@@ -4,8 +4,14 @@ import Head from 'next/head'
 import Link from 'next/link'
 import matter from 'gray-matter'
 import fs from 'fs'
-import { AttributesProps, ResourceProps, ToolProps } from '@/utils/types'
+import {
+  AttributesProps,
+  ImageProps,
+  ResourceProps,
+  ToolProps,
+} from '@/utils/types'
 import { ChevronLeftIcon } from '@heroicons/react/20/solid'
+
 const titleHeadTable = [
   'tool',
   'input file',
@@ -38,7 +44,7 @@ const HeroComponent: React.FC<AttributesProps> = ({
         }}
       ></div>
       <div className="absolute inset-0 flex">
-        <div className="flex flex-auto flex-col items-center justify-center pb-4 pl-4 pr-4 pt-12 md:pl-[54px] md:pr-[54px] lg:pl-[108px]">
+        <div className="flex flex-auto flex-col items-center justify-center pb-4 pl-4 pr-4 pt-12 md:pl-[54px] md:pr-[54px]">
           <div className="2xl:pb-18 self-start pb-16 text-white">
             <Link className="group" href="/resources">
               <div className="flex flex-row gap-1">
@@ -103,20 +109,31 @@ const ToolTableComponent: React.FC<AttributesProps> = ({ tools }) => {
 }
 
 const Resource = ({ data }: ResourceProps) => {
+  const {
+    title,
+    subTitle,
+    imageHero,
+    tools,
+    contentResources,
+    imageResources,
+  } = data
+
+  const { url: urlHero, alt: altHero } = imageHero[0] as ImageProps
+
   return (
     <>
       <Head>
-        <title>{`Resources ${data.title}`}</title>
+        <title>{`Resources ${title}`}</title>
         <meta
           name="description"
           content="Information about the scientists and researchers who created the tool. Brief background on their expertise in genomics and long read sequencing techniques. Presentation of the Big Data Biology Lab and link to their website."
         />
       </Head>
       <HeroComponent
-        title={data.title}
-        subTitle={data.subTitle}
-        imageUrl={data.imageHero[0].url}
-        imageAlt={data.imageHero[0].alt}
+        title={title}
+        subTitle={subTitle}
+        imageUrl={urlHero}
+        imageAlt={altHero}
       />
       <div className=" flex flex-1 justify-center bg-backgroundColor-greylight px-2 lg:px-16 lg:pt-16">
         <div
@@ -127,13 +144,13 @@ const Resource = ({ data }: ResourceProps) => {
               'linear-gradient(131deg, #F2F3F7 0%, rgba(254, 254, 254, 0.00) 100%)',
           }}
         >
-          {data.title === 'tools' && <ToolTableComponent tools={data.tools} />}
-          {data.title !== 'tools' && (
+          {title === 'tools' && <ToolTableComponent tools={tools} />}
+          {title !== 'tools' && (
             <>
               <div className="w-full">
                 <Image
-                  src={data.image[0].url}
-                  alt={data.image[0].alt}
+                  src={imageResources[0].url}
+                  alt={imageResources[0].alt}
                   width={1000}
                   height={2000}
                   sizes="100vw"
@@ -146,7 +163,7 @@ const Resource = ({ data }: ResourceProps) => {
               </div>
               <div className="flex self-stretch">
                 <div className=" text-base leading-9 text-black lg:text-[21px]">
-                  {data.content}
+                  {contentResources}
                 </div>
               </div>
             </>

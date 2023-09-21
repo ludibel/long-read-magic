@@ -4,23 +4,26 @@ import fs from 'fs'
 import matter from 'gray-matter'
 
 import Image from 'next/image'
-import imageContact from '@/public/images/about_contact-min.png'
 
 import ContactForm from '@/components/ContactForm'
 
-import { AttributesProps } from '@/utils/types'
+import { AttributesProps, ImageProps} from '@/utils/types'
 
-import { handleSubmitForm } from '../utils/form'
+import { handleSubmitForm } from '@/utils/form'
 
 const Contact = ({ dataContact, dataThanks, contentThanks }) => {
-  const { title: titleForm, description: descriptionForm } =
-    dataContact as AttributesProps
-    const {
-      title: titleThanks,
-      description: descriptionThanks,
-      linkUrl: linkUrlThanks,
-      linkString: linkStringThanks,
-    } = dataThanks as AttributesProps
+  const {
+    title: titleForm,
+    description: descriptionForm,
+    imageForm
+  } = dataContact as AttributesProps
+  const { url: urlImageForm, alt: altImageForm } = imageForm[0] as ImageProps
+  const {
+    title: titleThanks,
+    description: descriptionThanks,
+    linkUrl: linkUrlThanks,
+    linkString: linkStringThanks,
+  } = dataThanks as AttributesProps
   return (
     <>
       <Head>
@@ -29,8 +32,8 @@ const Contact = ({ dataContact, dataThanks, contentThanks }) => {
       </Head>
       <div className="relative h-full">
         <Image
-          src={imageContact}
-          alt="Image stem cells"
+          src={urlImageForm}
+          alt={altImageForm}
           fill
           className="bg-lightgray bg-opacity-50 object-cover object-center"
         />

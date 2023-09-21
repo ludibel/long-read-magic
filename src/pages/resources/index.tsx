@@ -4,11 +4,13 @@ import Head from 'next/head'
 import matter from 'gray-matter'
 import fs from 'fs'
 import Link from 'next/link'
-import imageResources from '@/public/images/resources_image.png'
 import arrowImage from '@/public/images/vector_arrow_min.png'
 import arrowImageMax from '@/public/images/vector_arrow_max.png'
+import { AttributesProps, ImageProps } from '@/utils/types'
 
 export const Resources = ({ resources, datahero }) => {
+  const {title, description,imageHero} = datahero as AttributesProps
+  const {url: urlIamge, alt: altImage} = imageHero[0] as ImageProps
   const sortedResources = [...resources].sort((a, b) => {
     if (a.slug === 'tools') {
       return -1
@@ -27,8 +29,8 @@ export const Resources = ({ resources, datahero }) => {
       </Head>
       <div className="relative h-full flex-1">
         <Image
-          src={imageResources}
-          alt="Illustration of a genome"
+          src={urlIamge}
+          alt={altImage}
           fill
           className="bg-lightgray bg-opacity-50 object-cover object-center"
         />
@@ -42,12 +44,12 @@ export const Resources = ({ resources, datahero }) => {
         <div className=" relative flex max-w-[1920px] flex-col items-center justify-center gap-6 pb-8 pt-16 lg:pt-44 2xl:mx-auto">
           <div className="flex">
             <h1 className="font-inter text-4xl font-semibold capitalize text-white lg:text-[52px] lg:leading-[4rem] 2xl:text-7xl ">
-              {datahero.title}
+              {title}
             </h1>
           </div>
           <div className="flex px-4">
             <p className="font-inter gap-x-6 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl">
-              {datahero.description}
+              {description}
             </p>
           </div>
           <div className="mt-16 grid w-full flex-1 grid-cols-1 gap-8 px-4 md:grid-cols-2 lg:px-[108px] ">

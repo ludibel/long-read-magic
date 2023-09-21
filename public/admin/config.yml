@@ -1,5 +1,5 @@
 backend:
-  name: test-repo
+  name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 media_folder: public/img
 public_folder: img
@@ -8,20 +8,24 @@ collections:
     label: Home Page
     description: home Page data
     files:
-    - label: Hero Page
-      name: hero
+    - label: HomePage Hero
+      name: HomePage Hero
       file: content/homePage/hero.md
       fields:
         - { label: Title, name: title, widget: string}
         - { label: Description, name: description, widget: string }
         - { label: Button Name, name: buttonName, widget: string }
+        - label: Image
+          name: imageHero
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: '/images/genome_image.png', choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
     - label: Section 1
       name: section1
       file: content/homePage/section1.md
       fields:
         - { label: Title, name: title, widget: string}
-        - { label: Description, name: description, widget: string }
-        - { label: Button Name, name: buttonName, widget: string }
         - label: content
           name: content
           widget: list
@@ -33,12 +37,17 @@ collections:
       fields:
         - { label: Title, name: title, widget: string}
         - { label: Description, name: description, widget: string }
+        - label: Image
+          name: illustrationImage
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: /images/homepage_image_part3.png, choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
     - label: Section 3
       name: section3
       file: content/homePage/section3.md
       fields:
         - { label: Title, name: title, widget: string}
-        - { label: Description, name: description, widget: string }
         - label : content
           name : content
           widget : list
@@ -50,13 +59,19 @@ collections:
       fields:
         - { label: Title, name: title, widget: string}
         - { label: Description, name: description, widget: string }
-        - { label : Link, name: link, widget: string}
         - { label : Link Name, name: nameLink, widget: string}
+        - label: Image
+          name: illustrationImage
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: /images/homepage_image_part4.png, choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
         - label : tools & workflow
           name : tabs
           widget : list
           fields:
-            - { label: name, name: name, widget: string }
+            - { label: Name, name: name, widget: string }
+            - { label: Link GitHub, name: link, widget: string }
             - label : content
               name : content
               widget : list
@@ -66,28 +81,24 @@ collections:
               name: workflow
               widget: list
               fields:
-                - label : content
-                  name : content
-                  widget : list
-                  fields:
-                    - { label: Paragraph, name: paragraph, widget: string }
-    - label: Contact Form
-      name: contactForm
-      file: content/homePage/contactForm.md
-      fields:
-        - { label: Title, name: title, widget: string}
-        - { label: Description, name: description, widget: string }
+                - { label: Paragraph, name: paragraph, widget: string }
 
-  - name: aboutPage
+  - name: AboutPage
     label: About Page
     description: About Page data
     files:
-    - label: Hero Page
-      name: Hero Page
+    - label: About Hero
+      name: About Hero
       file: content/aboutPage/hero.md
       fields:
         - { label: Title, name: title, widget: string}
         - { label: Description, name: description, widget: string}
+        - label: Image
+          name: imageHero
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: '/images/about_hero-min.png', choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
     - label: Researchers
       name: researchers
       file: content/aboutPage/researchers.md
@@ -107,13 +118,7 @@ collections:
             - { label: profile, name: profile, widget: string }
             - { label: Scholar Google link, name: linkGoogleScholar, widget: string }
             - { label: Orcid link, name: linkOrcid, widget: string }
-            - { label: ID photo, name: imageUrl, widget: string }
-    - label: Contact Form
-      name: contactForm
-      file: content/homePage/contactForm.md
-      fields:
-        - { label: Title, name: title, widget: string}
-        - { label: Description, name: description, widget: string }
+            - { label: ID photo, name: imageUrl, widget: image, choose_url: true, media_folder: 'public/images', public_folder: '/images' }
 
   - name: Resources Page
     label: Resources Page
@@ -126,6 +131,12 @@ collections:
       fields:
           - { label: Title, name: title, widget: string}
           - { label: Description, name: description, widget: string}
+          - label: Image
+            name: imageHero
+            widget: list
+            fields : 
+              - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: '/images/resources_image.png', choose_url: true}
+              - { label: Alt Image , name: alt, widget: string}
     - label : Resources 
       name: Resources
       folder: content/resources
@@ -135,13 +146,19 @@ collections:
       fields : 
         - { label: Title, name: title, widget: string}
         - { label: Description, name: description, widget: string}
-        - { label: Content, name: content, widget: string}
+        - { label: Content, name: contentResources, widget: string}
         - { label: subTitle, name: subTitle, widget: string}
         - label: Image
-          name: image
+          name: imageHero
           widget: list
           fields : 
-            - { label: Image, name: image, widget: image}
+            - { label: Url Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: '/images/hero_tools.png', choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
+        - label: Image Resources
+          name: imageResources
+          widget: list
+          fields : 
+            - { label: Url Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', choose_url: true}
             - { label: Alt Image , name: alt, widget: string}
     - label: Tools resources
       name: Tools resources
@@ -151,6 +168,12 @@ collections:
         - { label: Title, name: title, widget: string}
         - { label: Description, name: description, widget: string}
         - { label: subTitle, name: subTitle, widget: string }
+        - label: Image
+          name: imageHero
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: '/images/hero_tools.png'}
+            - { label: Alt Image , name: alt, widget: string}
         - label: tools
           name: tools
           widget: list
@@ -158,11 +181,12 @@ collections:
             - { label: name, name: name, widget: string }
             - { label: inputFiles, name: inputFiles, widget: string }
             - { label: outputFiles, name: outputFiles, widget: string }
-            - { label: informationObtained, name: informationObtained, widget: image }
+            - { label: informationObtained, name: informationObtained, widget: string }
             - { label: utility, name: utility, widget: string }
             - { label: peeks, name: peeks, widget: string }
-            - { label: drawbacks, name: drawbacks, widget: image }
-  - name : Resources 
+            - { label: drawbacks, name: drawbacks, widget: string }
+
+  - name : Add Resources 
     label: Add Resources
     folder: content/resources
     create: true
@@ -170,30 +194,125 @@ collections:
     fields : 
       - { label: Title, name: title, widget: string}
       - { label: Description, name: description, widget: string}
-      - { label: Content, name: content, widget: string}
+      - { label: Content, name: contentResources, widget: string}
       - { label: subTitle, name: subTitle, widget: string}
       - label: Image
-        name: image
+        name: imageHero
         widget: list
         fields : 
-          - { label: Image, name: image, widget: image}
+          - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: '/images/hero_tools.png', choose_url: true}
           - { label: Alt Image , name: alt, widget: string}
-  - name: Thanks Page
-    label: Thanks Page
-    description: Thanks Page data
+      - label: Image
+        name: imageResources
+        widget: list
+        fields : 
+          - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', choose_url: true}
+          - { label: Alt Image , name: alt, widget: string}
+
+  - name: Thanks 
+    label: Thanks 
+    description: Thanks data
     files:
-    - label: Hero Page
-      name: hero
-      file: content/homePage/hero.md
+    - label: Content Thanks
+      name: content
+      file: content/thanks/datas.md
       fields:
         - { label: Title, name: title, widget: string}
         - { label: Description, name: description, widget: string }
         - { label: linkUrl, name: linkUrl, widget: string }
         - { label: linkName, name: linkName, widget: string }
-        - { label: "Body", name: "body", widget: "markdown"}
+  - name: Form
+    label: Form
+    description: Form
+    files:
+    - label: Content form
+      name: content 
+      file: content/contactForm/datasContactForm.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - label: Image
+          name: imageForm
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images',default: '/images/about_contact-min.png', choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
 
-
-
-    
-    
-
+  - name: Terms Of Use
+    label: Terms Of Use
+    description: Terms Of Use data
+    files:
+    - label: Terms Of Use Hero
+      name: Terms Of Use Hero
+      file: content/termsOfUse/hero.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - label: Image
+          name: imageHero
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images',default: '/images/about_hero-min.png', choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
+    - label: Terms Of Use Content
+      name: Terms Of Use Content
+      file: content/termsOfUse/datasTermsOfUse.md
+      fields:
+        - label : content
+          name : content
+          widget : list
+          fields:
+            - { label: title, name: title, widget: string }
+            - { label: paragraph, name: paragraph, widget: string }
+  - name: Terms Of Service
+    label: Terms Of Service
+    description: Terms Of Service data
+    files:
+    - label: Terms Of Service Hero
+      name: Terms Of Service Hero
+      file: content/termsOfService/hero.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - label: Image
+          name: imageHero
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images',default: '/images/about_hero-min.png', choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
+    - label: Terms Of Service Content
+      name: Terms Of Service Content
+      file: content/termsOfService/datasTermsOfService.md
+      fields:
+        - label : content
+          name : content
+          widget : list
+          fields:
+            - { label: title, name: title, widget: string }
+            - { label: paragraph, name: paragraph, widget: string }
+  - name: Privacy Policy
+    label: Privacy Policy
+    description: Privacy Policy data
+    files:
+    - label: Privacy Policy Hero
+      name: Privacy Policy Hero
+      file: content/PrivacyPolicy/hero.md
+      fields:
+        - { label: Title, name: title, widget: string}
+        - { label: Description, name: description, widget: string }
+        - label: Image
+          name: imageHero
+          widget: list
+          fields : 
+            - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images',default: '/images/about_hero-min.png', choose_url: true}
+            - { label: Alt Image , name: alt, widget: string}
+    - label: Privacy Policy Content
+      name: Privacy Policy Content
+      file: content/PrivacyPolicy/datasPrivacyPolicy.md
+      fields:
+        - label : content
+          name : content
+          widget : list
+          fields:
+            - { label: title, name: title, widget: string }
+            - { label: paragraph, name: paragraph, widget: string }

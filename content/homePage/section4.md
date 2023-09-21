@@ -1,10 +1,13 @@
 ---
 title: Tools & Workflow
 description: Our research project employs a robust methodology that combines computational tools to effectively analyze & assemble genomes from metagenomic data.
-link: '#'
+illustrationImage:
+  - url: /images/homepage_image_part4-min.png
+    alt: background image stem cells
 nameLink: explore
 tabs:
   - name: SemiBin
+    link: /resources
     content:
       - paragraph: SemiBin is a tool specifically designed for metagenomic binning, which involves grouping genomic fragments from complex metagenomic samples into individual genomes.
       - paragraph: We developed SemiBin2, an upgraded version of the SemiBin tool, resulting in a significant improvement in the quality of Metagenome-Assembled Genomes (MAGs).
@@ -15,6 +18,7 @@ tabs:
       - paragraph: Once you have the assembled genomes, you can use SemiBin for binning. Input the assembled genomes into SemiBin along with any additional information required, such as coverage information or other relevant metadata.
       - paragraph: SemiBin utilizes semi-supervised binning methods to classify the metagenomic sequences into taxonomic bins, which will help separate individual genomes from the metagenomic mixture.
   - name: checkM2
+    link: /resources
     content:
       - paragraph: SemiBin is a tool specifically designed for metagenomic binning, which involves grouping genomic fragments from complex metagenomic samples into individual genomes.
       - paragraph: We developed SemiBin2, an upgraded version of the SemiBin tool, resulting in a significant improvement in the quality of Metagenome-Assembled Genomes (MAGs).
@@ -25,6 +29,7 @@ tabs:
       - paragraph: Once you have the assembled genomes, you can use SemiBin for binning. Input the assembled genomes into SemiBin along with any additional information required, such as coverage information or other relevant metadata.
       - paragraph: SemiBin utilizes semi-supervised binning methods to classify the metagenomic sequences into taxonomic bins, which will help separate individual genomes from the metagenomic mixture.
   - name: GUNC
+    link: /resources
     content:
       - paragraph: SemiBin is a tool specifically designed for metagenomic binning, which involves grouping genomic fragments from complex metagenomic samples into individual genomes.
       - paragraph: We developed SemiBin2, an upgraded version of the SemiBin tool, resulting in a significant improvement in the quality of Metagenome-Assembled Genomes (MAGs).
@@ -35,6 +40,7 @@ tabs:
       - paragraph: Once you have the assembled genomes, you can use SemiBin for binning. Input the assembled genomes into SemiBin along with any additional information required, such as coverage information or other relevant metadata.
       - paragraph: SemiBin utilizes semi-supervised binning methods to classify the metagenomic sequences into taxonomic bins, which will help separate individual genomes from the metagenomic mixture.
   - name: tRNAscan-SE
+    link: /resources
     content:
       - paragraph: SemiBin is a tool specifically designed for metagenomic binning, which involves grouping genomic fragments from complex metagenomic samples into individual genomes.
       - paragraph: We developed SemiBin2, an upgraded version of the SemiBin tool, resulting in a significant improvement in the quality of Metagenome-Assembled Genomes (MAGs).
@@ -45,6 +51,7 @@ tabs:
       - paragraph: Once you have the assembled genomes, you can use SemiBin for binning. Input the assembled genomes into SemiBin along with any additional information required, such as coverage information or other relevant metadata.
       - paragraph: SemiBin utilizes semi-supervised binning methods to classify the metagenomic sequences into taxonomic bins, which will help separate individual genomes from the metagenomic mixture.
   - name: barrnap
+    link: /resources
     content:
       - paragraph: SemiBin is a tool specifically designed for metagenomic binning, which involves grouping genomic fragments from complex metagenomic samples into individual genomes.
       - paragraph: We developed SemiBin2, an upgraded version of the SemiBin tool, resulting in a significant improvement in the quality of Metagenome-Assembled Genomes (MAGs).

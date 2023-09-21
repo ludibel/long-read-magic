@@ -5,10 +5,12 @@ import Image from 'next/image'
 import matter from 'gray-matter'
 import fs from 'fs'
 
-import imageHero from '@/public/images/about_hero-min.png'
-import imageContact from '@/public/images/about_contact-min.png'
-
-import { AttributesProps, ResearcherProps, LinkAboutProps } from '@/utils/types'
+import {
+  AttributesProps,
+  ResearcherProps,
+  LinkAboutProps,
+  ImageProps,
+} from '@/utils/types'
 
 import logoOrcid from '@/public/images/logo_orcid.png'
 import logoGoogleScholar from '@/public/images/logo_googleScholar.png'
@@ -18,43 +20,10 @@ import logoOrcidDark from '@/public/images/logo_orcid_dark.png'
 
 import ContactForm from '@/components/ContactForm'
 import ButtonLink from '@/components/Button'
+import Hero from '@/components/Hero'
 
 import { handleSubmitForm } from '@/utils/form'
 
-
-const HeroComponent: React.FC<AttributesProps> = ({ title, description }) => {
-  return (
-    <div className="relative h-[350px] w-full sm:h-[450px] 2xl:h-[650px]">
-      <Image
-        src={imageHero}
-        alt="Image building"
-        fill
-        className="bg-lightgray bg-opacity-50 object-cover object-center"
-      />
-      <div
-        className="h-100% absolute inset-0 z-0"
-        style={{
-          background:
-            'linear-gradient(91deg, #001135 0%, rgba(0, 17, 53, 0.00) 100%)',
-        }}
-      ></div>
-      <div className="absolute inset-0 flex">
-        <div className="flex flex-auto flex-col items-center justify-center pb-4 pl-4 pr-4 pt-12 md:pl-[54px] md:pr-[54px] lg:pl-[108px]">
-          <div>
-            <h1 className="font-inter text-4xl font-semibold capitalize text-white lg:text-[52px] lg:leading-[4rem] 2xl:text-7xl">
-              {title}
-            </h1>
-          </div>
-          <div className="pb-6 pt-2 text-center sm:pb-10 sm:pt-6 md:pb-12">
-            <p className="font-inter gap-x-6 text-sm font-normal leading-6 text-white sm:text-[21px] md:leading-9 2xl:text-2xl">
-              {description}
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const LinkComponent: React.FC<LinkAboutProps> = ({
   urlGoogleScholar,
@@ -63,32 +32,44 @@ const LinkComponent: React.FC<LinkAboutProps> = ({
   return (
     <div className="relative mt-6 flex justify-center gap-x-4">
       <div className="group">
-        <Link href={urlGoogleScholar} aria-label="link googleShcolar">
+        <Link
+          href={urlGoogleScholar}
+          aria-label="link googleShcolar"
+          target="_blank"
+        >
           <div className="relative">
             <Image
               src={logoGoogleScholar}
               alt="logo Google Scholar"
+              width={32}
+              height={32}
               className="transition-opacity duration-300 group-hover:opacity-0"
             />
             <Image
               src={logoGoogleScholarDark}
               alt="logo Google Scholar"
+              width={32}
+              height={32}
               className="absolute top-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
           </div>
         </Link>
       </div>
       <div className="group">
-        <Link href={urlOrcid} aria-label="link orcid">
+        <Link href={urlOrcid} aria-label="link orcid" target="_blank">
           <div className="relative">
             <Image
               src={logoOrcid}
               alt="logo Orcid"
+              width={32}
+              height={32}
               className="transition-opacity duration-300 group-hover:opacity-0"
             />
             <Image
               src={logoOrcidDark}
               alt="logo Orcid"
+              width={32}
+              height={32}
               className="absolute top-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             />
           </div>
@@ -105,8 +86,12 @@ export const About = ({
   dataThanks,
   contentThanks,
 }) => {
-  const { title: titleHero, description: descriptionHero } =
-    dataHero as AttributesProps
+  const {
+    title: titleHero,
+    description: descriptionHero,
+    imageHero,
+  } = dataHero as AttributesProps
+  const { url: urlHero, alt: altHero } = imageHero[0] as ImageProps
   const {
     title: titleResearchers,
     description: descriptionResearchers,
@@ -114,9 +99,12 @@ export const About = ({
     nameLab,
     linkLab,
   } = dataResearches as AttributesProps
-  const { title: titleForm, description: descriptionForm } =
-    dataForm as AttributesProps
-
+  const {
+    title: titleForm,
+    description: descriptionForm,
+    imageForm,
+  } = dataForm as AttributesProps
+  const { url: urlImageForm, alt: altImageForm } = imageForm[0] as ImageProps
   const {
     title: titleThanks,
     description: descriptionThanks,
@@ -133,7 +121,12 @@ export const About = ({
           content="Information about the scientists and researchers who created the tool. Brief background on their expertise in genomics and long read sequencing techniques. Presentation of the Big Data Biology Lab and link to their website."
         />
       </Head>
-      <HeroComponent title={titleHero} description={descriptionHero} />
+      <Hero
+        title={titleHero}
+        description={descriptionHero}
+        imageUrl={urlHero}
+        imageAlt={altHero}
+      />
       <div className="bg-backgroundColor-grey">
         <div
           className="
@@ -225,8 +218,8 @@ export const About = ({
         </div>
         <div className="relative py-24 sm:py-32 2xl:mx-auto">
           <Image
-            src={imageContact}
-            alt="Image stem cells"
+            src={urlImageForm}
+            alt={altImageForm}
             fill
             className="bg-lightgray bg-opacity-50 object-cover object-center"
           />
@@ -291,7 +284,7 @@ export async function getStaticProps() {
       },
     }
   } catch (err) {
-    console.log(err.message)
+   alert(err.message)
   }
   return {
     notFound: true,

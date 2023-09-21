@@ -12,8 +12,8 @@ interface ContactFormProps extends AttributesProps {
   titleThanks: string
   descriptionThanks: string
   contentThanks: string
-  linkUrlThanks: string
-  linkStringThanks: string
+  linkUrlThanks?: string
+  linkStringThanks?: string
   showBackgroundImage?: boolean
   textBlueColor?: boolean
 }
