@@ -6,6 +6,7 @@ buttonName: "Explore"
 imageHero : 
   - url:  /images/genome_image.png
     alt:  illustration cell
+
 ---
 
 HomePage Hero content

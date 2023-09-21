@@ -114,6 +114,7 @@ export function Header() {
               aria-label="link to home"
               onClick={() => setMobileMenuOpen(false)}
             >
+
               <span className="sr-only">Project name</span>
               <Image
                 width={512}

@@ -22,6 +22,7 @@ export interface AttributesProps {
     imageHero?: Array<object>
     imageForm?: Array<object>
     illustrationImage?: Array<object>
+
   }
   
   export interface ItemProps {
@@ -38,6 +39,7 @@ export interface AttributesProps {
     content: Array<ItemProps>
     workflow: Array<ItemProps>
     link?: string
+
   }
 
   export interface FormProps {
@@ -92,3 +94,4 @@ export interface AttributesProps {
     url: string
     alt: string
   }
+

@@ -17,6 +17,7 @@ import logoGithubHover from '@/public/images/github_hover.png'
 
 import { AttributesProps, ImageProps, ItemProps, TabProps } from '@/utils/types'
 
+
 import { handleSubmitForm } from '../utils/form'
 
 const HeroComponent: React.FC<AttributesProps> = ({
@@ -25,6 +26,7 @@ const HeroComponent: React.FC<AttributesProps> = ({
   buttonName,
   imageUrl,
   imageAlt,
+
 }) => {
   return (
     <div className="relative h-[450px] w-full sm:h-[900px]">
@@ -63,7 +65,6 @@ const HeroComponent: React.FC<AttributesProps> = ({
             </Link>
           </div>
         </div>
-
         <div className="w-10 flex-auto md:w-1/3"></div>
       </div>
     </div>
@@ -363,3 +364,4 @@ export async function getStaticProps() {
     notFound: true,
   }
 }
+

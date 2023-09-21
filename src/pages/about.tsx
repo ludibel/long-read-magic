@@ -112,6 +112,7 @@ export const About = ({
     linkString: linkStringThanks,
   } = dataThanks as AttributesProps
 
+
   return (
     <>
       <Head>
@@ -206,7 +207,6 @@ export const About = ({
                     useJustifyCenter
                   />
                 </div>
-
                 <div className="px-3">
                   <p className="text-base leading-9 text-textColor-blue sm:text-lg lg:text-[21px]">
                     {descriptionResearchers}
@@ -285,6 +285,7 @@ export async function getStaticProps() {
     }
   } catch (err) {
    alert(err.message)
+
   }
   return {
     notFound: true,

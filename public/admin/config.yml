@@ -21,6 +21,7 @@ collections:
           fields : 
             - { label: Image, name: url, widget: image, media_folder: 'public/images', public_folder: '/images', default: '/images/genome_image.png', choose_url: true}
             - { label: Alt Image , name: alt, widget: string}
+
     - label: Section 1
       name: section1
       file: content/homePage/section1.md
@@ -119,7 +120,6 @@ collections:
             - { label: Scholar Google link, name: linkGoogleScholar, widget: string }
             - { label: Orcid link, name: linkOrcid, widget: string }
             - { label: ID photo, name: imageUrl, widget: image, choose_url: true, media_folder: 'public/images', public_folder: '/images' }
-
   - name: Resources Page
     label: Resources Page
     description: resources data
@@ -316,3 +316,4 @@ collections:
           fields:
             - { label: title, name: title, widget: string }
             - { label: paragraph, name: paragraph, widget: string }
+

@@ -4,6 +4,7 @@ description: Our primary goal is to harness the power of advanced computational 
 illustrationImage:
   - url: /images/homepage_image_part3.png
     alt: illustration cells
+
 ---
 
 homePage section2 content

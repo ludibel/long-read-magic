@@ -31,7 +31,7 @@ const useStickyEffect = (elementId: string, topOffset = 0) => {
       }
     }
   }
-  
+
     useEffect(() => {
       if (!elementTop) return
   

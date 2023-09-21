@@ -66,7 +66,12 @@ export const Table: FC<TableProps> = ({className}) => {
                                                 item.genomeQuality === GenomeQuality.High && "bg-qualitycolor-green",
                                                 item.genomeQuality === GenomeQuality.Medium && "bg-qualitycolor-yellow",
                                                 item.genomeQuality === GenomeQuality.Low && "bg-qualitycolor-red")}></div>
-                                            {item.filename}
+                                            <Link
+                                                href={item.detailsLink}
+                                                target="_blank"
+                                                className="text-indigo-600 hover:text-indigo-900">
+                                                {item.filename}
+                                            </Link>
                                         </td>
                                         <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.completeness}</td>
                                         <td className="whitespace-nowrap px-1 py-4 text-sm text-gray-500">{item.contamination}</td>
