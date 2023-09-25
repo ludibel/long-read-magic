@@ -127,7 +127,7 @@ collections:
     - label: Resources Hero
       name: Resources Hero
       description: resources Page data
-      file: content/resources/hero.md
+      file: content/resourcesHero/hero.md
       fields:
           - { label: Title, name: title, widget: string}
           - { label: Description, name: description, widget: string}

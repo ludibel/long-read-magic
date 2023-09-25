@@ -9,8 +9,8 @@ import arrowImageMax from '@/public/images/vector_arrow_max.png'
 import { AttributesProps, ImageProps } from '@/utils/types'
 
 export const Resources = ({ resources, datahero }) => {
-  const {title, description,imageHero} = datahero as AttributesProps
-  const {url: urlIamge, alt: altImage} = imageHero[0] as ImageProps
+  const { title, description, imageHero } = datahero as AttributesProps
+  const { url: urlIamge, alt: altImage } = imageHero[0] as ImageProps
   const sortedResources = [...resources].sort((a, b) => {
     if (a.slug === 'tools') {
       return -1
@@ -111,7 +111,7 @@ export default Resources
 export function getStaticProps() {
   try {
     const filehero = fs.readFileSync(
-      `${process.cwd()}/content/resources/hero.md`
+      `${process.cwd()}/content/resourcesHero/hero.md`
     )
     const { data: datahero } = matter(filehero)
 
