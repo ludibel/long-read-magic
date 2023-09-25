@@ -16,6 +16,7 @@ interface ContactFormProps extends AttributesProps {
   linkStringThanks?: string
   showBackgroundImage?: boolean
   textBlueColor?: boolean
+
 }
 
 const ContactForm = ({
@@ -34,6 +35,7 @@ const ContactForm = ({
   textBlueColor,
 }: ContactFormProps) => {
   const [formSubmitted, setFormSubmitted] = useState(false)
+
   const backgroundClass = useBackgroundOpacity
     ? 'bg-backgroundColor-greyop'
     : 'bg-backgroundColor-grey'

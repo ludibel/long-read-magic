@@ -15,30 +15,30 @@ export const defaultFilterState: GenomeOverviewFilterState = {
     completenessMin: 0,
     completenessMax: 100,
     contaminationMin: 0,
-    contaminationMax: 999,
+    contaminationMax: 200,
     passGnuc: undefined,
     trnaMin: 0,
-    trnaMax: 999,
+    trnaMax: 100,
     s16Min: 0,
-    s16Max: 999,
+    s16Max: 100,
     s5Min: 0,
-    s5Max: 999,
+    s5Max: 100,
     s23Min: 0,
-    s23Max: 999
+    s23Max: 100
 };
 
 const highQualityFilterState = {
     ...defaultFilterState,
-    completenessMin: 90.0000001,
-    contaminationMax: 4.9999999,
+    completenessMin: 90.0,
+    contaminationMax: 5.0,
     passGnuc: true,
     trnaMin: 18,
     s16Min: 1,
     s5Min: 1,
     s23Min: 1
 }
-const mediumQualityFilterState = {...defaultFilterState, completenessMin: 50, completenessMax: 90, contaminationMax: 9.9999999}
-const lowQualityFilterState = {...defaultFilterState, completenessMax: 49.9999999, contaminationMax: 9.9999999}
+const mediumQualityFilterState = {...defaultFilterState, completenessMin: 50, completenessMax: 90, contaminationMax: 10.0}
+const lowQualityFilterState = {...defaultFilterState, completenessMax: 50.0, contaminationMax: 10.0}
 
 export type FiltersProps = {
     className?: string;

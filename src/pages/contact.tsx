@@ -24,6 +24,7 @@ const Contact = ({ dataContact, dataThanks, contentThanks }) => {
     linkUrl: linkUrlThanks,
     linkString: linkStringThanks,
   } = dataThanks as AttributesProps
+
   return (
     <>
       <Head>
@@ -34,6 +35,7 @@ const Contact = ({ dataContact, dataThanks, contentThanks }) => {
         <Image
           src={urlImageForm}
           alt={altImageForm}
+
           fill
           className="bg-lightgray bg-opacity-50 object-cover object-center"
         />
